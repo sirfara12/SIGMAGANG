@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="flex gap-3 text-sm">
-            <button class="px-6 py-2 border border-blue-500 rounded-md text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out">Masuk</button>
-            <button class="px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-800  transition-all duration-300 ease-in-out">Buat Akun</button>
+            <button class="px-6 py-2 border border-blue-500 rounded-md text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out" onclick="location.href='{{ url('login') }}'">Masuk</button>
+            <button class="px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-800  transition-all duration-300 ease-in-out" onclick="location.href='{{ url('register') }}'">Buat Akun</button>
         </div>
     </nav>
 
