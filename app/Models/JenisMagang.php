@@ -11,4 +11,8 @@ class JenisMagang extends Model
     protected $table = 'jenis_magang';
     protected $primaryKey = 'id';
     protected $fillable = ['jenis_magang'];
+
+    public function mahasiswa() {
+        return $this->belongsToMany(Mahasiswa::class);
+    }
 }

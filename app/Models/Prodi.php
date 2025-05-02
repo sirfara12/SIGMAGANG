@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Prodi extends Model
 {
@@ -11,4 +12,13 @@ class Prodi extends Model
     protected $table = 'prodi';
     protected $primaryKey = 'id';
     protected $fillable = ['nama_prodi'];
+
+    public function mahasiswa(): HasMany
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
+    public function dosenPembimbing(): HasMany
+    {
+        return $this->hasMany(DosenPembimbing::class); 
+    }
 }

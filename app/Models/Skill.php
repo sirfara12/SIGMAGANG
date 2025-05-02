@@ -11,4 +11,11 @@ class Skill extends Model
     protected $table = 'skill';
     protected $primaryKey = 'id';
     protected $fillable = ['nama'];
+
+    public function lowongans() {
+        return $this->belongsToMany(Lowongan::class);
+    }   
+    public function mahasiswa() {
+        return $this->belongsToMany(Mahasiswa::class);
+    }   
 }
