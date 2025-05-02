@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_telp');
             $table->string('email');
-            $table->bigInteger('bidang_perusahaan_id')->unsigned();
-            $table->foreign('bidang_perusahaan_id')->references('id')->on('bidang_perusahaan')->onDelete('cascade')->onUpdate('cascade');   
+            $table->bigInteger('bidang_perusahaan_id')->unsigned()->nullable();
+            $table->foreign('bidang_perusahaan_id')->references('id')->on('bidang_perusahaan')->onDelete('set null')->onUpdate('cascade');   
             $table->timestamps();
         });
     }

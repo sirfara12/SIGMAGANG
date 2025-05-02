@@ -20,10 +20,10 @@ return new class extends Migration
             $table->enum('lokasi', ['malang','luar malang']);
             $table->bigInteger('perusahaan_id')->unsigned();
             $table->bigInteger('periode_id')->unsigned();
-            $table->bigInteger('prodi_id')->unsigned();
+            $table->bigInteger('prodi_id')->unsigned()->nullable();
             $table->foreign('perusahaan_id')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('periode_id')->references('id')->on('periode')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('prodi_id')->references('id')->on('prodi')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('prodi_id')->references('id')->on('prodi')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

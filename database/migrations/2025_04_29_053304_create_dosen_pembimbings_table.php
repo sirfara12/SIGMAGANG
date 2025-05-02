@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('nidn')->unique();
             $table->string('no_telp');
             $table->enum('jabatan',['lektor','asisten_ahli']);
-            $table->bigInteger('prodi_id')->unsigned();
+            $table->bigInteger('prodi_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('jenis_magang_id')->unsigned();
+            $table->bigInteger('jenis_magang_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('prodi_id')->references('id')->on('prodi')->onDelete('cascade')->onUpdate('cascade'); 
-            $table->foreign('jenis_magang_id')->references('id')->on('jenis_magang')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('prodi_id')->references('id')->on('prodi')->onDelete('set null')->onUpdate('cascade'); 
+            $table->foreign('jenis_magang_id')->references('id')->on('jenis_magang')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }
