@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('perusahaan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('bidang');
             $table->string('deskripsi');
             $table->string('alamat');
             $table->string('no_telp');
             $table->string('email');
+            $table->bigInteger('bidang_perusahaan_id')->unsigned()->nullable();
+            $table->foreign('bidang_perusahaan_id')->references('id')->on('bidang_perusahaan')->onDelete('set null')->onUpdate('cascade');   
             $table->timestamps();
         });
     }
