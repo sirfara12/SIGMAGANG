@@ -30,12 +30,17 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
+        $token = $user->createToken('default-token')->plainTextToken;
 
-    if ($user->role === 'admin') {
-    return redirect()->intended('/admin-dashboard');
-    }
-
-    return redirect()->intended('/dashboard');
+        if ($request->wantsJson()) {
+            return response()->json([
+                'token' => $token,
+                'user' => $user,
+            ]);
+        }
+        session()->flash('auth_token', $token);
+        return redirect()->intended('/dashboard')->with('token',$token);
+    
     }
 
     /**
@@ -43,8 +48,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
         Auth::guard('web')->logout();
-
+        $user->tokens->each(function ($token) {
+            $token->delete(); 
+        });
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
