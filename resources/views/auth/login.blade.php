@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGMAGANG - Login</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white">
     <!-- Header -->
-    <header class="w-full bg-white border-b border-gray-200 shadow-sm">
-        <div class="container mx-auto px-4 py-3 flex items-center">
-            <!-- Logo -->
-            <div class="flex items-center mr-12">
-                <img src="{{ asset('img/logo/sigmagang.png') }}" alt="Logo" class="h-8 w-25">
+    <nav class="flex justify-between items-center px-6 py-4 border border-gray-200 sticky top-0 z-50 bg-white">
+        <div class="flex items-center gap-2">
+            <img src="{{ asset('images/Logo-Sigmagang.png') }}" alt="logo" class="w-8 h-10 mr-0">
+            <span class="text-[20px] font-bold text-orange-500 mr-12">SIGMAGANG</span>
+            <div class="hidden md:flex gap-8 text-sm text-gray-400">
+                <a href="#" class="text-blue-500 font-medium">Beranda</a>
+                <a href="#">Fitur</a>
+                <a href="#">Panduan</a>
             </div>
-            <!-- Navigasi -->
-            <nav class="flex space-x-10 text-gray-500 font-medium">
-                <a href="#" class="hover:text-blue-600">Beranda</a>
-                <a href="#" class="hover:text-blue-600">Fitur</a>
-                <a href="#" class="hover:text-blue-600">Panduan</a>
-            </nav>
         </div>
-    </header>
+        <div class="flex gap-3 text-sm">
+            <button class="px-6 py-2 border border-blue-500 rounded-md text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out" onclick="location.href='{{ url('login') }}'">Masuk</button>
+            <button class="px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-800  transition-all duration-300 ease-in-out" onclick="location.href='{{ url('register') }}'">Buat Akun</button>
+        </div>
+    </nav>
 
     <!-- Konten -->
     <div class="w-full min-h-screen bg-white flex px-12 py-10">
@@ -37,7 +39,6 @@
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <!-- Email / Username -->
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -108,7 +109,7 @@
                 'kai', 'pln', 'pertamina'
             ] as $logo)
                 <div class="flex items-center justify-center py-2">
-                    <img src="{{ asset('img/logo/' . $logo . '.png') }}" alt="{{ $logo }}" class="h-24 w-auto object-contain" />
+                    <img src="{{ asset('logo/' . $logo . '.png') }}" alt="{{ $logo }}" class="h-24 w-auto object-contain" />
                 </div>
             @endforeach
         </div>

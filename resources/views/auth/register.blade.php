@@ -11,7 +11,7 @@
     <header class="w-full bg-white border-b border-gray-200 shadow-sm">
         <div class="container mx-auto px-4 py-3 flex items-center">
             <div class="flex items-center mr-12">
-                <img src="{{ asset('img/logo/sigmagang.png') }}" alt="Logo" class="h-8 w-25">
+                <img src="{{ asset('logo/sigmagang.png') }}" alt="Logo" class="h-8 w-25">
             </div>
             <nav class="flex space-x-10 text-gray-500 font-medium">
                 <a href="#" class="hover:text-blue-600">Beranda</a>
