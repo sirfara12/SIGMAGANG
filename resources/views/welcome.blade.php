@@ -76,6 +76,36 @@
             </div>
     </section>
 
+    <section class="py-16 bg-white">
+          <!-- Baris Logo 1: Scroll ke kiri -->
+          <div class="overflow-hidden mb-6">
+            <div class="flex animate-scroll-left gap-16">
+              <img src="{{ asset('images/logo/mandiri.png') }}" alt="Mandiri" class="h-10">
+              <img src="{{ asset('images/logo/bni.png') }}" alt="BNI" class="h-10">
+              <img src="{{ asset('images/logo/btn.png') }}" alt="BTN" class="h-10">
+              <img src="{{ asset('images/logo/bri.png') }}" alt="BRI" class="h-10">
+              <img src="{{ asset('images/logo/telkom.png') }}" alt="Telkom" class="h-10">
+              <img src="{{ asset('images/logo/krakatau.png') }}" alt="Krakatau" class="h-10">
+              <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
+              <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
+              <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
+              <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
+              <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
+            </div>
+          </div>
+      
+          <!-- Baris Logo 2: Scroll ke kanan -->
+          <div class="overflow-hidden">
+            <div class="flex animate-scroll-right gap-16">
+              <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
+              <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
+              <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
+              <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
+              <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
+            </div>
+          </div>
+      </section>
+
 
     <!-- Fitur -->
     <section class="px-6 py-16 bg-gray-50">
@@ -338,46 +368,86 @@
     </section>
 
     <!-- 5 Langkah Magang -->
-    <section class="bg-gray-50 px-6 py-16">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-2xl font-bold">5 Langkah, Langsung Magang</h2>
-            <p class="text-gray-600 text-sm mt-2">
-                Cukup ikuti 5 langkah berikut untuk mendapatkan pengalaman magang yang sesuai.
-            </p>
-        </div>
-        <div class="max-w-4xl mx-auto grid md:grid-cols-5 gap-6 text-center">
-            <div>
-                <div
-                    class="w-12 h-12 mx-auto mb-2 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center font-bold">
-                    1</div>
-                <p class="text-sm font-medium">Registrasi Akun</p>
+    <section class="bg-blue-500 py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- H2 di tengah atas -->
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+                5 Langkah, Langsung Magang!
+            </h2>
+
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <!-- Image -->
+                <div class="flex justify-center md:w-1/2">
+                    <img src="{{ asset('images/Panduan.png') }}" alt="5 Langkah Magang" class="w-full max-w-md">
+                </div>
+
+                <!-- Steps -->
+                <div class="md:w-1/2 text-white">
+                    <div class="flex flex-col gap-4">
+
+                        <!-- Step 1 -->
+                        <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
+                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                                1
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Login ke akun</h3>
+                                <p class="text-sm font-regular">Masuk ke akun kamu. Belum punya akun? Daftar dulu ya!</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
+                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                                2
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Lengkapi profil kamu</h3>
+                                <p class="text-sm font-regular">Isi data diri, keahlian, minat, lokasi favorit, dan upload dokumen
+                                    penting kayak CV atau sertifikat.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
+                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Lihat rekomendasi magang</h3>
+                                <p class="text-sm font-regular">Sistem akan kasih daftar magang yang cocok banget sama profil kamu.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
+                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                                4
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Ajukan lamaran dan pantau statusnya</h3>
+                                <p class="text-sm font-regular">Klik magang yang kamu minati, kirim lamaran langsung dari sistem,
+                                    lalu pantau statusnya secara real-time.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
+                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                                5
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Lakukan magang, isi logbook, dan dapatkan sertifikat</h3>
+                                <p class="text-sm ">Isi logbook rutin selama magang, upload laporan, dan dapatkan
+                                    sertifikat setelah selesai.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <div
-                    class="w-12 h-12 mx-auto mb-2 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center font-bold">
-                    2</div>
-                <p class="text-sm font-medium">Lengkapi Profil</p>
-            </div>
-            <div>
-                <div
-                    class="w-12 h-12 mx-auto mb-2 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center font-bold">
-                    3</div>
-                <p class="text-sm font-medium">Lihat Rekomendasi</p>
-            </div>
-            <div>
-                <div
-                    class="w-12 h-12 mx-auto mb-2 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center font-bold">
-                    4</div>
-                <p class="text-sm font-medium">Ajukan Lamaran</p>
-            </div>
-            <div>
-                <div
-                    class="w-12 h-12 mx-auto mb-2 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center font-bold">
-                    5</div>
-                <p class="text-sm font-medium">Mulai Magang</p>
-            </div>
-        </div>
     </section>
+
+    
     <!-- Footer -->
     <footer class="text-center text-sm text-gray-500 py-6 border-t mt-16">
         © 2025 Sigmagang. Semua hak dilindungi.
