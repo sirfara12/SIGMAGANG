@@ -11,4 +11,9 @@ class LogHarian extends Model
     protected $table = 'log_harian';
     protected $primaryKey = 'id';
     protected $fillable = ['mahasiswa_id', 'tanggal', 'status', 'catatan'];
+
+    public function log_mingguan()
+    {
+        return $this->belongsTo(LogMingguan::class);
+    }
 }

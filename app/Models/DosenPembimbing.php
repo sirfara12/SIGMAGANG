@@ -17,6 +17,7 @@ class DosenPembimbing extends Model
         'departemen',
         'no_telp',
         'preferensi_lokasi',
+        'prodi_id',
         'user_id'
     ];
 

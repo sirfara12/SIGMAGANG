@@ -32,7 +32,7 @@ class Dokumen extends Model
 
     public function isDosen(): bool
     {
-        return $this->pemilik_tipe === 'dosen';
+        return $this->pemilik_tipe === 'dosen_pembimbing';
     }
 
     public function isValid(): bool

@@ -11,7 +11,7 @@ class Lowongan extends Model
     use HasFactory;
     protected $table = 'lowongan';
     protected $primaryKey = 'id';
-    protected $fillable = ['deskripsi','nama','persyaratan','batas_pendaftaran','lokasi','prodi_id','perusahaan_id','periode_id'];
+    protected $fillable = ['deskripsi','nama','persyaratan','batas_pendaftaran','lokasi','prodi_id','perusahaan_id','periode_id','jumlah_magang','foto'];
 
     public function perusahaan(): BelongsTo
     {

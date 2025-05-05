@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('persyaratan');
             $table->date('batas_pendaftaran');
             $table->enum('lokasi', ['malang','luar malang']);
+            $table->integer('jumlah_magang')->nullable();
+            $table->string('foto')->nullable();
             $table->bigInteger('perusahaan_id')->unsigned();
             $table->bigInteger('periode_id')->unsigned();
             $table->bigInteger('prodi_id')->unsigned()->nullable();
