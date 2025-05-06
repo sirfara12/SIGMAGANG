@@ -10,7 +10,58 @@
 
 <body class="font-sans text-gray-800 bg-white">
     <!-- Navbar -->
-    <nav class="flex justify-between items-center px-6 py-4 border border-gray-200 sticky top-0 z-50 bg-white">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 shadow-sm ">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="{{ asset('images/Logo-Sigmagang.png') }}" class="h-8" alt="Sigmagang Logo" />
+                <span class="text-[20px] font-bold text-orange-500 mr-12">SIGMAGANG</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <div class="flex items-center gap-2">
+                    <button type="button"
+                        class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        onclick="location.href='{{ url('login') }}'">
+                        Masuk
+                    </button>
+                    <button type="button"
+                        class="text-blue-500 bg-white border border-blue-500 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        onclick="location.href='{{ url('register') }}'">
+                        Buat Akun
+                    </button>
+                </div>
+                <button data-collapse-toggle="navbar-cta" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-cta" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-left justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                <ul
+                    class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500"
+                            aria-current="page">Beranda</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-3 md:p-0 text-gray-400 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Fitur</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-3 md:p-0 text-gray-400 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Panduan</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {{-- <nav class="flex justify-between items-center px-6 py-4 border border-gray-200 sticky top-0 z-50 bg-white">
         <div class="flex items-center gap-2">
             <img src="{{ asset('images/Logo-Sigmagang.png') }}" alt="logo" class="w-8 h-10 mr-0">
             <span class="text-[20px] font-bold text-orange-500 mr-12">SIGMAGANG</span>
@@ -21,90 +72,101 @@
             </div>
         </div>
         <div class="flex gap-3 text-sm">
-            <button class="px-6 py-2 border border-blue-500 rounded-md text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out" onclick="location.href='{{ url('login') }}'">Masuk</button>
-            <button class="px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-800  transition-all duration-300 ease-in-out" onclick="location.href='{{ url('register') }}'">Buat Akun</button>
+            <button
+                class="px-6 py-2 border border-blue-500 rounded-md text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
+                onclick="location.href='{{ url('login') }}'">Masuk</button>
+            <button
+                class="px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-800  transition-all duration-300 ease-in-out"
+                onclick="location.href='{{ url('register') }}'">Buat Akun</button>
         </div>
-    </nav>
+    </nav> --}}
 
     <!-- Hero Section -->
-    <section class="relative pl-6 pr-0 py-24 max-w-7xl mx-auto overflow-hidden ">
+    <section
+        class="relative px-6 py-12 md:py-12 max-w-7xl mx-auto overflow-hidden flex flex-col-reverse md:flex-row items-center gap-10">
 
         <!-- Teks -->
-        <div class="max-w-xl relative z-10">
-            <h1 class="text-[50px] text-mirage-950 font-extrabold leading-snug">
-                Temukan Magang <br>
-                Sesuai Minat dan <br>
-                <span class="text-blue-500">Keahlianmu!</span>
+        <div class="w-full md:w-1/2 relative z-10 text-center md:text-left">
+            <h1 class="text-3xl sm:text-4xl md:text-[50px] text-mirage-950 font-extrabold leading-snug space-y-2">
+                <div>Temukan Magang</div>
+                <div class="mt-24">Sesuai Minat dan</div>
+                <div class="mt-12">
+                    <span class="text-blue-500">Keahlianmu!</span>
+                </div>
             </h1>
-            <p class="text-gray-400 font-medium text-[18px] mt-4">
-                Sistem Rekomendasi Magang untuk Mahasiswa <br>Jurusan Teknologi Informasi
+            <p class="text-gray-400 font-normal text-base  sm:text-[16px] mt-4">
+                Sistem Rekomendasi Magang untuk Mahasiswa <br class="hidden sm:block">Jurusan Teknologi Informasi
             </p>
-            <div class="flex gap-4 mt-6">
-                <button class="bg-blue-500 text-white px-6 py-3 font-semibold rounded-md text-sm hover:bg-blue-800  transition-all duration-300 ease-in-out">Mulai
-                    Sekarang</button>
+            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-6">
                 <button
-                    class="border border-blue-300 text-blue-500 text-sm px-6 py-3 font-semibold rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out ">Pelajari
-                    lebih lanjut</button>
+                    class="bg-blue-500 text-white px-6 py-3 font-semibold rounded-md text-sm hover:bg-blue-800 transition-all duration-300 ease-in-out">
+                    Mulai Sekarang
+                </button>
+                <button
+                    class="border border-blue-300 text-blue-500 text-sm px-6 py-3 font-semibold rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out">
+                    Pelajari lebih lanjut
+                </button>
             </div>
         </div>
 
-        <!-- Gambar dan Badge -->
-        <div class="absolute right-0 top-[47%] -translate-y-1/2 w-[60%] max-w-[600px]">
-            <div class="relative">
-                <img src="{{ asset('images/landing.png') }}" alt="Team" />
+        <!-- Gambar -->
+        <div class="w-full md:w-1/2">
+            <div class="relative mx-auto max-w-[400px] md:max-w-[600px]">
+                <img src="{{ asset('images/landing Page 1.png') }}" alt="Team" class="w-full h-auto" />
 
                 {{-- <!-- Badge Mitra -->
-                <div
-                    class="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm">
-                    <div class="text-orange-500 text-lg">🏫</div>
-                    <div>
-                        <p class="font-semibold">Mitra Kampus</p>
-                        <p class="text-xs text-gray-500">500++</p>
-                    </div>
+            <div
+                class="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm">
+                <div class="text-orange-500 text-lg">🏫</div>
+                <div>
+                    <p class="font-semibold">Mitra Kampus</p>
+                    <p class="text-xs text-gray-500">500++</p>
                 </div>
+            </div>
 
-                <!-- Badge Lowongan -->
-                <div
-                    class="absolute bottom-0 right-2 bg-white px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm">
-                    <div class="text-orange-500 text-lg">📋</div>
-                    <div>
-                        <p class="font-semibold">Lowongan tersedia</p>
-                        <p class="text-xs text-gray-500">1000++</p>
-                    </div>
+            <!-- Badge Lowongan -->
+            <div
+                class="absolute bottom-0 right-2 bg-white px-4 py-2 rounded-lg shadow flex items-center gap-2 text-sm">
+                <div class="text-orange-500 text-lg">📋</div>
+                <div>
+                    <p class="font-semibold">Lowongan tersedia</p>
+                    <p class="text-xs text-gray-500">1000++</p>
                 </div>
             </div> --}}
             </div>
+        </div>
     </section>
 
+
     <section class="py-16 bg-white">
-          <!-- Baris Logo 1: Scroll ke kiri -->
-          <div class="overflow-hidden mb-6">
+        <!-- Baris Logo 1: Scroll ke kiri -->
+        <div class="overflow-hidden mb-6">
             <div class="flex animate-scroll-left gap-16">
-              <img src="{{ asset('images/logo/mandiri.png') }}" alt="Mandiri" class="h-10">
-              <img src="{{ asset('images/logo/bni.png') }}" alt="BNI" class="h-10">
-              <img src="{{ asset('images/logo/btn.png') }}" alt="BTN" class="h-10">
-              <img src="{{ asset('images/logo/bri.png') }}" alt="BRI" class="h-10">
-              <img src="{{ asset('images/logo/telkom.png') }}" alt="Telkom" class="h-10">
-              <img src="{{ asset('images/logo/krakatau.png') }}" alt="Krakatau" class="h-10">
-              <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
-              <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
-              <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
-              <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
-              <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
+                <img src="{{ asset('images/logo/mandiri.png') }}" alt="Mandiri" class="h-10">
+                <img src="{{ asset('images/logo/bni.png') }}" alt="BNI" class="h-10">
+                <img src="{{ asset('images/logo/btn.png') }}" alt="BTN" class="h-10">
+                <img src="{{ asset('images/logo/bri.png') }}" alt="BRI" class="h-10">
+                <img src="{{ asset('images/logo/telkom.png') }}" alt="Telkom" class="h-10">
+                <img src="{{ asset('images/logo/krakatau.png') }}" alt="Krakatau" class="h-10">
+                <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
+                <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
+                <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
+                <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
+                <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
             </div>
-          </div>
-      
-          <!-- Baris Logo 2: Scroll ke kanan -->
-          <div class="overflow-hidden">
+        </div>
+
+        <!-- Baris Logo 2: Scroll ke kanan -->
+        <div class="overflow-hidden">
             <div class="flex animate-scroll-right gap-16">
-              <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
-              <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
-              <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
-              <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
-              <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
+                <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
+                <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
+                <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
+                <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
+                <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
             </div>
-          </div>
-      </section>
+        </div>
+    </section>
 
 
     <!-- Fitur -->
@@ -166,10 +228,12 @@
                     </div>
 
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-green-100 text-green-600 text-xs font-medium px-3 py-1 rounded-full">Umum</span>
+                        <span
+                            class="bg-green-100 text-green-600 text-xs font-medium px-3 py-1 rounded-full">Umum</span>
                         <span class="bg-gray-200 text-gray-600 text-xs font-medium px-3 py-1 rounded-full">6
                             Bulan</span>
-                        <span class="bg-gray-200 text-gray-600 text-xs font-medium px-3 py-1 rounded-full">Onsite</span>
+                        <span
+                            class="bg-gray-200 text-gray-600 text-xs font-medium px-3 py-1 rounded-full">Onsite</span>
                     </div>
 
                     <hr class="my-4">
@@ -184,7 +248,8 @@
                         <svg class="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
                                 d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z" />
                         </svg>
                         <span>Dibuat 2 hari yang lalu</span>
@@ -355,7 +420,7 @@
         </div>
         <div class="text-center mt-10">
             <button type="button"
-                class="flex items-center mx-auto gap-2 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white font-semibold rounded-[8px] text-sm px-4 py-3 group transition-all duration-300 ease-in-out">
+                class="flex items-center mx-auto gap-2 text-blue-500 bg-white border border-blue-500 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"">
                 Lihat Lebih Banyak
                 <svg class="w-6 h-6 text-current group-hover:text-white transition-all duration-300 ease-in-out"
                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -387,53 +452,62 @@
 
                         <!-- Step 1 -->
                         <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
-                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
                                 1
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold">Login ke akun</h3>
-                                <p class="text-sm font-regular">Masuk ke akun kamu. Belum punya akun? Daftar dulu ya!</p>
+                                <p class="text-sm font-regular">Masuk ke akun kamu. Belum punya akun? Daftar dulu ya!
+                                </p>
                             </div>
                         </div>
 
                         <!-- Step 2 -->
                         <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
-                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
                                 2
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold">Lengkapi profil kamu</h3>
-                                <p class="text-sm font-regular">Isi data diri, keahlian, minat, lokasi favorit, dan upload dokumen
+                                <p class="text-sm font-regular">Isi data diri, keahlian, minat, lokasi favorit, dan
+                                    upload dokumen
                                     penting kayak CV atau sertifikat.</p>
                             </div>
                         </div>
 
                         <!-- Step 3 -->
                         <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
-                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
                                 3
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold">Lihat rekomendasi magang</h3>
-                                <p class="text-sm font-regular">Sistem akan kasih daftar magang yang cocok banget sama profil kamu.</p>
+                                <p class="text-sm font-regular">Sistem akan kasih daftar magang yang cocok banget sama
+                                    profil kamu.</p>
                             </div>
                         </div>
 
                         <!-- Step 4 -->
                         <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
-                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
                                 4
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold">Ajukan lamaran dan pantau statusnya</h3>
-                                <p class="text-sm font-regular">Klik magang yang kamu minati, kirim lamaran langsung dari sistem,
+                                <p class="text-sm font-regular">Klik magang yang kamu minati, kirim lamaran langsung
+                                    dari sistem,
                                     lalu pantau statusnya secara real-time.</p>
                             </div>
                         </div>
 
                         <!-- Step 5 -->
                         <div class="bg-blue-400 rounded-lg p-4 flex items-center gap-4 shadow-md">
-                            <div class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 min-w-10 min-h-10 aspect-square rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg">
                                 5
                             </div>
                             <div>
@@ -447,7 +521,7 @@
             </div>
     </section>
 
-    
+
     <!-- Footer -->
     <footer class="text-center text-sm text-gray-500 py-6 border-t mt-16">
         © 2025 Sigmagang. Semua hak dilindungi.
