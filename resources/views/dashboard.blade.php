@@ -11,8 +11,8 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">250</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Total Mahasiswa</p>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$user_count}}</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Total Pengguna</p>
                 </div>
             </div>
             <div class="mt-4 flex items-center text-green-600 dark:text-green-400">
@@ -31,7 +31,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">250</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$lowongan_count}}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Lowongan</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">250</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$pengajuan_count}}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Pengajuan</p>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">250</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$perusahaan_count}}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Perusahaan</p>
                 </div>
             </div>
