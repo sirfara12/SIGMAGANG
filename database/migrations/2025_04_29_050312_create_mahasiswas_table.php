@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('preferensi_lokasi', ['malang','luar malang']);
             $table->string('nim')->unique();
             $table->string('no_telp');
+            $table->integer('semester');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('prodi_id')->unsigned()->nullable();
             $table->bigInteger('jenis_magang_id')->unsigned()->nullable();
