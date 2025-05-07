@@ -12,24 +12,24 @@ class JenisMagangSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('jenis_magangs')->insert([
+        DB::table('jenis_magang')->insert([
             [
-                'nama' => 'Magang Industri',
+                'jenis_magang' => 'Magang Industri',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nama' => 'Magang Riset',
+                'jenis_magang' => 'Magang Riset',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nama' => 'Magang Kewirausahaan',
+                'jenis_magang' => 'Magang Kewirausahaan',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nama' => 'Magang Pemerintahan',
+                'jenis_magang' => 'Magang Pemerintahan',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

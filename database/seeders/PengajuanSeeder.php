@@ -17,7 +17,8 @@ class PengajuanSeeder extends Seeder
                 'mahasiswa_id' => 1,
                 'lowongan_id' => 1,
                 'status' => 'pending',
-                'alasan' => 'Saya sangat tertarik dengan posisi UI/UX Designer karena memiliki pengalaman dalam desain dan ingin mengembangkan kompetensi di bidang ini.',
+                'skor_spk' => 0,
+                'dosen_id' => null,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -25,7 +26,8 @@ class PengajuanSeeder extends Seeder
                 'mahasiswa_id' => 2,
                 'lowongan_id' => 2,
                 'status' => 'pending',
-                'alasan' => 'Saya memiliki pengalaman dalam pemrograman backend dan ingin mengembangkan skill di perusahaan profesional.',
+                'skor_spk' => 0,
+                'dosen_id' => null,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -33,7 +35,8 @@ class PengajuanSeeder extends Seeder
                 'mahasiswa_id' => 3,
                 'lowongan_id' => 3,
                 'status' => 'pending',
-                'alasan' => 'Saya tertarik dengan posisi Data Analyst karena memiliki minat dalam analisis data dan ingin mengembangkan karir di bidang ini.',
+                'skor_spk' => 0,
+                'dosen_id' => null,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

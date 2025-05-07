@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PenggunaController;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
-Route::middleware(['auth', 'verified'])->group(function () {
 
     // DASHBOARD
     Route::prefix('dashboard')->group(function () {
@@ -70,6 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // });
 
     });
+Route::middleware(['auth','verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
-
 require __DIR__.'/auth.php';

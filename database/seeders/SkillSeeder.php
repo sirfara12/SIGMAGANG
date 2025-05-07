@@ -5,16 +5,21 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SkillsSeeder extends Seeder
+class SkillSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('skills')->insert([
+        DB::table('skill')->insert([
             [
                 'nama' => 'PHP',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'nama' => 'Laravel',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -24,20 +29,20 @@ class SkillsSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'nama' => 'Python',
+                'nama' => 'React',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nama' => 'Database',
+                'nama' => 'MySQL',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nama' => 'UI/UX Design',
+                'nama' => 'Git',
                 'created_at' => now(),
                 'updated_at' => now()
-            ],
+            ]
         ]);
     }
 }
