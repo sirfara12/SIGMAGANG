@@ -21,10 +21,8 @@
                         Jangan tunggu nanti, daftar magang sekarang dan tunjukkan potensimu di perusahaan besar!
                     </p>
                 </div>
-
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <!-- Email -->
                     <div class="mb-4">
                         <label for="email" class="block text-[14px] font-semibold text-mirage-950 mb-1">Email</label>
@@ -35,7 +33,6 @@
                             <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-
                     <!-- Password -->
                     <div class="mb-4">
                         <label for="password" class="block text-[14px] font-semibold text-mirage-950 mb-1">Kata
