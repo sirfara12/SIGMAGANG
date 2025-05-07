@@ -142,12 +142,11 @@
         <!-- Baris Logo 1: Scroll ke kiri -->
         <div class="overflow-hidden mb-6">
             <div class="flex animate-scroll-left gap-16">
-                <img src="{{ asset('images/logo/mandiri.png') }}" alt="Mandiri" class="h-10">
-                <img src="{{ asset('images/logo/bni.png') }}" alt="BNI" class="h-10">
-                <img src="{{ asset('images/logo/btn.png') }}" alt="BTN" class="h-10">
-                <img src="{{ asset('images/logo/bri.png') }}" alt="BRI" class="h-10">
-                <img src="{{ asset('images/logo/telkom.png') }}" alt="Telkom" class="h-10">
-                <img src="{{ asset('images/logo/krakatau.png') }}" alt="Krakatau" class="h-10">
+                <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
+                <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
+                <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
+                <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
+                <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
                 <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
                 <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
                 <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
@@ -159,6 +158,11 @@
         <!-- Baris Logo 2: Scroll ke kanan -->
         <div class="overflow-hidden">
             <div class="flex animate-scroll-right gap-16">
+                <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
+                <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
+                <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
+                <img src="{{ asset('images/logo/inka.png') }}" alt="INKA" class="h-32">
+                <img src="{{ asset('images/logo/perumnas.png') }}" alt="Perumnas" class="h-32">
                 <img src="{{ asset('images/logo/kai.png') }}" alt="KAI" class="h-32">
                 <img src="{{ asset('images/logo/pln.png') }}" alt="PLN" class="h-32">
                 <img src="{{ asset('images/logo/pertamina.png') }}" alt="Pertamina" class="h-32">
