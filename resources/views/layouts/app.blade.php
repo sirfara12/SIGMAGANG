@@ -19,15 +19,18 @@
     <!-- Flowbite CSS -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 
-    <!-- Vite Assets (Simulated) -->
-    <link href="/dist/app.css" rel="stylesheet" />
-    <script src="/dist/app.js"></script>
+    {{-- Tailwind --}}
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- ApexCharts -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.min.js"></script>
 
     <!-- Flowbite JS -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!-- Vite Assets (Simulated) -->
+    <link href="/dist/app.css" rel="stylesheet" />
+    <script src="/dist/app.js"></script>
 </head>
 
 <body>

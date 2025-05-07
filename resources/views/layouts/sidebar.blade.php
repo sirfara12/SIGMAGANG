@@ -1,7 +1,7 @@
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-full sm:h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-hidden bg-white dark:bg-gray-800 ">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800 ">
         <ul class="space-y-2 font-medium ">
             <!-- Dashboard -->
             <li class="mb-4">
@@ -105,7 +105,7 @@
                     @csrf
                     <button type="submit"
                         onclick="event.preventDefault(); localStorage.removeItem('auth_token'); this.closest('form').submit();"
-                        class="w-full flex items-center p-2 text-red-600 rounded-lg hover:bg-red-100 group">
+                        class="w-full flex items-center p-2 text-red-600 rounded-lg hover:bg-red-200 group cursor-pointer">
                         <svg class="w-6 h-6 text-red-600 dark:text-white" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
