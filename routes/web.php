@@ -19,16 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
-
-
-    // DASHBOARD
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {
-            $activemenu = 'dashboard';
-            return view('dashboard', ['activemenu' => $activemenu]);
-        })->name('dashboard');
-    });
-
+Route::middleware(['auth','verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
     // HANYA ADMIN
     Route::middleware('role:admin')->group(function () {
 
@@ -42,6 +35,7 @@ Route::get('/', [WelcomeController::class, 'index']);
         // MANAJEMEN DATA
         Route::prefix('pengguna')->group(function () {
             Route::get('/', [PenggunaController::class, 'index'])->name('pengguna.index');
+            Route::get('/tambah', [PenggunaController::class, 'create'])->name('pengguna.tambah');
         });
 
         Route::prefix('perusahaan')->group(function () {
@@ -70,7 +64,5 @@ Route::get('/', [WelcomeController::class, 'index']);
         // });
 
     });
-Route::middleware(['auth','verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+
 require __DIR__.'/auth.php';

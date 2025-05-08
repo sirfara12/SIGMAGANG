@@ -56,7 +56,7 @@
             </div>
         </form>
 
-        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="location.href='{{ url('/tambah') }}'">
             Tambah
         </button>
     </div>
