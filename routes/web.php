@@ -5,7 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PerusahaanController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\ProgramStudiController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
