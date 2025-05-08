@@ -42,6 +42,7 @@ Route::get('/', [WelcomeController::class, 'index']);
         // MANAJEMEN DATA
         Route::prefix('pengguna')->group(function () {
             Route::get('/', [PenggunaController::class, 'index'])->name('pengguna.index');
+            Route::get('/create', [PenggunaController::class, 'create'])->name('pengguna.create');
         });
 
         Route::prefix('perusahaan')->group(function () {
