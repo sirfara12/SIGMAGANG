@@ -22,16 +22,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
-
-
-    // DASHBOARD
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {
-            $activemenu = 'dashboard';
-            return view('dashboard', ['activemenu' => $activemenu]);
-        })->name('dashboard');
-    });
-
+Route::middleware(['auth','verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
     // HANYA ADMIN
     Route::middleware('role:admin')->group(function () {
 
@@ -46,6 +39,10 @@ Route::get('/', [WelcomeController::class, 'index']);
         Route::prefix('pengguna')->group(function () {
             Route::get('/', [PenggunaController::class, 'index'])->name('pengguna.index');
             Route::get('/create', [PenggunaController::class, 'create'])->name('pengguna.create');
+            Route::post('/store', [PenggunaController::class, 'store'])->name('pengguna.store');
+            Route::get('/edit/{id}', [PenggunaController::class, 'edit'])->name('pengguna.edit');
+            Route::put('/update/{id}', [PenggunaController::class, 'update'])->name('pengguna.update');
+            Route::delete('/delete/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
         });
 
         Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
@@ -88,7 +85,5 @@ Route::get('/', [WelcomeController::class, 'index']);
         // });
 
     });
-Route::middleware(['auth','verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+
 require __DIR__.'/auth.php';

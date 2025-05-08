@@ -19,12 +19,6 @@ class Dokumen extends Model
         'status',
         'catatan_validasi'
     ];
-
-    public function pemilik(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'pemilik_id');
-    }
-
     public function isMahasiswa(): bool
     {
         return $this->pemilik_tipe === 'mahasiswa';
