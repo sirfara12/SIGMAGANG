@@ -14,38 +14,38 @@ class MahasiswaSeeder extends Seeder
     {
         DB::table('mahasiswa')->insert([
             [
-                'nim' => '1234567890',
-                'nama' => 'John Doe',
+                'nim' => '12345678903',
                 'prodi_id' => 1,
                 'semester' => 7,
                 'ipk' => 3.8,
                 'preferensi_lokasi' => 'malang',
                 'no_telp' => '081234567890',
                 'user_id' => 1,
+                'jenis_magang_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nim' => '1234567891',
-                'nama' => 'Jane Smith',
+                'nim' => '12345678912',
                 'prodi_id' => 2,
                 'semester' => 7,
                 'ipk' => 3.9,
                 'preferensi_lokasi' => 'malang',
                 'no_telp' => '081234567891',
                 'user_id' => 2,
+                'jenis_magang_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'nim' => '1234567892',
-                'nama' => 'Michael Johnson',
+                'nim' => '12345678921',
                 'prodi_id' => 2,
                 'semester' => 7,
                 'ipk' => 3.7,
                 'preferensi_lokasi' => 'malang',
                 'no_telp' => '081234567892',
                 'user_id' => 3,
+                'jenis_magang_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

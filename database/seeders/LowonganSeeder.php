@@ -48,7 +48,7 @@ class LowonganSeeder extends Seeder
                 'jumlah_magang' => 2,
                 'perusahaan_id' => 2,
                 'periode_id' => 1,
-                'prodi_id' => 3,
+                'prodi_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

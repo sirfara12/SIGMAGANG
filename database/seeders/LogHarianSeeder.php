@@ -12,7 +12,7 @@ class LogHarianSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('log_harians')->insert([
+        DB::table('log_harian')->insert([
             [
                 'log_mingguan_id' => 1,
                 'tanggal' => '2025-05-01',

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class PerusahaanSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class PerusahaanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('perusahaans')->insert([
+        DB::table('perusahaan')->insert([
             [
                 'nama' => 'PT Sigma Tech Indonesia',
                 'alamat' => 'Jl. Raya Malang No. 123, Malang',
