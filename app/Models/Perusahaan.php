@@ -17,4 +17,9 @@ class Perusahaan extends Model
     {
         return $this->hasMany(Lowongan::class);
     }
+
+    public function bidangPerusahaan(): BelongsTo
+    {
+        return $this->belongsTo(BidangPerusahaan::class, 'bidang_perusahaan_id');
+    }
 }
