@@ -11,10 +11,15 @@ class Perusahaan extends Model
     use HasFactory;
     protected $table = 'perusahaan';
     protected $primaryKey = 'id';
-    protected $fillable = ['deskripsi','nama','email','bidang','alamat','no_telp'];
+    protected $fillable = ['deskripsi','nama','email','bidang_perusahaan_id','alamat','no_telp','website','foto'];
 
     public function lowongan(): HasMany
     {
         return $this->hasMany(Lowongan::class);
+    }
+
+    public function bidangPerusahaan(): BelongsTo
+    {
+        return $this->belongsTo(BidangPerusahaan::class, 'bidang_perusahaan_id');
     }
 }

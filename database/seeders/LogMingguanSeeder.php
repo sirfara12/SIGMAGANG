@@ -12,25 +12,37 @@ class LogMingguanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('log_mingguans')->insert([
+        DB::table('log_mingguan')->insert([
             [
                 'pengajuan_id' => 1,
                 'minggu' => 1,
-                'ringkasan' => 'Pekan pertama magang: Briefing program, pemahaman SOP, dan mulai pembuatan wireframe UI/UX',
+                'tanggal_awal' => '2025-05-01',
+                'tanggal_akhir' => '2025-05-07',
+                'mahasiswa_feedback' => 'Bagus',
+                'dosen_feedback' => 'Bagus',
+                'evaluasi_nilai' => 4,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'pengajuan_id' => 2,
                 'minggu' => 1,
-                'ringkasan' => 'Pekan pertama magang: Briefing program, pemahaman SOP, dan mulai pengembangan API backend',
+                'tanggal_awal' => '2025-05-01',
+                'tanggal_akhir' => '2025-05-07',
+                'mahasiswa_feedback' => 'Bagus',
+                'dosen_feedback' => 'Bagus',
+                'evaluasi_nilai' => 4,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'pengajuan_id' => 3,
                 'minggu' => 1,
-                'ringkasan' => 'Pekan pertama magang: Briefing program, pemahaman SOP, dan mulai analisis data',
+                'tanggal_awal' => '2025-05-01',
+                'tanggal_akhir' => '2025-05-07',
+                'mahasiswa_feedback' => 'Bagus',
+                'dosen_feedback' => 'Bagus',
+                'evaluasi_nilai' => 4,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

@@ -12,7 +12,7 @@ class ProdiSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('prodis')->insert([
+        DB::table('prodi')->insert([
             [
                 'nama' => 'Teknik Informatika',
                 'created_at' => now(),
