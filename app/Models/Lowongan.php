@@ -4,14 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Lowongan extends Model
 {
     use HasFactory;
+
     protected $table = 'lowongan';
     protected $primaryKey = 'id';
-    protected $fillable = ['deskripsi','nama','persyaratan','batas_pendaftaran','lokasi','prodi_id','perusahaan_id','periode_id','jumlah_magang','foto'];
+
+    protected $fillable = [
+        'nama',
+        'deskripsi',
+        'persyaratan',
+        'batas_pendaftaran',
+        'lokasi',
+        'jumlah_magang',
+        'perusahaan_id',
+        'periode_id',
+        'prodi_id',
+        'foto',
+    ];
 
     public function perusahaan(): BelongsTo
     {
@@ -32,7 +47,9 @@ class Lowongan extends Model
     {
         return $this->hasMany(DokumenLowongan::class);
     }
-    public function skills() {
+
+    public function skills(): BelongsToMany
+    {
         return $this->belongsToMany(Skill::class);
     }
 }
