@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Periode;
 use Illuminate\Http\Request;
 
 class PeriodeController extends Controller
@@ -42,31 +43,34 @@ class PeriodeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Periode $periode)
+    public function show($id)
     {
         $activemenu = 'periode';
+        $periode = Periode::findOrFail($id);
         return view('periode.show',['activemenu' => $activemenu,'periode' => $periode]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Periode $periode)
+    public function edit($id)
     {
         $activemenu = 'periode';
+        $periode = Periode::findOrFail($id);
         return view('periode.edit',['activemenu' => $activemenu,'periode' => $periode]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Periode $periode)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'deskripsi' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
         ]);
+        $periode = Periode::findOrFail($id);
         $periode->update($request->all());
         return redirect()->route('periode.index')->with('success', 'Periode berhasil diupdate');
     }
@@ -74,8 +78,9 @@ class PeriodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Periode $periode)
+    public function destroy($id)
     {
+        $periode = Periode::findOrFail($id);
         $periode->delete();
         return redirect()->route('periode.index')->with('success', 'Periode berhasil dihapus');
     }

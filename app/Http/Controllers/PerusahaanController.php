@@ -59,25 +59,27 @@ class PerusahaanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Perusahaan $perusahaan)
+    public function show($id)
     {
         $activemenu = 'perusahaan';
+        $perusahaan = Perusahaan::findOrFail($id);
         return view('perusahaan.show',['activemenu' => $activemenu,'perusahaan' => $perusahaan]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Perusahaan $perusahaan)
+    public function edit($id)
     {
         $activemenu = 'perusahaan';
+        $perusahaan = Perusahaan::findOrFail($id);
         return view('perusahaan.edit',['activemenu' => $activemenu,'perusahaan' => $perusahaan]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Perusahaan $perusahaan)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nama' => 'required',
@@ -88,7 +90,7 @@ class PerusahaanController extends Controller
             'website' => 'required',
             'bidang_perusahaan_id' => 'required',
         ]);
-       
+       $perusahaan = Perusahaan::findOrFail($id);
 
     if ($request->hasFile('foto')) {
   
@@ -118,8 +120,9 @@ class PerusahaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Perusahaan $perusahaan)
+    public function destroy($id)
     {
+        $perusahaan = Perusahaan::findOrFail($id);
         $perusahaan->delete();
         return redirect()->route('perusahaan.index')->with('success', 'Perusahaan berhasil dihapus');
     }

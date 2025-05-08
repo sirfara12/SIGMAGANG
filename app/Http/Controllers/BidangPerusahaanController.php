@@ -47,35 +47,38 @@ class BidangPerusahaanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BidangPerusahaan $bidangperusahaan)
+    public function show($id)
     {
         $activemenu = 'bidang_perusahaan';
+        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
         return view('bidang_perusahaan.show', [
             'activemenu' => $activemenu,
-            'bidangperusahaan' => $bidangperusahaan,
+            'bidang_perusahaan' => $bidang_perusahaan,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BidangPerusahaan $bidangperusahaan)
+    public function edit($id)
     {
         $activemenu = 'bidang_perusahaan';
+        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
         return view('bidang_perusahaan.edit', [
             'activemenu' => $activemenu,
-            'bidangperusahaan' => $bidangperusahaan,
+            'bidang_perusahaan' => $bidang_perusahaan,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BidangPerusahaan $bidangperusahaan)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nama_bidang' => 'required',
         ]);
+        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
         $bidangperusahaan->update($request->all());
         return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
     }
@@ -83,9 +86,10 @@ class BidangPerusahaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BidangPerusahaan $bidangperusahaan)
+    public function destroy($id)
     {
-        $bidangperusahaan->delete();
+        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
+        $bidang_perusahaan->delete();
         return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil dihapus');
     }
 }

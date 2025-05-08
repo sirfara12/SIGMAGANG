@@ -36,6 +36,10 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::prefix('pengguna')->group(function () {
             Route::get('/', [PenggunaController::class, 'index'])->name('pengguna.index');
             Route::get('/create', [PenggunaController::class, 'create'])->name('pengguna.create');
+            Route::post('/store', [PenggunaController::class, 'store'])->name('pengguna.store');
+            Route::get('/edit/{id}', [PenggunaController::class, 'edit'])->name('pengguna.edit');
+            Route::put('/update/{id}', [PenggunaController::class, 'update'])->name('pengguna.update');
+            Route::delete('/delete/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
         });
 
         Route::prefix('perusahaan')->group(function () {

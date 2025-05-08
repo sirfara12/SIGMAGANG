@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Validator;
 
 class PenggunaController extends Controller
 {
+    use PasswordValidationRules;
     public function index(Request $request)
     {
         $user_all = User::all();
@@ -46,64 +48,82 @@ class PenggunaController extends Controller
         $activemenu = 'pengguna';
         return view('pengguna.create',['activemenu' => $activemenu]);
     }
-    public function store(array $input){
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
-            'password' => $this->passwordRules(),
-            'role' => ['required', Rule::in(['admin', 'mahasiswa', 'dosen_pembimbing'])],
-        ])->validate();
-        User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-            'role' => $input['role'],
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $activemenu = 'pengguna';
+        return view('pengguna.edit', [
+            'activemenu' => $activemenu,
+            'user' => $user
         ]);
-        return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil ditambahkan');
     }
-    public function show(User $user)
+    public function store(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'role' => ['required', Rule::in(['admin', 'mahasiswa', 'dosen_pembimbing'])],
+            ]);
+
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'password' => Hash::make($validated['password']),
+                'role' => $validated['role'],
+            ]);
+
+            return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors([
+                'error' => 'Terjadi kesalahan saat membuat pengguna: ' . $e->getMessage()
+            ]);
+        }
+    }
+    public function show($id)
     {
         $activemenu = 'pengguna';
+        $user = User::findOrFail($id);
         return view('pengguna.show', [
             'activemenu' => $activemenu,
             'user' => $user,
         ]);
     }
-    public function edit(User $user){
-        $activemenu = 'pengguna';
-        return view('pengguna.edit', [
-            'activemenu' => $activemenu,
-            'user' => $user,
-        ]);
+    public function update(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+                'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+                'role' => ['required', Rule::in(['admin', 'mahasiswa', 'dosen_pembimbing'])],
+            ]);
+
+            $updateData = [
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'role' => $validated['role'],
+            ];
+
+
+            if (!empty($validated['password'])) {
+                $updateData['password'] = Hash::make($validated['password']);
+            }
+
+            $user = User::findOrFail($id);
+            $user->update($updateData);
+            
+            return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil diupdate.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors([
+                'error' => 'Terjadi kesalahan saat mengupdate pengguna: ' . $e->getMessage()
+            ]);
+        }
     }
-    public function update(User $user, array $input){
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($user->id),
-            ],
-            'password' => $this->passwordRules(),
-            'role' => ['required', Rule::in(['admin', 'mahasiswa', 'dosen_pembimbing'])],
-        ])->validate();
-        $user->update([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-            'role' => $input['role'],
-        ]);
-        return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil diupdate');
-    }
-    public function destroy(User $user){
+    public function destroy($id){
+        $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil dihapus');
     }

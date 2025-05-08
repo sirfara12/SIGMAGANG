@@ -40,29 +40,32 @@ class JenisMagangController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JenisMagang $jenis_magang)
+    public function show($id)
     {
         $activemenu = 'jenis_magang';
+        $jenis_magang = JenisMagang::findOrFail($id);
         return view('jenis_magang.show',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JenisMagang $jenis_magang)
+    public function edit($id)
     {
         $activemenu = 'jenis_magang';
+        $jenis_magang = JenisMagang::findOrFail($id);
         return view('jenis_magang.edit',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JenisMagang $jenis_magang)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'jenis_magang' => 'required',
         ]);
+        $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->update($request->all());
         return redirect()->route('jenis_magang.index')->with('success', 'Jenis Magang berhasil diupdate');
     }
@@ -70,8 +73,9 @@ class JenisMagangController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JenisMagang $jenis_magang)
+    public function destroy($id)
     {
+        $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->delete();
         return redirect()->route('jenis_magang.index')->with('success', 'Jenis Magang berhasil dihapus');
     }
