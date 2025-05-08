@@ -16,5 +16,4 @@ class BidangPerusahaan extends Model
     public function perusahaan() {
         return $this->belongsToMany(Perusahaan::class);
     }
-
 }
