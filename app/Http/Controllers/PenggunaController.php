@@ -37,4 +37,10 @@ class PenggunaController extends Controller
             'search' => $search,     
         ]);
     }
+
+    public function create()
+    {
+        $activemenu = 'pengguna';
+        return view('pengguna.create',['activemenu' => $activemenu]);
+    }
 }

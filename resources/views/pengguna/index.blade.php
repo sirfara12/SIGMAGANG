@@ -30,11 +30,14 @@
                                 class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Semua
                                 Posisi</button></li>
                         <li><button type="button" data-value="admin"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin</button></li>
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" ">Admin</button>
+                        </li>
                         <li><button type="button" data-value="dosen"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dosen</button></li>
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dosen</button>
+                        </li>
                         <li><button type="button" data-value="mahasiswa"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mahasiswa</button></li>
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mahasiswa</button>
+                        </li>
                     </ul>
                 </div>
 
@@ -56,8 +59,10 @@
             </div>
         </form>
 
-        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-            Tambah
+
+        <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="button" onclick="location.href='{{ url('pengguna/create') }}'">Tambah Pengguna
         </button>
     </div>
 
