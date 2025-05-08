@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PerusahaanController;
+use App\Http\Controllers\ProgramStudiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,9 +55,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         //     Route::get('/', [PeriodeController::class, 'index'])->name('periode.index');
         // });
 
-        // Route::prefix('program-studi')->group(function () {
-        //     Route::get('/', [ProgramStudiController::class, 'index'])->name('program-studi.index');
-        // });
+        Route::prefix('programstudi')->group(function () {
+            Route::get('/', [ProgramStudiController::class, 'index'])->name('programstudi.index');
+        });
 
         // Route::prefix('lowongan')->group(function () {
         //     Route::get('/', [LowonganController::class, 'index'])->name('lowongan.index');

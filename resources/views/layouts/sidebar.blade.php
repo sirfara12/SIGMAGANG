@@ -54,7 +54,7 @@
             </li>
 
             <li>
-                <a href="{{ url('/program-studi') }}"
+                <a href="{{ url('/programstudi') }}"
                     class="flex items-center p-2 rounded-lg group {{ $activemenu == 'programstudi' ? 'text-white bg-blue-600' : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 {{ $activemenu == 'programstudi' ? 'text-white' : 'text-gray-400 dark:text-white' }}" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
