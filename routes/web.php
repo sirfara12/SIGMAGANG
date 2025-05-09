@@ -7,6 +7,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\ProgramStudiController;
+use App\Http\Controllers\BidangPerusahaanController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -53,7 +54,19 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::put('/{id}', [PerusahaanController::class, 'update'])->name('update');
             Route::delete('/{id}', [PerusahaanController::class, 'destroy'])->name('destroy');
         });
-
+        
+        Route::prefix('bidang_perusahaan')->name('bidang_perusahaan.')->group(function () {
+            Route::get('/', [BidangPerusahaanController::class, 'index'])->name('index');
+            Route::get('/create', [BidangPerusahaanController::class, 'create'])->name('create');
+            Route::post('/', [BidangPerusahaanController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [BidangPerusahaanController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [BidangPerusahaanController::class, 'update'])->name('update');
+            Route::delete('/{id}', [BidangPerusahaanController::class, 'destroy'])->name('destroy');
+        });
+        
+        
+    
+            
         Route::prefix('lowongan')->name('lowongan.')->group(function () {
             Route::get('/', [LowonganController::class, 'index'])->name('index');
             Route::get('/create', [LowonganController::class, 'create'])->name('create');
