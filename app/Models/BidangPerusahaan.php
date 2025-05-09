@@ -10,5 +10,5 @@ class BidangPerusahaan extends Model
     use HasFactory;
     protected $table = 'bidang_perusahaan';
     protected $primaryKey = 'id';
-    protected $fillable = ['nama', 'id'];
+    protected $fillable = ['nama_bidang'];
 }

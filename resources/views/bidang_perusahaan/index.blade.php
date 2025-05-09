@@ -14,7 +14,6 @@
             <tr>
                 <th class="px-6 py-3">No</th>
                 <th class="px-6 py-3">Nama Bidang</th>
-                <th class="px-6 py-3">SKill</th>
                 <th class="px-6 py-3">Aksi</th>
             </tr>
         </thead>
@@ -22,8 +21,7 @@
             @forelse ($bidang_perusahaan as $index => $item)
                 <tr class="bg-white border-b border-gray-200">
                     <td class="px-6 py-4">{{ $index + 1 }}</td>
-                    <td class="px-6 py-4">{{ $item->bidang }}</td>
-                    <td class="px-6 py-4">{{ $item->skill }}</td>
+                    <td class="px-6 py-4">{{ $item->nama_bidang }}</td>
                     <td class="px-6 py-4">
                         <div class="flex gap-2">
                             <a href="{{ route('bidang_perusahaan.edit', $item->id) }}"
