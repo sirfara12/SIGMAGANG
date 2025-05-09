@@ -41,7 +41,7 @@
               </button>
               <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
-                       <a href="#" class="flex items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Bidang Perusahaan</a>
+                       <a href="{{ url('/bidang_perusahaan') }}" class="flex items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Bidang Perusahaan</a>
                     </li>
                     <li>
                         <a href="{{ url('/perusahaan') }}" class="flex items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Daftar Perusahaan</a>
@@ -93,7 +93,7 @@
                 </a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a href="{{ url('/bidang_perusahaan') }}"
                     class="flex items-center p-2 rounded-lg group {{ $activemenu == 'bidang_perusahaan' ? 'text-white bg-blue-600' : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 {{ $activemenu == 'bidang_perusahaan' ? 'text-white' : 'text-gray-400 dark:text-white' }}" fill="none" viewBox="0 0 24 24">
@@ -102,7 +102,7 @@
                     </svg>
                     <span class="ml-3 {{ $activemenu == 'bidang_perusahaan' ? 'text-white' : 'text-gray-400' }}">Bidang Perusahaan</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li>
                 <a href="{{ url('/pengajuan') }}"
