@@ -15,11 +15,9 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'bidang_perusahaan';
         $bidang_perusahaan = BidangPerusahaan::all();
-        $skill = Skill::all();
         return view('bidang_perusahaan.index', [
             'activemenu' => $activemenu,
-            'bidang_perusahaan' => $bidang_perusahaan,
-            'skill'=> $skill
+            'bidang_perusahaan' => $bidang_perusahaan
         ]);
     }
 
@@ -29,11 +27,9 @@ class BidangPerusahaanController extends Controller
     public function create()
     {
         $activemenu = 'bidang_perusahaan';
-        $skill = Skill::all();
         $bidang = BidangPerusahaan::all();
         return view('bidang_perusahaan.create', [
             'activemenu' => $activemenu,
-            'skill'=> $skill,
             'bidang'=> $bidang,
         ]);
     }
@@ -43,12 +39,12 @@ class BidangPerusahaanController extends Controller
      */
     public function store(Request $request)
     {
-        $activemenu = 'bidang_perusahaan';
         $request->validate([
             'nama_bidang' => 'required',
-            'skill'=> 'required',
         ]);
-        BidangPerusahaan::create($request->all());
+        BidangPerusahaan::create([
+            'nama_bidang'  => $request->nama_bidang,
+        ]);
         return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil ditambahkan');
     }
 
@@ -72,11 +68,9 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'bidang_perusahaan';
         $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        $skill = Skill::all();
         return view('bidang_perusahaan.edit', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan,
-            'skill' => $skill,
         ]);
     }
 
@@ -87,10 +81,11 @@ class BidangPerusahaanController extends Controller
     {
         $request->validate([
             'nama_bidang' => 'required',
-            'skill'=> 'required',
         ]);
-        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        $bidang_perusahaan->update($request->all());
+        $perusahaan = BidangPerusahaan::findOrFail($id);
+        $perusahaan->update([
+            'nama_bidang'  => $request->nama_bidang,
+        ]);
         return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
     }
 

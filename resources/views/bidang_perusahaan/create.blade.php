@@ -17,36 +17,17 @@
     <form action="{{ route('bidang_perusahaan.store') }}" method="POST">
         @csrf
 
-        <!-- Nama Bidang -->
-        <div class="mb-4">
-            <label for="bidang" class="block text-sm font-medium text-gray-700">Skill</label>
-            <select name="bidang" id="bidang" class="mt-1 block w-full p-2 border border-gray-300 rounded" required>
-                <option value="" disabled selected>Pilih Bidang</option>
-                @foreach ($bidang as $item)
-                    <option value="{{ $item->id }}" {{ old('bidang') == $item->id ? 'selected' : '' }}>
-                        {{ $item->nama_bidang }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-
-        <!-- Skill -->
-        <div class="mb-4">
-            <label for="skill" class="block text-sm font-medium text-gray-700">Skill</label>
-            <select name="skill" id="skill" class="mt-1 block w-full p-2 border border-gray-300 rounded" required>
-                <option value="" disabled selected>Pilih Skill</option>
-                @foreach ($skill as $item)
-                    <option value="{{ $item->id }}" {{ old('skill') == $item->id ? 'selected' : '' }}>
-                        {{ $item->nama }}
-                    </option>
-                @endforeach
-            </select>
+        <div>
+            <label for="nama_bidang" class="block text-sm font-medium text-gray-900">Nama Bidang</label>
+            <input type="text" id="nama_bidang" name="nama_bidang" required
+                class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
 
         <!-- Buttons -->
-        <div class="flex justify-between items-center">
-            <a href="{{ route('bidang_perusahaan.index') }}" class="text-blue-600 hover:underline">← Kembali</a>
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
+        <div class="mt-6 flex items-center justify-start gap-x-6">
+            <a href="{{ route('bidang_perusahaan.index') }}" class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</a>
+            <button type="submit"
+                class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
         </div>
     </form>
 </div>
