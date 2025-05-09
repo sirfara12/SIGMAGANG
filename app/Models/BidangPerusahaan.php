@@ -10,10 +10,5 @@ class BidangPerusahaan extends Model
     use HasFactory;
     protected $table = 'bidang_perusahaan';
     protected $primaryKey = 'id';
-    protected $fillable = ['nama'];
-
-
-    public function perusahaan() {
-        return $this->belongsToMany(Perusahaan::class);
-    }
+    protected $fillable = ['nama', 'id'];
 }
