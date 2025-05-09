@@ -28,12 +28,13 @@ class ProgramStudiController extends Controller
         $programstudi = $query->paginate(10);
 
         $programstudi->appends(['search' => $search, 'category' => $category]);
-
+        $prodis = Prodi::all();
         return view('programstudi.index', [
             'activemenu' => $activemenu,
             'programstudi' => $programstudi,
             'category' => $category, 
             'search' => $search,     
+            'prodis' => $prodis
         ]);
     }
     

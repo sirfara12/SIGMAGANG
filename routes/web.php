@@ -8,6 +8,7 @@ use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\BidangPerusahaanController;
+use App\Http\Controllers\JenisMagangController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -74,6 +75,15 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::get('/{id}/edit', [LowonganController::class, 'edit'])->name('edit');
             Route::put('/{id}', [LowonganController::class, 'update'])->name('update');
             Route::delete('/{id}', [LowonganController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('jenismagang')->name('jenismagang.')->group(function () {
+            Route::get('/', [JenisMagangController::class, 'index'])->name('index');
+            Route::get('/create', [JenisMagangController::class, 'create'])->name('create');
+            Route::post('/', [JenisMagangController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [JenisMagangController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [JenisMagangController::class, 'update'])->name('update');
+            Route::delete('/{id}', [JenisMagangController::class, 'destroy'])->name('destroy');
         });
 
         // // MANAJEMEN MAGANG
