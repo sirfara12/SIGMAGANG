@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Models\BidangPerusahaan;
 
@@ -16,7 +17,7 @@ class BidangPerusahaanController extends Controller
         $bidang_perusahaan = BidangPerusahaan::all();
         return view('bidang_perusahaan.index', [
             'activemenu' => $activemenu,
-            'bidang_perusahaan' => $bidang_perusahaan,
+            'bidang_perusahaan' => $bidang_perusahaan
         ]);
     }
 
@@ -26,8 +27,10 @@ class BidangPerusahaanController extends Controller
     public function create()
     {
         $activemenu = 'bidang_perusahaan';
+        $bidang = BidangPerusahaan::all();
         return view('bidang_perusahaan.create', [
             'activemenu' => $activemenu,
+            'bidang'=> $bidang,
         ]);
     }
 
@@ -36,11 +39,12 @@ class BidangPerusahaanController extends Controller
      */
     public function store(Request $request)
     {
-        $activemenu = 'bidang_perusahaan';
         $request->validate([
             'nama_bidang' => 'required',
         ]);
-        BidangPerusahaan::create($request->all());
+        BidangPerusahaan::create([
+            'nama_bidang'  => $request->nama_bidang,
+        ]);
         return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil ditambahkan');
     }
 
@@ -78,8 +82,10 @@ class BidangPerusahaanController extends Controller
         $request->validate([
             'nama_bidang' => 'required',
         ]);
-        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        $bidangperusahaan->update($request->all());
+        $perusahaan = BidangPerusahaan::findOrFail($id);
+        $perusahaan->update([
+            'nama_bidang'  => $request->nama_bidang,
+        ]);
         return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
     }
 

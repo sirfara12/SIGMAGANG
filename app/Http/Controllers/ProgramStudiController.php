@@ -36,4 +36,5 @@ class ProgramStudiController extends Controller
             'search' => $search,     
         ]);
     }
+    
 }
