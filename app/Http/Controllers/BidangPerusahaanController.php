@@ -13,7 +13,7 @@ class BidangPerusahaanController extends Controller
      */
     public function index()
     {
-        $activemenu = 'bidang_perusahaan';
+        $activemenu = 'perusahaan';
         $bidang_perusahaan = BidangPerusahaan::all();
         return view('bidang_perusahaan.index', [
             'activemenu' => $activemenu,
