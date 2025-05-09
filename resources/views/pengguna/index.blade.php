@@ -137,17 +137,6 @@
                                     <span class="hidden md:inline">Hapus</span>
                                 </button>
                             </form>
-
-                            <!-- Reset Password -->
-                            <button
-                                class="inline-flex items-center bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 11c0-1.105.895-2 2-2s2 .895 2 2-.895 2-2 2-2-.895-2-2zM4 4v5h.582C6.377 7.326 8.077 6 10 6c2.21 0 4 1.79 4 4s-1.79 4-4 4a4.002 4.002 0 01-3.418-1.833L4 17h5v-2H6.418A6.002 6.002 0 0016 10c0-3.309-2.691-6-6-6a6.002 6.002 0 00-5.418 3.167H4z" />
-                                </svg>
-                                <span class="hidden md:inline">Reset</span>
-                            </button>
                         </td>
                     </tr>
                 @empty

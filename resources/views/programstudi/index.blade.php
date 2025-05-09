@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold text-gray-800">Daftar Pengguna</h1>
+        <h1 class="text-2xl font-bold text-gray-800">Daftar Program Studi</h1>
     </div>
 
     <div class="flex justify-between items-center mb-4">
@@ -59,7 +59,7 @@
 
         <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            type="button" onclick="location.href='{{ url('pengguna/create') }}'">Tambah Pengguna
+            type="button" onclick="location.href='{{ url('programstudi/create') }}'">Tambah Prodi
         </button>
     </div>
 
@@ -76,7 +76,7 @@
                 @forelse ($programstudi as $key => $item)
                     <tr class="bg-white border-b border-gray-200">
                         <td class="px-6 py-4">{{ $programstudi->firstItem() + $key }}</td>
-                        <td class="px-6 py-4">{{ $item->nama_prodi }}</td>
+                        <td class="px-6 py-4">{{ $item->nama }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
                             <button
@@ -110,23 +110,12 @@
                                 </svg>
                                 <span class="hidden md:inline">Hapus</span>
                             </button>
-
-                            <!-- Reset Password -->
-                            <button
-                                class="inline-flex items-center bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 11c0-1.105.895-2 2-2s2 .895 2 2-.895 2-2 2-2-.895-2-2zM4 4v5h.582C6.377 7.326 8.077 6 10 6c2.21 0 4 1.79 4 4s-1.79 4-4 4a4.002 4.002 0 01-3.418-1.833L4 17h5v-2H6.418A6.002 6.002 0 0016 10c0-3.309-2.691-6-6-6a6.002 6.002 0 00-5.418 3.167H4z" />
-                                </svg>
-                                <span class="hidden md:inline">Reset</span>
-                            </button>
                         </td>
                     </tr>
                 @empty
                     <tr>
                         <td colspan="5" class="px-6 py-4 text-center text-gray-500">
-                            Tidak ada pengguna ditemukan.
+                            Tidak ada program studi ditemukan.
                         </td>
                     </tr>
                 @endforelse

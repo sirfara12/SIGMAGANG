@@ -17,12 +17,12 @@ class ProgramStudiController extends Controller
 
         if ($search) {
             $query->where(function ($q) use ($search) {
-                $q->where('nama_prodi', 'like', "%{$search}%");
+                $q->where('nama', 'like', "%{$search}%");
             });
         }
 
         if ($category !== 'all') {
-            $query->where('nama_prodi', $category);
+            $query->where('nama', $category);
         }
 
         $programstudi = $query->paginate(10);
