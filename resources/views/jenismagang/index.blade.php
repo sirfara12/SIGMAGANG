@@ -13,29 +13,35 @@
 
                 <!-- Dropdown button -->
                 <button id="dropdown-button" type="button"
-                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-                    {{ $category === 'all' ? 'Semua Jenis Magang' : ucfirst($category) }}
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
+                class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
+                {{ $category === 'all' ? 'Semua Jenis Magang' : ($jenismagangs->firstWhere('id', $category)?->jenis_magang ?? 'Pilih Jenis') }}
+                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </button>
 
-                <!-- Dropdown menu -->
-                <div id="dropdown"
-                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                        <li><button type="button" data-value="all"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Semua
-                                Jenis Magang</button></li>
-                        @foreach ($jenismagangs as $item)
-                            <li><button type="button" data-value="{{ $item->id }}"
-                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $item->jenis_magang }}</button>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+            <!-- Dropdown menu -->
+            <div id="dropdown"
+                class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                    <li>
+                        <button type="button" data-value="all"
+                            class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            Semua Jenis Magang
+                        </button>
+                    </li>
+                    @foreach ($jenismagangs as $item)
+                        <li>
+                            <button type="button" data-value="{{ $item->id }}"
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                {{ $item->jenis_magang }}
+                            </button>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
                 <!-- Search input -->
                 <div class="relative w-full">
@@ -133,17 +139,15 @@
 
     <!-- JavaScript -->
     <script>
-        const dropdownButton = document.getElementById('dropdown-button');
+         const dropdownButton = document.getElementById('dropdown-button');
         const dropdownMenu = document.getElementById('dropdown');
         const categoryButtons = document.querySelectorAll('.category-btn');
         const selectedCategoryInput = document.getElementById('selected-category');
 
-        // Toggle dropdown
         dropdownButton.addEventListener('click', () => {
             dropdownMenu.classList.toggle('hidden');
         });
 
-        // Handle category selection and submit form
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const selectedValue = button.getAttribute('data-value');
@@ -152,19 +156,14 @@
                 selectedCategoryInput.value = selectedValue;
                 dropdownButton.innerHTML = `${displayText}
                     <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>`;
+                        viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" /></svg>`;
 
                 dropdownMenu.classList.add('hidden');
-
-                // Automatically submit the form when a category is selected
                 button.closest('form').submit();
             });
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 dropdownMenu.classList.add('hidden');

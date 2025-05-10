@@ -12,22 +12,33 @@
 
                 <!-- Dropdown -->
                 <button id="dropdown-button" type="button"
-                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200">
-                    {{ $category === 'all' ? 'Semua Bidang' : ucfirst($category) }}
-                    <svg class="w-2.5 h-2.5 ms-2.5" viewBox="0 0 10 6">
+                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
+                    {{ $category === 'all' ? 'Semua Perusahaan' : ($perusahaans->firstWhere('id', $category)?->nama ?? 'Pilih Perusahaan') }}
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
 
+                <!-- Dropdown menu -->
                 <div id="dropdown"
-                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
-                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
-                        <li><button type="button" data-value="all" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Semua Bidang</button></li>
-                        <li><button type="button" data-value="1" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Teknologi Informasi</button></li>
-                        <li><button type="button" data-value="2" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Software Development</button></li>
-                        <li><button type="button" data-value="3" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Cyber Security</button></li>
-                        <li><button type="button" data-value="4" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Data Science</button></li>
+                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                        <li>
+                            <button type="button" data-value="all"
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                Semua Perusahaan
+                            </button>
+                        </li>
+                        @foreach ($perusahaans as $item)
+                            <li>
+                                <button type="button" data-value="{{ $item->id }}"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    {{ $item->nama }}
+                                </button>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
