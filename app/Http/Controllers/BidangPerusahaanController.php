@@ -15,7 +15,7 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'perusahaan';
         $bidang_perusahaan = BidangPerusahaan::all();
-        return view('bidang_perusahaan.index', [
+        return view('admin.bidang_perusahaan.index', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan
         ]);
@@ -28,7 +28,7 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'perusahaan';
         $bidang = BidangPerusahaan::all();
-        return view('bidang_perusahaan.create', [
+        return view('admin.bidang_perusahaan.create', [
             'activemenu' => $activemenu,
             'bidang'=> $bidang,
         ]);
@@ -45,7 +45,7 @@ class BidangPerusahaanController extends Controller
         BidangPerusahaan::create([
             'nama_bidang'  => $request->nama_bidang,
         ]);
-        return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil ditambahkan');
+        return redirect()->route('admin.bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil ditambahkan');
     }
 
     /**
@@ -55,7 +55,7 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'bidang_perusahaan';
         $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        return view('bidang_perusahaan.show', [
+        return view('admin.bidang_perusahaan.show', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan,
         ]);
@@ -68,7 +68,7 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'bidang_perusahaan';
         $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        return view('bidang_perusahaan.edit', [
+        return view('admin.bidang_perusahaan.edit', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan,
         ]);
@@ -86,7 +86,7 @@ class BidangPerusahaanController extends Controller
         $perusahaan->update([
             'nama_bidang'  => $request->nama_bidang,
         ]);
-        return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
+        return redirect()->route('admin.bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
     }
 
     /**
@@ -96,6 +96,6 @@ class BidangPerusahaanController extends Controller
     {
         $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
         $bidang_perusahaan->delete();
-        return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil dihapus');
+        return redirect()->route('admin.bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil dihapus');
     }
 }

@@ -34,7 +34,7 @@ class JenisMagangController extends Controller
             'category' => $category
         ]);
         $jenismagangs = JenisMagang::all();
-        return view('jenismagang.index', compact('activemenu', 'jenismagang', 'search', 'category','jenismagangs'));
+        return view('admin.jenismagang.index', compact('activemenu', 'jenismagang', 'search', 'category','jenismagangs'));
     }
 
     /**
@@ -43,11 +43,11 @@ class JenisMagangController extends Controller
     public function create()
     {
         $activemenu = 'jenismagang';
-        return view('jenismagang.create',['activemenu' => $activemenu]);
+        return view('admin.jenismagang.create',['activemenu' => $activemenu]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resourc    e in storage.
      */
     public function store(Request $request)
     {
@@ -55,7 +55,7 @@ class JenisMagangController extends Controller
             'jenis_magang' => 'required',
         ]);
         JenisMagang::create($request->all());
-        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('admin.jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
     }
 
     /**
@@ -65,7 +65,7 @@ class JenisMagangController extends Controller
     {
         $activemenu = 'jenis_magang';
         $jenis_magang = JenisMagang::findOrFail($id);
-        return view('jenis_magang.show',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
+        return view('admin.jenis_magang.show',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
     }
 
     /**
@@ -75,7 +75,7 @@ class JenisMagangController extends Controller
     {
         $activemenu = 'jenismagang';
         $jenismagang = JenisMagang::findOrFail($id);
-        return view('jenismagang.edit',['activemenu' => $activemenu,'jenismagang' => $jenismagang]);
+        return view('admin.jenismagang.edit',['activemenu' => $activemenu,'jenismagang' => $jenismagang]);
     }
 
     /**
@@ -88,7 +88,7 @@ class JenisMagangController extends Controller
         ]);
         $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->update($request->all());
-        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
+        return redirect()->route('admin.jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
     }
 
     /**
@@ -98,6 +98,6 @@ class JenisMagangController extends Controller
     {
         $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->delete();
-        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil dihapus');
+        return redirect()->route('admin.jenismagang.index')->with('success', 'Jenis Magang berhasil dihapus');
     }
 }

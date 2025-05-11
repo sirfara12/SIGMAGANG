@@ -24,6 +24,6 @@ class StatistikController extends Controller
             'activemenu' => $activemenu
             
         );
-         return view('statistik.index',$data);
+         return view('admin.statistik.index',$data);
     }
 }
