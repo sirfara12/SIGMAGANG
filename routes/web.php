@@ -8,6 +8,9 @@ use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\BidangPerusahaanController;
+use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\StatistikController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -77,9 +80,14 @@ Route::middleware(['auth','verified'])->group(function () {
         });
 
         // // MANAJEMEN MAGANG
-        // Route::prefix('periode')->group(function () {
-        //     Route::get('/', [PeriodeController::class, 'index'])->name('periode.index');
-        // });
+        Route::prefix('periode')->group(function () {
+            Route::get('/', [PeriodeController::class, 'index'])->name('periode.index');
+            Route::get('/create', [PeriodeController::class, 'create'])->name('periode.create');
+            // Route::post('/', [PeriodeController::class, 'store'])->name('periode.store');
+            // Route::get('/{id}/edit', [PeriodeController::class, 'edit'])->name('periode.edit');
+            // Route::put('/{id}', [PeriodeController::class, 'update'])->name('periode.update');
+            // Route::delete('/{id}', [PeriodeController::class, 'destroy'])->name('periode.destroy');
+        });
 
         Route::prefix('programstudi')->group(function () {
             Route::get('/', [ProgramStudiController::class, 'index'])->name('programstudi.index');
@@ -89,13 +97,13 @@ Route::middleware(['auth','verified'])->group(function () {
         //     Route::get('/', [LowonganController::class, 'index'])->name('lowongan.index');
         // });
 
-        // Route::prefix('pengajuan')->group(function () {
-        //     Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
-        // });
+        Route::prefix('pengajuan')->group(function () {
+            Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
+        });
 
-        // Route::prefix('statistik')->group(function () {
-        //     Route::get('/', [StatistikController::class, 'index'])->name('statistik.index');
-        // });
+        Route::prefix('statistik')->group(function () {
+            Route::get('/', [StatistikController::class, 'index'])->name('statistik.index');
+        });
 
     });
 

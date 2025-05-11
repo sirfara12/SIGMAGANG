@@ -20,6 +20,6 @@ class Perusahaan extends Model
 
     public function bidangPerusahaan(): BelongsTo
     {
-        return $this->belongsTo(BidangPerusahaan::class, 'bidang_perusahaan_id');
+        return $this->belongsTo(BidangPerusahaan::class);
     }
 }
