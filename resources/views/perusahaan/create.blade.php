@@ -24,7 +24,7 @@
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none">
                             <option value="">Pilih Bidang perusahaan</option>
                             @foreach ($bidangs as $bidang)
-                                <option value="{{ $bidang->id }}">{{ $bidang->nama }}</option>
+                                <option value="{{ $bidang->id }}">{{ $bidang->nama_bidang }}</option>
                             @endforeach
                         </select>
                         <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
@@ -33,6 +33,11 @@
                             </svg>
                         </div>
                     </div>
+                </div>
+                <div class="mt-6 flex items-center justify-start gap-x-6">
+                    <button type="button" class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</button>
+                    <button type="submit"
+                        class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
                 </div>
             </div>
         </div>

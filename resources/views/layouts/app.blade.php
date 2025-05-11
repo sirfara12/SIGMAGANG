@@ -27,10 +27,11 @@
 
     <!-- Flowbite JS -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    
 
-    <!-- Vite Assets (Simulated) -->
+    {{-- <!-- Vite Assets (Simulated) -->
     <link href="/dist/app.css" rel="stylesheet" />
-    <script src="/dist/app.js"></script>
+    <script src="/dist/app.js"></script> --}}
 </head>
 
 <body>

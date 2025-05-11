@@ -26,7 +26,7 @@ class BidangPerusahaanController extends Controller
      */
     public function create()
     {
-        $activemenu = 'bidang_perusahaan';
+        $activemenu = 'perusahaan';
         $bidang = BidangPerusahaan::all();
         return view('bidang_perusahaan.create', [
             'activemenu' => $activemenu,
