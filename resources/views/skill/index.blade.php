@@ -2,53 +2,52 @@
 
 @section('content')
     <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold text-gray-800">Daftar Program Studi</h1>
+        <h1 class="text-2xl font-bold text-gray-800">Daftar Skill Magang</h1>
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('programstudi.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('skill.index') }}">
             <div class="flex w-full">
                 <!-- Hidden input to store selected category -->
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
 
                 <!-- Dropdown button -->
-             <!-- Dropdown button -->
-             <button id="dropdown-button" type="button"
-             class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-             {{ $category === 'all' ? 'Semua Program Studi' : ($prodis->firstWhere('id', $category)?->nama ?? 'Pilih Prodi') }}
-             <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 10 6">
-                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                     d="m1 1 4 4 4-4" />
-             </svg>
-         </button>
+                <button id="dropdown-button" type="button"
+                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
+                    {{ $category === 'all' ? 'Semua Skill Magang' : ($skills->firstWhere('id', $category)?->nama ?? 'Pilih Skill') }}
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
 
-         <!-- Dropdown menu -->
-         <div id="dropdown"
-             class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                 <li>
-                     <button type="button" data-value="all"
-                         class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                         Semua Program Studi
-                     </button>
-                 </li>
-                 @foreach ($prodis as $item)
-                     <li>
-                         <button type="button" data-value="{{ $item->id }}"
-                             class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                             {{ $item->nama }}
-                         </button>
-                     </li>
-                 @endforeach
-             </ul>
-         </div>
+                <!-- Dropdown menu -->
+                <div id="dropdown"
+                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                        <li>
+                            <button type="button" data-value="all"
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                Semua Skill Magang
+                            </button>
+                        </li>
+                        @foreach ($skills as $item)
+                            <li>
+                                <button type="button" data-value="{{ $item->id }}"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    {{ $item->nama }}
+                                </button>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
 
                 <!-- Search input -->
                 <div class="relative w-full">
                     <input type="search" id="search-dropdown" name="search"
                         class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                        placeholder="Cari Program Studi..." value="{{ $search ?? '' }}" />
+                        placeholder="Cari Jenis Magang..." value="{{ $search ?? '' }}" />
                     <button type="submit"
                         class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -62,10 +61,9 @@
             </div>
         </form>
 
-
         <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            type="button" onclick="location.href='{{ url('programstudi/create') }}'">Tambah Prodi
+            type="button" onclick="location.href='{{ url('skill/create') }}'">Tambah Skill Magang
         </button>
     </div>
 
@@ -74,14 +72,14 @@
             <thead class="text-xs uppercase bg-gray-100 text-gray-700">
                 <tr>
                     <th scope="col" class="px-6 py-3">No</th>
-                    <th scope="col" class="px-6 py-3">Nama Prodi</th>
+                    <th scope="col" class="px-6 py-3">Nama Skill Magang</th>
                     <th scope="col" class="px-6 py-3">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($programstudi as $key => $item)
+                @forelse ($skill as $key => $item)
                     <tr class="bg-white border-b border-gray-200">
-                        <td class="px-6 py-4">{{ $programstudi->firstItem() + $key }}</td>
+                        <td class="px-6 py-4">{{ $skill->firstItem() + $key }}</td>
                         <td class="px-6 py-4">{{ $item->nama }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
@@ -95,8 +93,8 @@
                                 <span class="hidden md:inline">Detail</span>
                             </button>
 
-                             <!-- Edit -->
-                             <a href="{{ route('programstudi.edit', $item->id) }}"
+                            <!-- Edit -->
+                            <a href="{{ route('skill.edit', $item->id) }}"
                                 class="inline-flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -107,7 +105,7 @@
                             </a>
 
                             <!-- Hapus -->
-                            <form action="{{ route('programstudi.destroy', $item->id) }}" method="POST" class="inline">
+                            <form action="{{ route('skill.destroy', $item->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button
@@ -125,22 +123,21 @@
                 @empty
                     <tr>
                         <td colspan="5" class="px-6 py-4 text-center text-gray-500">
-                            Tidak ada program studi ditemukan.
+                            Tidak ada jenis magang ditemukan.
                         </td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
 
-        <!-- Pagination -->
         <div class="p-4">
-            {{ $programstudi->links('pagination::tailwind') }}
+            {{ $skill->links('pagination::tailwind') }}
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Script -->
     <script>
-     const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('dropdown-button');
         const dropdownMenu = document.getElementById('dropdown');
         const categoryButtons = document.querySelectorAll('.category-btn');
         const selectedCategoryInput = document.getElementById('selected-category');

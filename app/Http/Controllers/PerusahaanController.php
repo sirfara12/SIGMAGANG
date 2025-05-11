@@ -36,8 +36,8 @@ class PerusahaanController extends Controller
             'search' => $search,
             'category' => $category
         ]);
-
-        return view('perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category'));
+        $perusahaans = Perusahaan::all();
+        return view('perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category','perusahaans'));
     }
 
     public function create()
