@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PerusahaanController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\BidangPerusahaanController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\StatistikController;
+use App\Http\Controllers\JenisMagangController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +82,23 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::delete('/{id}', [LowonganController::class, 'destroy'])->name('destroy');
         });
 
+        Route::prefix('jenismagang')->name('jenismagang.')->group(function () {
+            Route::get('/', [JenisMagangController::class, 'index'])->name('index');
+            Route::get('/create', [JenisMagangController::class, 'create'])->name('create');
+            Route::post('/', [JenisMagangController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [JenisMagangController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [JenisMagangController::class, 'update'])->name('update');
+            Route::delete('/{id}', [JenisMagangController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('skill')->name('skill.')->group(function () {
+            Route::get('/', [SkillController::class, 'index'])->name('index');
+            Route::get('/create', [SkillController::class, 'create'])->name('create');
+            Route::post('/', [SkillController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [SkillController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [SkillController::class, 'update'])->name('update');
+            Route::delete('/{id}', [SkillController::class, 'destroy'])->name('destroy');
+        });
         // // MANAJEMEN MAGANG
         Route::prefix('periode')->group(function () {
             Route::get('/', [PeriodeController::class, 'index'])->name('periode.index');
@@ -89,8 +109,13 @@ Route::middleware(['auth','verified'])->group(function () {
             // Route::delete('/{id}', [PeriodeController::class, 'destroy'])->name('periode.destroy');
         });
 
-        Route::prefix('programstudi')->group(function () {
-            Route::get('/', [ProgramStudiController::class, 'index'])->name('programstudi.index');
+         Route::prefix('programstudi')->name('programstudi.')->group(function () {
+            Route::get('/', [ProgramStudiController::class, 'index'])->name('index');
+            Route::get('/create', [ProgramStudiController::class, 'create'])->name('create');
+            Route::post('/', [ProgramStudiController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [ProgramStudiController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [ProgramStudiController::class, 'update'])->name('update');
+            Route::delete('/{id}', [ProgramStudiController::class, 'destroy'])->name('destroy');
         });
 
         // Route::prefix('lowongan')->group(function () {
