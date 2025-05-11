@@ -28,14 +28,30 @@
                     <td class="px-6 py-4">{{ $item->nama_bidang }}</td>
                     <td class="px-6 py-4">
                         <div class="flex gap-2">
+                            <!-- Edit -->
                             <a href="{{ route('bidang_perusahaan.edit', $item->id) }}"
-                               class="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm">
+                                class="flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm whitespace-nowrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11.5A1.5 1.5 0 005.5 20H17a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                </svg>
                                 Edit
                             </a>
-                            <form action="{{ route('bidang_perusahaan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
+
+                            <!-- Hapus -->
+                            <form action="{{ route('bidang_perusahaan.destroy', $item->id) }}" method="POST"
+                                onsubmit="return confirm('Yakin ingin menghapus data ini?')"
+                                class="flex items-center">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm">
+                                <button type="submit"
+                                    class="flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm whitespace-nowrap">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
                                     Hapus
                                 </button>
                             </form>
@@ -49,5 +65,9 @@
             @endforelse
         </tbody>
     </table>
+
+    <div class="p-4">
+        {{ $bidang_perusahaan->links('pagination::tailwind') }}
+    </div>
 </div>
 @endsection
