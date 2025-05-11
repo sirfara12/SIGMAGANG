@@ -11,7 +11,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$user_count}}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $user_count }}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Mahasiswa</p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$lowongan_count}}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $lowongan_count }}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Lowongan</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$pengajuan_count}}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $pengajuan_count }}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Pengajuan</p>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{$perusahaan_count}}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $perusahaan_count }}</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Perusahaan</p>
                 </div>
             </div>
@@ -99,8 +99,7 @@
 
             <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                 <div class="grid grid-cols-3 gap-3 mb-2">
-                    <dl
-                        class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+                    <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
                         <dt
                             class="w-8 h-8 rounded-full bg-orange-100 dark:bg-gray-500 text-orange-600 dark:text-orange-300 text-sm font-medium flex items-center justify-center mb-1">
                             12</dt>
@@ -190,13 +189,42 @@
                     <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">Mahasiswa Diterima</h5>
                 </div>
                 <div
-                    class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                    23%
-                    <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 13V1m0 0L1 5m4-4 4 4" />
-                    </svg>
+                    class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-left">
+                    <!-- Dropdown Tahun -->
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="tahunDropdown"
+                        data-dropdown-placement="bottom" type="button"
+                        class="px-3 py-2 inline-flex items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        Tahun
+                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg></button>
+                    <div id="tahunDropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border border-gray-200 w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2021</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2022</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2023</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2024</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2025</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div id="labels-chart" class="px-2.5"></div>
@@ -283,7 +311,8 @@
                 <tr class="bg-white border-b border-gray-200">
                     <td class="px-6 py-4">1</td>
                     <td class="flex items-center gap-2 px-6 py-4">
-                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC</div>
+                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC
+                        </div>
                         <div>
                             <div class="font-semibold">Jane Cooper</div>
                             <div class="text-sm text-gray-500">2341728765</div>
@@ -292,17 +321,20 @@
                     <td class="px-6 py-4">D-IV Teknik Informatika</td>
                     <td class="px-6 py-4">Front-End Intern</td>
                     <td class="px-6 py-4">
-                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">● Menunggu</span>
+                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">●
+                            Menunggu</span>
                     </td>
                     <td class="px-6 py-4 text-gray-500">(Belum dipilih)</td>
                     <td class="px-6 py-4">
-                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek Pengajuan</button>
+                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek
+                            Pengajuan</button>
                     </td>
                 </tr>
                 <tr class="bg-white border-b border-gray-200">
                     <td class="px-6 py-4">1</td>
                     <td class="flex items-center gap-2 px-6 py-4">
-                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC</div>
+                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC
+                        </div>
                         <div>
                             <div class="font-semibold">Jane Cooper</div>
                             <div class="text-sm text-gray-500">2341728765</div>
@@ -311,17 +343,20 @@
                     <td class="px-6 py-4">D-IV Teknik Informatika</td>
                     <td class="px-6 py-4">Front-End Intern</td>
                     <td class="px-6 py-4">
-                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">● Menunggu</span>
+                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">●
+                            Menunggu</span>
                     </td>
                     <td class="px-6 py-4 text-gray-500">(Belum dipilih)</td>
                     <td class="px-6 py-4">
-                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek Pengajuan</button>
+                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek
+                            Pengajuan</button>
                     </td>
                 </tr>
                 <tr class="bg-white border-b border-gray-200">
                     <td class="px-6 py-4">1</td>
                     <td class="flex items-center gap-2 px-6 py-4">
-                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC</div>
+                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC
+                        </div>
                         <div>
                             <div class="font-semibold">Jane Cooper</div>
                             <div class="text-sm text-gray-500">2341728765</div>
@@ -330,17 +365,20 @@
                     <td class="px-6 py-4">D-IV Teknik Informatika</td>
                     <td class="px-6 py-4">Front-End Intern</td>
                     <td class="px-6 py-4">
-                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">● Menunggu</span>
+                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">●
+                            Menunggu</span>
                     </td>
                     <td class="px-6 py-4 text-gray-500">(Belum dipilih)</td>
                     <td class="px-6 py-4">
-                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek Pengajuan</button>
+                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek
+                            Pengajuan</button>
                     </td>
                 </tr>
                 <tr class="bg-white border-b border-gray-200">
                     <td class="px-6 py-4">1</td>
                     <td class="flex items-center gap-2 px-6 py-4">
-                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC</div>
+                        <div class="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full">JC
+                        </div>
                         <div>
                             <div class="font-semibold">Jane Cooper</div>
                             <div class="text-sm text-gray-500">2341728765</div>
@@ -349,11 +387,13 @@
                     <td class="px-6 py-4">D-IV Teknik Informatika</td>
                     <td class="px-6 py-4">Front-End Intern</td>
                     <td class="px-6 py-4">
-                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">● Menunggu</span>
+                        <span class="bg-orange-100 text-orange-600 text-xs font-medium px-3 py-1 rounded-full">●
+                            Menunggu</span>
                     </td>
                     <td class="px-6 py-4 text-gray-500">(Belum dipilih)</td>
                     <td class="px-6 py-4">
-                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek Pengajuan</button>
+                        <button class="bg-orange-500 text-white font-medium px-4 py-2 rounded hover:bg-orange-500">Cek
+                            Pengajuan</button>
                     </td>
                 </tr>
             </tbody>
@@ -408,40 +448,40 @@
                         show: false,
                     },
                     y: {
-                        formatter: function (value) {
+                        formatter: function(value) {
                             return value + '%';
                         }
                     },
-                    theme: 'light', 
+                    theme: 'light',
                     style: {
                         fontSize: '14px',
                         fontFamily: 'Inter, sans-serif',
-                        padding: '10px !important', 
-                        background: '#ffffff', 
-                        borderRadius: '5px',  
+                        padding: '10px !important',
+                        background: '#ffffff',
+                        borderRadius: '5px',
                     },
                     marker: {
-                        show: false, 
+                        show: false,
                     },
                 },
                 yaxis: {
                     show: false,
                     labels: {
-                        formatter: function (value) {
+                        formatter: function(value) {
                             return value + '%';
                         }
                     }
                 }
             }
         }
-    
+
         if (document.getElementById("radial-chart") && typeof ApexCharts !== 'undefined') {
             const chart = new ApexCharts(document.querySelector("#radial-chart"), getChartOptions());
             chart.render();
         }
     </script>
-    
-    
+
+
     <script>
         const options = {
             // set the labels option to true to show the labels on the X and Y axis

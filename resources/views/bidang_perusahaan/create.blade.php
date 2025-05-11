@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Tambah Bidang Perusahaan</h2>
+
 
     @if ($errors->any())
         <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
@@ -13,22 +12,26 @@
             </ul>
         </div>
     @endif
-
-    <form action="{{ route('bidang_perusahaan.store') }}" method="POST">
+    <form method="POST" action="{{ route('bidang_perusahaan.store') }}">
         @csrf
-
-        <div>
-            <label for="nama_bidang" class="block text-sm font-medium text-gray-900">Nama Bidang</label>
-            <input type="text" id="nama_bidang" name="nama_bidang" required
-                class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        </div>
-
-        <!-- Buttons -->
-        <div class="mt-6 flex items-center justify-start gap-x-6">
-            <a href="{{ route('bidang_perusahaan.index') }}" class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</a>
-            <button type="submit"
-                class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
+        <div class="space-y-12">
+            <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Bidang Perusahaan</h2>
+            <div class="border-b border-gray-900/10 pb-12 p-6 bg-white border border-gray-200 rounded-lg">
+                <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div class="col-span-full">
+                        <label for="nama_bidang" class="block text-sm/6 font-medium text-gray-900">Nama Bidang</label>
+                        <div class="mt-2">
+                            <input id="nama_bidang" name="nama_bidang" type="text"
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-start gap-x-6">
+                    <button type="button" class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</button>
+                    <button type="submit"
+                        class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
+                </div>
+            </div>
         </div>
     </form>
-</div>
 @endsection

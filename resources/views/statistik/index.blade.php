@@ -216,7 +216,9 @@
             <div class="bg-white rounded-xl p-6 border border-gray-200 p-y-8">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-lg font-semibold text-gray-900">Ratio Dosen Pembimbing</h2>
+                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Ratio</p>
+                        <h5 class="leading-none text-xl font-bold text-gray-900 dark:text-white pb-2">Dosen Pembimbing
+                        </h5>
                     </div>
                     <div>
                         <!-- Dropdown Tahun -->
@@ -328,23 +330,38 @@
             </div>
 
             <!-- Statistik Kepuasan Rekomendasi -->
-            <div class="bg-white rounded-xl p-6 shadow">
-                <h2 class="text-lg font-semibold mb-4">Statistik Kepuasan Rekomendasi</h2>
-                <div class="flex flex-col gap-2 text-sm">
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 bg-red-400 rounded-full"></div>
-                        <span>Negative</span>
-                        <span class="font-semibold">16</span>
+            <div class="bg-white rounded-xl p-6 border border-gray-200">
+                <div class="mb-4">
+                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Statistik</p>
+                    <h5 class="leading-none text-xl font-bold text-gray-900 dark:text-white pb-2">Kepuasan Rekomendasi
+                    </h5>
+                </div>
+                <div class="h-6 w-full rounded-lg bg-gray-200 mb-6 flex overflow-hidden">
+                    <div class="bg-rose-400" style="width: 0.7%"></div>
+                    <div class="bg-yellow-300" style="width: 2%"></div>
+                    <div class="bg-green-400" style="width: 97.3%"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-500">
+                    <div class="flex flex-col items-center text-center">
+                        <span class="text-xs">Negative</span>
+                        <div class="flex items-center">
+                            <span class="text-rose-400 text-lg mr-2">😞</span>
+                            <span class="text-gray-900 font-semibold text-base">16</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <span>Neutral</span>
-                        <span class="font-semibold">45</span>
+                    <div class="flex flex-col items-center text-center">
+                        <span class="text-xs">Neutral</span>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 text-lg mr-2">😐</span>
+                            <span class="text-gray-900 font-semibold text-base">45</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-                        <span>Positive</span>
-                        <span class="font-semibold">2,113</span>
+                    <div class="flex flex-col items-center text-center">
+                        <span class="text-xs">Positive</span>
+                        <div class="flex items-center">
+                            <span class="text-green-400 text-lg mr-2">😊</span>
+                            <span class="text-gray-900 font-semibold text-base">2,113</span>
+                        </div>
                     </div>
                 </div>
             </div>
