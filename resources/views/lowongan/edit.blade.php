@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('lowongan.store') }}">
+    <form method="POST" action="{{ route('lowongan.update', $lowongan->id) }}">
         @csrf
+        @method('PUT')
         <div class="space-y-12">
             <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Lowongan</h2>
             <div class="border-b border-gray-900/10 pb-12 p-6 bg-white border border-gray-200 rounded-lg">
@@ -12,7 +13,8 @@
                         <div class="mt-2">
                             <input type="text" name="nama" id="nama" 
                                 class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                placeholder="Masukkan Nama Lowongan">
+                                placeholder="Masukkan Nama Lowongan"
+                                value="{{ old('nama', $lowongan->nama) }}">
                         </div>
                     </div>
                     <div class="sm:col-span-3">
@@ -44,14 +46,16 @@
                         <label for="batas_pendaftaran" class="block text-sm/6 font-medium text-gray-900">Batas Pendaftaran</label>
                         <div class="mt-2">
                             <input type="date" name="batas_pendaftaran" id="batas_pendaftaran" 
-                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                value="{{ old('batas_pendaftaran', $lowongan->batas_pendaftaran) }}">
                         </div>
                     </div>
                     <div class="sm:col-span-3">
                         <label for="jumlah_magang" class="block text-sm/6 font-medium text-gray-900">Jumlah Magang</label>
                         <div class="mt-2">
                             <input type="number" name="jumlah_magang" id="jumlah_magang" 
-                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                value="{{ old('jumlah_magang', $lowongan->jumlah_magang) }}">
                         </div>
                     </div>
 
@@ -60,7 +64,8 @@
                         <div class="mt-2">
                             <textarea id="deskripsi" name="deskripsi" rows="5" 
                                 class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                placeholder="Tulis Deskripsi"></textarea>
+                                placeholder="Tulis Deskripsi"
+                                >{{ old('deskripsi', $lowongan->deskripsi) }}</textarea>
                         </div>
                     </div>
 
@@ -69,7 +74,7 @@
                         <div class="mt-2">
                             <textarea id="persyaratan" name="persyaratan" rows="5" 
                                 class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                placeholder="Tulis persyaratan"></textarea>
+                                placeholder="Tulis persyaratan">{{ old('persyaratan', $lowongan->persyaratan) }}</textarea>
                         </div>
                     </div>
 
@@ -77,8 +82,8 @@
                         <label for="lokasi" class="block text-sm/6 font-medium text-gray-900">Lokasi</label>
                         <select name="lokasi" id="lokasi" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                             <option value="">Pilih Lokasi</option>
-                            <option value="Malang">Malang</option>
-                            <option value="Luar Malang">Luar Malang</option>
+                            <option value="malang" {{ old('lokasi', $lowongan->lokasi) == 'malang' ? 'selected' : '' }}>Malang</option>
+                            <option value="luar malang" {{ old('lokasi', $lowongan->lokasi) == 'luar malang' ? 'selected' : '' }}>Luar Malang</option>
                         </select>
                     </div>
 
@@ -88,7 +93,8 @@
                             @foreach($skills as $skill)
                                 <div class="flex items-center">
                                     <input id="skill-{{ $skill->id }}" name="skills[]" value="{{ $skill->id }}" type="checkbox"
-                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                        {{ in_array($skill->id, $lowongan->skills()->pluck('skill_id')->toArray()) ? 'checked' : '' }}>
                                     <label for="skill-{{ $skill->id }}" class="ml-2 block text-sm text-gray-900">
                                         {{ $skill->nama }}
                                     </label>
