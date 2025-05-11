@@ -16,29 +16,44 @@ class PerusahaanController extends Controller
     {
         $activemenu = 'perusahaan';
 
+        // Ambil input pencarian dan kategori
         $search = $request->input('search');
         $category = $request->input('category', 'all');
 
-        $query = Perusahaan::query();
+        // Ambil semua data bidang perusahaan
+        $bidangPerusahaans = BidangPerusahaan::all();
 
+        // Query untuk mengambil data perusahaan
+        $query = Perusahaan::with('bidangPerusahaan'); // Relasi ke BidangPerusahaan
+
+        // Jika ada search input
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                    ->orWhere('email', 'like', "%{$search}%");
             });
         }
 
+        // Jika kategori tidak 'all', filter berdasarkan nama bidang perusahaan
         if ($category !== 'all') {
-            $query->where('bidang_perusahaan_id', $category);
+            $query->whereHas('bidangPerusahaan', function ($q) use ($category) {
+                $q->where('id', $category);  // Filter berdasarkan ID bidang perusahaan
+            });
         }
 
+        // Ambil hasil query dengan pagination
         $perusahaan = $query->paginate(10)->appends([
             'search' => $search,
             'category' => $category
         ]);
-        $perusahaans = Perusahaan::all();
-        return view('perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category','perusahaans'));
+
+        // Kembalikan hasil ke view
+        return view('perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category', 'bidangPerusahaans'));
     }
+
+
+
+
 
     public function create()
     {
@@ -119,5 +134,4 @@ class PerusahaanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-
 }

@@ -9,42 +9,35 @@
         <form class="flex w-full max-w-lg" method="GET" action="{{ route('perusahaan.index') }}">
             <div class="flex w-full">
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
-
+        
                 <!-- Dropdown -->
                 <button id="dropdown-button" type="button"
-                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-                    {{ $category === 'all' ? 'Semua Perusahaan' : ($perusahaans->firstWhere('id', $category)?->nama ?? 'Pilih Perusahaan') }}
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
+                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200">
+                    {{ $category === 'all' ? 'Semua Bidang' : $bidangPerusahaans->where('id', $category)->first()->nama_bidang ?? 'Semua Bidang' }}
+                    <svg class="w-2.5 h-2.5 ms-2.5" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-
-                <!-- Dropdown menu -->
+        
                 <div id="dropdown"
-                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                        <li>
-                            <button type="button" data-value="all"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                Semua Perusahaan
-                            </button>
-                        </li>
-                        @foreach ($perusahaans as $item)
-                            <li>
-                                <button type="button" data-value="{{ $item->id }}"
-                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    {{ $item->nama }}
-                                </button>
+                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
+                        <li><button type="button" data-value="all"
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Semua Bidang</button></li>
+                        @foreach ($bidangPerusahaans as $bidang)
+                            <li><button type="button" data-value="{{ $bidang->id }}"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">{{ $bidang->nama_bidang }}</button>
                             </li>
                         @endforeach
                     </ul>
                 </div>
-
+        
                 <!-- Search -->
                 <div class="relative w-full">
-                    <input type="search" name="search" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border border-gray-300" placeholder="Cari perusahaan berdasarkan nama atau email..." value="{{ $search ?? '' }}" />
+                    <input type="search" name="search"
+                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border border-gray-300"
+                        placeholder="Cari perusahaan berdasarkan nama atau email..." value="{{ $search ?? '' }}" />
                     <button type="submit"
                         class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -57,6 +50,7 @@
                 </div>
             </div>
         </form>
+        
 
         <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -83,9 +77,11 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2">
                                 @if ($perusahaanItem->foto)
-                                    <img src="{{ asset('images/logo/' . $perusahaanItem->foto) }}" alt="Logo {{ $perusahaanItem->nama }}" class="w-10 h-10 rounded-full object-cover">
+                                    <img src="{{ asset('images/logo/' . $perusahaanItem->foto) }}"
+                                        alt="Logo {{ $perusahaanItem->nama }}" class="w-10 h-10 rounded-full object-cover">
                                 @else
-                                    <img src="{{ asset('images/Sertifikat.png') }}" alt="Logo Default" class="w-10 h-10 rounded-full border border-gray-200 object-cover">
+                                    <img src="{{ asset('images/Sertifikat.png') }}" alt="Logo Default"
+                                        class="w-10 h-10 rounded-full border border-gray-200 object-cover">
                                 @endif
                                 <div class="font-medium truncate">{{ $perusahaanItem->nama }}</div>
                             </div>
@@ -105,7 +101,7 @@
                                     </svg>
                                     Detail
                                 </a>
-                        
+
                                 <!-- Edit -->
                                 <a href="{{ route('perusahaan.edit', $perusahaanItem->id) }}"
                                     class="flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm whitespace-nowrap">
@@ -116,7 +112,7 @@
                                     </svg>
                                     Edit
                                 </a>
-                        
+
                                 <!-- Hapus -->
                                 <form action="{{ route('perusahaan.destroy', $perusahaanItem->id) }}" method="POST"
                                     onsubmit="return confirm('Yakin ingin menghapus data ini?')"
@@ -134,11 +130,12 @@
                                     </button>
                                 </form>
                             </div>
-                        </td>                                  
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada perusahaan ditemukan.</td>
+                        <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada perusahaan ditemukan.
+                        </td>
                     </tr>
                 @endforelse
             </tbody>
