@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('perusahaan.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.perusahaan.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="space-y-12">
             <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Pengguna</h2>
@@ -77,7 +77,7 @@
 
                     {{-- Foto Upload --}}
                     <div class="col-span-full">
-                        <label for="foto" class="block text-sm/6 font-medium text-gray-900">Unggah Foto</label>
+                        {{-- <label for="foto" class="block text-sm/6 font-medium text-gray-900">Unggah Foto</label>
                         <label for="foto"
                             class="flex flex-col items-center justify-center w-full mt-2 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -91,13 +91,21 @@
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG atau GIF (MAX. 2MB)</p>
                             </div>
                             <input id="foto" name="foto" type="file" class="hidden" accept="image/*" />
-                        </label>
+                        </label> --}}
+
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
+                            file</label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                             id="foto" name="foto" type="file" accept="image/*">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="foto">SVG, PNG, JPG or GIF
+                            (MAX. 800x400px).</p>
                     </div>
                 </div>
 
                 {{-- Tombol --}}
                 <div class="mt-6 flex items-center justify-start gap-x-6">
-                    <a href="{{ route('perusahaan.index') }}"
+                    <a href="{{ route('admin.perusahaan.index') }}"
                         class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</a>
                     <button type="submit"
                         class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>

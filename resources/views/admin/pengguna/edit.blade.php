@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('pengguna.update', $user->id) }}">
+    <form method="POST" action="{{ route('admin.pengguna.update', $user->id) }}">
         @csrf
         @method('PUT')
         <div class="space-y-12">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="mt-6 flex items-center justify-start gap-x-6">
-                    <a href="{{ route('pengguna.index') }}" class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</a>
+                    <a href="{{ route('admin.pengguna.index') }}" class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</a>
                     <button type="submit"
                         class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
                 </div>
