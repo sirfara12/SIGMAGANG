@@ -71,7 +71,7 @@ class LowonganController extends Controller
             $lowongan->skills()->sync($request->skills);
         }
 
-        return redirect()->route('admin.lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
+        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -108,7 +108,7 @@ class LowonganController extends Controller
             $lowongan->skills()->sync($request->skills);
         }
 
-        return redirect()->route('admin.lowongan.index')->with('success', 'Data lowongan berhasil diperbarui.');
+        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -116,7 +116,7 @@ class LowonganController extends Controller
         $lowongan = Lowongan::findOrFail($id);
         $lowongan->delete();
 
-        return redirect()->route('admin.lowongan.index')->with('success', 'Data lowongan berhasil dihapus.');
+        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil dihapus.');
     }
     
 }

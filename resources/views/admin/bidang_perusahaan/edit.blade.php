@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="text-xl font-bold mb-4">Edit Bidang Perusahaan</h2>
 
-    <form method="POST" action="{{ route('bidang_perusahaan.update', $bidang_perusahaan->id) }}">
+    <form method="POST" action="{{ route('admin.bidang_perusahaan.update', $bidang_perusahaan->id) }}">
         @csrf
         @method('PUT')
         <div class="space-y-12">

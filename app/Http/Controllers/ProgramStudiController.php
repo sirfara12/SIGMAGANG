@@ -48,7 +48,7 @@ class ProgramStudiController extends Controller
             'nama' => 'required',
         ]);
         Prodi::create($request->all());
-        return redirect()->route('admin.programstudi.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('programstudi.index')->with('success', 'Jenis Magang berhasil ditambahkan');
     }
     public function edit($id)
     {
@@ -63,12 +63,12 @@ class ProgramStudiController extends Controller
         ]);
         $prodi = Prodi::findOrFail($id);
         $prodi->update($request->all());
-        return redirect()->route('admin.programstudi.index')->with('success', 'Program Studi berhasil diupdate');
+        return redirect()->route('programstudi.index')->with('success', 'Program Studi berhasil diupdate');
     }
     public function destroy($id)
     {
         $prodi = Prodi::findOrFail($id);
         $prodi->delete();
-        return redirect()->route('admin.programstudi.index')->with('success', 'Program Studi berhasil dihapus');
+        return redirect()->route('programstudi.index')->with('success', 'Program Studi berhasil dihapus');
     }
 }

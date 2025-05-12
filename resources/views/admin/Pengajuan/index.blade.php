@@ -86,39 +86,16 @@
                         <td class="px-6 py-4">{{ $item->lowongan->nama ?? '-' }}</td>
                         <td class="px-6 py-4">{{ ucfirst($item->status) }}</td>
                         <td class="px-6 py-4">{{ $item->dosen_pembimbing ?? 'Belum dipilih' }}</td>
-
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
                             <button
-                                class="inline-flex items-center bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm cursor-pointer">
+                                class="inline-flex items-center bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span class="hidden md:inline">Detail</span>
-                            </button>
-
-                            <!-- Edit -->
-                            <button
-                                class="inline-flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M11 5H6a2 2 0 00-2 2v11.5A1.5 1.5 0 005.5 20H17a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                </svg>
-                                <span class="hidden md:inline">Edit</span>
-                            </button>
-
-                            <!-- Hapus -->
-                            <button
-                                class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 7l-.867 11.7A3 3 0 0115.1 21H8.9a3 3 0 01-2.033-2.3L5 7h14z" />
-                                </svg>
-                                <span class="hidden md:inline">Hapus</span>
+                                <span class="hidden md:inline">Cek Data</span>
                             </button>
                         </td>
                     </tr>
