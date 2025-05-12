@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('pengguna.store') }}">
+    <form method="POST" action="{{ route('admin.pengguna.store') }}">
         @csrf
         <div class="space-y-12">
             <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Pengguna</h2>
