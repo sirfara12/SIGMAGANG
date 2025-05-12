@@ -46,7 +46,7 @@ class PengajuanController extends Controller
         $pengajuan = $query->paginate(10);
         $pengajuan->appends(['search' => $search, 'category' => $category]);
 
-        return view('pengajuan.index', [
+        return view('admin.pengajuan.index', [
             'activemenu' => $activemenu,
             'pengajuanAll' => $pengajuanAll,
             'pengajuan' => $pengajuan,

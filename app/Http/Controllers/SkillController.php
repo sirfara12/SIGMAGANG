@@ -34,7 +34,7 @@ class SkillController extends Controller
             'category' => $category
         ]);
         $skills = Skill::all();
-        return view('skill.index', compact('activemenu', 'skill', 'search', 'category','skills'));
+        return view('admin.skill.index', compact('activemenu', 'skill', 'search', 'category','skills'));
     }
 
     /**
@@ -43,7 +43,7 @@ class SkillController extends Controller
     public function create()
     {
         $activemenu = 'skill';
-        return view('skill.create',['activemenu' => $activemenu]);
+        return view('admin.skill.create',['activemenu' => $activemenu]);
     }
 
     /**
@@ -55,7 +55,7 @@ class SkillController extends Controller
             'nama' => 'required',
         ]);
         Skill::create($request->all());
-        return redirect()->route('skill.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('admin.skill.index')->with('success', 'Jenis Magang berhasil ditambahkan');
     }
 
     /**
@@ -65,7 +65,7 @@ class SkillController extends Controller
     {
         $activemenu = 'skill';
         $skill = Skill::findOrFail($id);
-        return view('skill.show',['activemenu' => $activemenu,'skill' => $skill]);
+        return view('admin.skill.show',['activemenu' => $activemenu,'skill' => $skill]);
     }
 
     /**
@@ -75,7 +75,7 @@ class SkillController extends Controller
     {
         $activemenu = 'skill';
         $skill = Skill::findOrFail($id);
-        return view('skill.edit',['activemenu' => $activemenu,'skill' => $skill]);
+        return view('admin.skill.edit',['activemenu' => $activemenu,'skill' => $skill]);
     }
 
     /**
@@ -88,7 +88,7 @@ class SkillController extends Controller
         ]);
         $skill = Skill::findOrFail($id);
         $skill->update($request->all());
-        return redirect()->route('skill.index')->with('success', 'Skill berhasil diupdate');
+        return redirect()->route('admin.skill.index')->with('success', 'Skill berhasil diupdate');
     }
 
     /**
@@ -98,6 +98,6 @@ class SkillController extends Controller
     {
         $skill = Skill::findOrFail($id);
         $skill->delete();
-        return redirect()->route('skill.index')->with('success', 'Skill berhasil dihapus');
+        return redirect()->route('admin.skill.index')->with('success', 'Skill berhasil dihapus');
     }
 }
