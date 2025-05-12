@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('pengguna.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.pengguna.index') }}">
             <div class="flex w-full">
                 <!-- Hidden input to store selected category -->
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
@@ -113,7 +113,7 @@
                             </button>
 
                             <!-- Edit -->
-                            <a href="{{ route('pengguna.edit', $userItem->id) }}"
+                            <a href="{{ route('admin.pengguna.edit', $userItem->id) }}"
                                 class="inline-flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">      
@@ -124,7 +124,7 @@
                             </a>
 
                             <!-- Hapus -->
-                            <form action="{{ route('pengguna.destroy', $userItem->id) }}" method="POST" class="inline">
+                            <form action="{{ route('admin.pengguna.destroy', $userItem->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"

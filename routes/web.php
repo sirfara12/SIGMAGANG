@@ -44,15 +44,15 @@ Route::middleware(['auth','verified'])->group(function () {
 
         // MANAJEMEN DATA
         Route::prefix('pengguna')->group(function () {
-            Route::get('/', [PenggunaController::class, 'index'])->name('pengguna.index');
-            Route::get('/create', [PenggunaController::class, 'create'])->name('pengguna.create');
-            Route::post('/store', [PenggunaController::class, 'store'])->name('pengguna.store');
-            Route::get('/edit/{id}', [PenggunaController::class, 'edit'])->name('pengguna.edit');
-            Route::put('/update/{id}', [PenggunaController::class, 'update'])->name('pengguna.update');
-            Route::delete('/delete/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
+            Route::get('/', [PenggunaController::class, 'index'])->name('admin.pengguna.index');
+            Route::get('/create', [PenggunaController::class, 'create'])->name('admin.pengguna.create');
+            Route::post('/store', [PenggunaController::class, 'store'])->name('admin.pengguna.store');
+            Route::get('/edit/{id}', [PenggunaController::class, 'edit'])->name('admin.pengguna.edit');
+            Route::put('/update/{id}', [PenggunaController::class, 'update'])->name('admin.pengguna.update');
+            Route::delete('/delete/{id}', [PenggunaController::class, 'destroy'])->name('admin.pengguna.destroy');
         });
 
-        Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
+        Route::prefix('perusahaan')->name('admin.perusahaan.')->group(function () {
             Route::get('/', [PerusahaanController::class, 'index'])->name('index');
             Route::get('/create', [PerusahaanController::class, 'create'])->name('create');
             Route::post('/', [PerusahaanController::class, 'store'])->name('store');
@@ -61,7 +61,7 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::delete('/{id}', [PerusahaanController::class, 'destroy'])->name('destroy');
         });
         
-        Route::prefix('bidang_perusahaan')->name('bidang_perusahaan.')->group(function () {
+        Route::prefix('bidang_perusahaan')->name('admin.bidang_perusahaan.')->group(function () {
             Route::get('/', [BidangPerusahaanController::class, 'index'])->name('index');
             Route::get('/create', [BidangPerusahaanController::class, 'create'])->name('create');
             Route::post('/', [BidangPerusahaanController::class, 'store'])->name('store');

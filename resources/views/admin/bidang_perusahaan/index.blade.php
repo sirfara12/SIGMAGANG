@@ -29,7 +29,7 @@
                     <td class="px-6 py-4">
                         <div class="flex gap-2">
                             <!-- Edit -->
-                            <a href="{{ route('bidang_perusahaan.edit', $item->id) }}"
+                            <a href="{{ route('admin.bidang_perusahaan.edit', $item->id) }}"
                                 class="flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm whitespace-nowrap">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +40,7 @@
                             </a>
 
                             <!-- Hapus -->
-                            <form action="{{ route('bidang_perusahaan.destroy', $item->id) }}" method="POST"
+                            <form action="{{ route('admin.bidang_perusahaan.destroy', $item->id) }}" method="POST"
                                 onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                                 class="flex items-center">
                                 @csrf

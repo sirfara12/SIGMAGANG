@@ -12,7 +12,7 @@
             </ul>
         </div>
     @endif
-    <form method="POST" action="{{ route('bidang_perusahaan.store') }}">
+    <form method="POST" action="{{ route('admin.bidang_perusahaan.store') }}">
         @csrf
         <div class="space-y-12">
             <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Bidang Perusahaan</h2>

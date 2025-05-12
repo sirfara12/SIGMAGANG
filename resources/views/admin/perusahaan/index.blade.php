@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('perusahaan.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.perusahaan.index') }}">
             <div class="flex w-full">
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
         
@@ -103,7 +103,7 @@
                                 </a>
 
                                 <!-- Edit -->
-                                <a href="{{ route('perusahaan.edit', $perusahaanItem->id) }}"
+                                <a href="{{ route('admin.perusahaan.edit', $perusahaanItem->id) }}"
                                     class="flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm whitespace-nowrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -114,7 +114,7 @@
                                 </a>
 
                                 <!-- Hapus -->
-                                <form action="{{ route('perusahaan.destroy', $perusahaanItem->id) }}" method="POST"
+                                <form action="{{ route('admin.perusahaan.destroy', $perusahaanItem->id) }}" method="POST"
                                     onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                                     class="flex items-center">
                                     @csrf

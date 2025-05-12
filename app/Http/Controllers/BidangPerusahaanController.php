@@ -14,7 +14,7 @@ class BidangPerusahaanController extends Controller
     public function index()
     {
         $activemenu = 'perusahaan';
-        $bidang_perusahaan = BidangPerusahaan::all();
+        $bidang_perusahaan = BidangPerusahaan::paginate(10);
         return view('admin.bidang_perusahaan.index', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan
