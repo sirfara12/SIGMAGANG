@@ -29,7 +29,7 @@ class ProgramStudiController extends Controller
 
         $programstudi->appends(['search' => $search, 'category' => $category]);
         $prodis = Prodi::all();
-        return view('programstudi.index', [
+        return view('admin.programstudi.index', [
             'activemenu' => $activemenu,
             'programstudi' => $programstudi,
             'category' => $category, 
@@ -40,7 +40,7 @@ class ProgramStudiController extends Controller
     public function create()
     {
         $activemenu = 'programstudi';
-        return view('programstudi.create',['activemenu' => $activemenu]);
+        return view('admin.programstudi.create',['activemenu' => $activemenu]);
     }
     public function store(Request $request)
     {
@@ -48,13 +48,13 @@ class ProgramStudiController extends Controller
             'nama' => 'required',
         ]);
         Prodi::create($request->all());
-        return redirect()->route('programstudi.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('admin.programstudi.index')->with('success', 'Jenis Magang berhasil ditambahkan');
     }
     public function edit($id)
     {
         $activemenu = 'programstudi';
         $programstudi = Prodi::findOrFail($id);
-        return view('programstudi.edit',['activemenu' => $activemenu,'programstudi' => $programstudi]);
+        return view('admin.programstudi.edit',['activemenu' => $activemenu,'programstudi' => $programstudi]);
     }
     public function update(Request $request,$id)
     {
@@ -63,12 +63,12 @@ class ProgramStudiController extends Controller
         ]);
         $prodi = Prodi::findOrFail($id);
         $prodi->update($request->all());
-        return redirect()->route('programstudi.index')->with('success', 'Program Studi berhasil diupdate');
+        return redirect()->route('admin.programstudi.index')->with('success', 'Program Studi berhasil diupdate');
     }
     public function destroy($id)
     {
         $prodi = Prodi::findOrFail($id);
         $prodi->delete();
-        return redirect()->route('programstudi.index')->with('success', 'Program Studi berhasil dihapus');
+        return redirect()->route('admin.programstudi.index')->with('success', 'Program Studi berhasil dihapus');
     }
 }

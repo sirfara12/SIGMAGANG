@@ -36,7 +36,7 @@ class PenggunaController extends Controller
 
         $user->appends(['search' => $search, 'category' => $category]);
 
-        return view('pengguna.index', [
+        return view('admin.pengguna.index', [
             'activemenu' => $activemenu,
             'user_all' => $user_all,
             'user' => $user,
@@ -46,14 +46,14 @@ class PenggunaController extends Controller
     }
     public function create(){
         $activemenu = 'pengguna';
-        return view('pengguna.create',['activemenu' => $activemenu]);
+        return view('admin.pengguna.create',['activemenu' => $activemenu]);
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
         $activemenu = 'pengguna';
-        return view('pengguna.edit', [
+        return view('admin.pengguna.edit', [
             'activemenu' => $activemenu,
             'user' => $user
         ]);
@@ -75,7 +75,7 @@ class PenggunaController extends Controller
                 'role' => $validated['role'],
             ]);
 
-            return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil ditambahkan.');
+            return redirect()->route('admin.pengguna.index')->with('success', 'Pengguna berhasil ditambahkan.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors([
                 'error' => 'Terjadi kesalahan saat membuat pengguna: ' . $e->getMessage()
@@ -86,7 +86,7 @@ class PenggunaController extends Controller
     {
         $activemenu = 'pengguna';
         $user = User::findOrFail($id);
-        return view('pengguna.show', [
+        return view('admin.pengguna.show', [
             'activemenu' => $activemenu,
             'user' => $user,
         ]);
@@ -115,7 +115,7 @@ class PenggunaController extends Controller
             $user = User::findOrFail($id);
             $user->update($updateData);
             
-            return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil diupdate.');
+            return redirect()->route('admin.pengguna.index')->with('success', 'Pengguna berhasil diupdate.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors([
                 'error' => 'Terjadi kesalahan saat mengupdate pengguna: ' . $e->getMessage()
@@ -125,6 +125,6 @@ class PenggunaController extends Controller
     public function destroy($id){
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil dihapus');
+        return redirect()->route('admin.pengguna.index')->with('success', 'Pengguna berhasil dihapus');
     }
 }

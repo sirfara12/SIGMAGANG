@@ -48,7 +48,7 @@ class PerusahaanController extends Controller
         ]);
 
         // Kembalikan hasil ke view
-        return view('perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category', 'bidangPerusahaans'));
+        return view('admin.perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category', 'bidangPerusahaans'));
     }
 
 
@@ -60,7 +60,7 @@ class PerusahaanController extends Controller
         $activemenu = 'perusahaan';
         $bidangs = BidangPerusahaan::all();
 
-        return view('perusahaan.create', compact('activemenu', 'bidangs'));
+        return view('admin.perusahaan.create', compact('activemenu', 'bidangs'));
     }
 
     public function store(Request $request)
@@ -82,7 +82,7 @@ class PerusahaanController extends Controller
 
         Perusahaan::create($validated);
 
-        return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil ditambahkan.');
+        return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -91,7 +91,7 @@ class PerusahaanController extends Controller
         $activemenu = 'perusahaan';
         $bidangs = BidangPerusahaan::all();
 
-        return view('perusahaan.edit', compact('perusahaan', 'activemenu', 'bidangs'));
+        return view('admin.perusahaan.edit', compact('perusahaan', 'activemenu', 'bidangs'));
     }
 
     public function update(Request $request, $id)
@@ -118,7 +118,7 @@ class PerusahaanController extends Controller
 
         $perusahaan->update($validated);
 
-        return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil diperbarui.');
+        return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -129,7 +129,7 @@ class PerusahaanController extends Controller
         }
         $perusahaan->delete();
 
-        return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil dihapus.');
+        return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil dihapus.');
     }
     /**
      * Show the form for creating a new resource.
