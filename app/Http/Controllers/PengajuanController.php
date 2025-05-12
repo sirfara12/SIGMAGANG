@@ -13,36 +13,27 @@ class PengajuanController extends Controller
         $search = $request->input('search');
         $category = $request->input('category', 'all');
 
-        // Ambil semua data untuk keperluan lain (jika dibutuhkan di view)
         $pengajuanAll = Pengajuan::all();
 
-        // Query dengan relasi mahasiswa -> user -> prodi dan lowongan
         $query = Pengajuan::with(['mahasiswa.user', 'mahasiswa.prodi', 'lowongan']);
 
-        // Filtering berdasarkan pencarian
         if ($search) {
             $query->where(function ($q) use ($search) {
-                // Cari nama di tabel users (melalui relasi mahasiswa)
                 $q->whereHas('mahasiswa.user', function ($q1) use ($search) {
-                    $q1->where('name', 'like', "%{$search}%"); // Ganti ke `name` di tabel users
+                    $q1->where('name', 'like', "%{$search}%");
                 })
-                    // Atau cari dari nama prodi mahasiswa
                     ->orWhereHas('mahasiswa.prodi', function ($q2) use ($search) {
-                        $q2->where('nama', 'like', "%{$search}%"); // Gantilah `name` menjadi `nama`
+                        $q2->where('nama', 'like', "%{$search}%");
                     })
-                    // Atau cari dari nama lowongan
                     ->orWhereHas('lowongan', function ($q3) use ($search) {
-                        $q3->where('nama', 'like', "%{$search}%"); // Gantilah `name` menjadi `nama`
+                        $q3->where('nama', 'like', "%{$search}%");
                     });
             });
         }
 
-        // Filter kategori status (admin, dosen, mahasiswa)
         if ($category !== 'all') {
             $query->where('status', $category);
         }
-
-        // Pagination + kirim query param agar tidak hilang saat navigasi
         $pengajuan = $query->paginate(10);
         $pengajuan->appends(['search' => $search, 'category' => $category]);
 
@@ -53,5 +44,25 @@ class PengajuanController extends Controller
             'category' => $category,
             'search' => $search,
         ]);
+    }
+    public function detail($id)
+    {
+        $pengajuan = Pengajuan::with(['mahasiswa.user', 'mahasiswa.prodi', 'lowongan'])->findOrFail($id);
+        return view('admin.pengajuan.detail', [
+            'pengajuan' => $pengajuan,
+        ]);
+    }
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+            'dosen_id' => 'required',
+        ]);
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->update([
+            'status' => $request->status,
+            'dosen_id' => $request->dosen_id,
+        ]);
+        return redirect()->route('admin.pengajuan.index')->with('success', 'Status berhasil diubah');
     }
 }
