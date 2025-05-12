@@ -55,7 +55,7 @@ class JenisMagangController extends Controller
             'jenis_magang' => 'required',
         ]);
         JenisMagang::create($request->all());
-        return redirect()->route('admin.jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
     }
 
     /**
@@ -88,7 +88,7 @@ class JenisMagangController extends Controller
         ]);
         $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->update($request->all());
-        return redirect()->route('admin.jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
+        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
     }
 
     /**
@@ -98,6 +98,6 @@ class JenisMagangController extends Controller
     {
         $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->delete();
-        return redirect()->route('admin.jenismagang.index')->with('success', 'Jenis Magang berhasil dihapus');
+        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil dihapus');
     }
 }

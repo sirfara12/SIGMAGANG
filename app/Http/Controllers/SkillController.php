@@ -55,7 +55,7 @@ class SkillController extends Controller
             'nama' => 'required',
         ]);
         Skill::create($request->all());
-        return redirect()->route('admin.skill.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('skill.index')->with('success', 'Jenis Magang berhasil ditambahkan');
     }
 
     /**
@@ -88,7 +88,7 @@ class SkillController extends Controller
         ]);
         $skill = Skill::findOrFail($id);
         $skill->update($request->all());
-        return redirect()->route('admin.skill.index')->with('success', 'Skill berhasil diupdate');
+        return redirect()->route('skill.index')->with('success', 'Skill berhasil diupdate');
     }
 
     /**
@@ -98,6 +98,6 @@ class SkillController extends Controller
     {
         $skill = Skill::findOrFail($id);
         $skill->delete();
-        return redirect()->route('admin.skill.index')->with('success', 'Skill berhasil dihapus');
+        return redirect()->route('skill.index')->with('success', 'Skill berhasil dihapus');
     }
 }
