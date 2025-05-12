@@ -17,7 +17,7 @@ class Pengajuan extends Model
         'lowongan_id',
         'status',
         'skor_spk',
-        'catatan'
+        'dosen_id'
     ];
 
     protected $casts = [
