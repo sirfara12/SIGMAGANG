@@ -265,13 +265,13 @@
                 <div class="flex justify-between items-center gap-8 mt-1 mb-4">
                     <!-- Mahasiswa Magang -->
                     <div class="flex items-center gap-2">
-                        <div class="text-2xl font-bold text-gray-900">120</div>
+                        <div class="text-2xl font-bold text-gray-900">{{ $magang_count }}</div>
                         <div class="text-sm text-gray-500">Mahasiswa Magang</div>
                     </div>
 
                     <!-- Rata-rata mahasiswa per Dosen -->
                     <div class="flex items-center gap-2 text-left">
-                        <div class="text-2xl font-bold text-gray-900">6</div>
+                        <div class="text-2xl font-bold text-gray-900">{{ $magang_count / $dosen_count }}</div>
                         <div class="text-sm text-gray-500">Mahasiswa per Dosen</div>
                     </div>
                 </div>
@@ -283,49 +283,16 @@
 
                 <!-- Data Dosen -->
                 <div class="space-y-6 pt-2 mb-2">
-                    <!-- Dosen 1 -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1 text-sm text-gray-900 font-medium">
-                            <span>Dr. Bambang Pamungkas</span>
-                            <span>30</span>
+                    @foreach ($dosen as $item)
+                        <div>
+                            <div class="flex justify-between items-center mb-1 text-sm text-gray-900 font-medium">
+                                <span>{{ $item->name }}</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Dosen 2 -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1 text-sm text-gray-900 font-medium">
-                            <span>Siti Nurbaya</span>
-                            <span>25</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-purple-400 h-2.5 rounded-full" style="width: 83.3%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Dosen 3 -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1 text-sm text-gray-900 font-medium">
-                            <span>Resti Amamah</span>
-                            <span>15</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-purple-300 h-2.5 rounded-full" style="width: 50%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Dosen 4 -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1 text-sm text-gray-900 font-medium">
-                            <span>Buna Amalia</span>
-                            <span>5</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-purple-200 h-2.5 rounded-full" style="width: 16.6%"></div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
