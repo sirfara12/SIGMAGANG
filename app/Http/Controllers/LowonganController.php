@@ -63,15 +63,35 @@ class LowonganController extends Controller
             'perusahaan_id' => 'required|exists:perusahaan,id',
             'periode_id' => 'nullable|integer',
             'prodi_id' => 'nullable|integer',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
+            'batas_pendaftaran.required' => 'Batas pendaftaran wajib diisi.',
+            'lokasi.required' => 'Lokasi wajib diisi.',
+            'jumlah_magang.required' => 'Jumlah magang wajib diisi.',
+            'perusahaan_id.required' => 'Perusahaan wajib diisi.',
         ]);
-        
-        $lowongan = Lowongan::create($validated);
-        
-        if ($request->has('skills')) {
-            $lowongan->skills()->sync($request->skills);
-        }
+        try{
 
-        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
+            $lowongan = Lowongan::create([
+                'nama' => $validated['nama'],
+                'deskripsi' => $validated['deskripsi'],
+                'persyaratan' => $validated['persyaratan'],
+                'batas_pendaftaran' => $validated['batas_pendaftaran'],
+                'lokasi' => $validated['lokasi'],
+                'jumlah_magang' => $validated['jumlah_magang'],
+                'perusahaan_id' => $validated['perusahaan_id'],
+                'periode_id' => $validated['periode_id'],
+                'prodi_id' => $validated['prodi_id'],
+            ]);
+            
+            if ($request->has('skills')) {
+                $lowongan->skills()->sync($request->skills);
+            }
+    
+            return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan lowongan.');
+        }
     }
 
     public function edit($id)
@@ -99,9 +119,26 @@ class LowonganController extends Controller
             'perusahaan_id' => 'required|exists:perusahaan,id',
             'periode_id' => 'nullable|integer',
             'prodi_id' => 'nullable|integer',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
+            'batas_pendaftaran.required' => 'Batas pendaftaran wajib diisi.',
+            'lokasi.required' => 'Lokasi wajib diisi.',
+            'jumlah_magang.required' => 'Jumlah magang wajib diisi.',
+            'perusahaan_id.required' => 'Perusahaan wajib diisi.',
         ]);
 
-        $lowongan->update($validated);
+        try{
+            $lowongan->update([
+            'nama' => $validated['nama'],
+            'deskripsi' => $validated['deskripsi'],
+            'persyaratan' => $validated['persyaratan'],
+            'batas_pendaftaran' => $validated['batas_pendaftaran'],
+            'lokasi' => $validated['lokasi'],
+            'jumlah_magang' => $validated['jumlah_magang'],
+            'perusahaan_id' => $validated['perusahaan_id'],
+            'periode_id' => $validated['periode_id'],
+            'prodi_id' => $validated['prodi_id'],
+        ]);
 
         // Sync skills if they exist in the request
         if ($request->has('skills')) {
@@ -109,6 +146,9 @@ class LowonganController extends Controller
         }
 
         return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil diperbarui.');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate lowongan.');
+        }
     }
 
     public function destroy($id)

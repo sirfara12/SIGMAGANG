@@ -72,12 +72,22 @@ class PeriodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'deskripsi' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'deskripsi' => ['required', 'string', 'max:255'],
+            'tanggal_mulai' => ['required', 'date'],
+            'tanggal_selesai' => ['required', 'date', 'after_or_equal:tanggal_mulai'],
+        ],[
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
+            'tanggal_mulai.required' => 'Tanggal mulai wajib diisi.',
+            'tanggal_selesai.required' => 'Tanggal selesai wajib diisi.',
+            'tanggal_selesai.after_or_equal' => 'Tanggal selesai harus setelah atau sama dengan tanggal mulai.',
         ]);
-        Periode::create($request->all());
-        return redirect()->route('admin.periode.index')->with('success', 'Periode berhasil ditambahkan');
+        try{
+
+            Periode::create($request->all());
+            return redirect()->route('admin.periode.index')->with('success', 'Periode berhasil ditambahkan');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal menyimpan periode.');
+        }
     }
 
     /**
@@ -106,13 +116,22 @@ class PeriodeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'deskripsi' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'deskripsi' => ['required', 'string', 'max:255'],
+            'tanggal_mulai' => ['required', 'date'],
+            'tanggal_selesai' => ['required', 'date', 'after_or_equal:tanggal_mulai'],
+        ], [
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
+            'tanggal_mulai.required' => 'Tanggal mulai wajib diisi.',
+            'tanggal_selesai.required' => 'Tanggal selesai wajib diisi.',
+            'tanggal_selesai.after_or_equal' => 'Tanggal selesai harus setelah atau sama dengan tanggal mulai.',
         ]);
-        $periode = Periode::findOrFail($id);
-        $periode->update($request->all());
-        return redirect()->route('admin.periode.index')->with('success', 'Periode berhasil diupdate');
+        try{
+            $periode = Periode::findOrFail($id);
+            $periode->update($request->all());
+            return redirect()->route('admin.periode.index')->with('success', 'Periode berhasil diupdate');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate periode.');
+        }
     }
 
     /**
@@ -120,8 +139,12 @@ class PeriodeController extends Controller
      */
     public function destroy($id)
     {
-        $periode = Periode::findOrFail($id);
-        $periode->delete();
-        return redirect()->route('admin.periode.index')->with('success', 'Periode berhasil dihapus');
+        try{
+            $periode = Periode::findOrFail($id);
+            $periode->delete();
+            return redirect()->route('admin.periode.index')->with('success', 'Periode berhasil dihapus');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Gagal menghapus periode.');
+        }
     }
 }

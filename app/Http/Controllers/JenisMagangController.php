@@ -53,9 +53,17 @@ class JenisMagangController extends Controller
     {
         $request->validate([
             'jenis_magang' => 'required',
+        ],[
+            'jenis_magang.required' => 'Jenis magang wajib diisi.',
         ]);
-        JenisMagang::create($request->all());
-        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        try{
+            JenisMagang::create([
+                'jenis_magang' => $request->jenis_magang,
+            ]);
+            return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan jenis magang.');
+        }
     }
 
     /**
@@ -85,10 +93,18 @@ class JenisMagangController extends Controller
     {
         $request->validate([
             'jenis_magang' => 'required',
+        ],[
+            'jenis_magang.required' => 'Jenis magang wajib diisi.',
         ]);
-        $jenis_magang = JenisMagang::findOrFail($id);
-        $jenis_magang->update($request->all());
-        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
+        try{
+            $jenis_magang = JenisMagang::findOrFail($id);
+            $jenis_magang->update([
+                'jenis_magang' => $request->jenis_magang,
+            ]);
+            return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate jenis magang.');
+        }
     }
 
     /**
