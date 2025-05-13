@@ -52,8 +52,6 @@ class PerusahaanController extends Controller
 
 
 
-
-
     public function create()
     {
         $activemenu = 'perusahaan';
@@ -82,6 +80,16 @@ class PerusahaanController extends Controller
         Perusahaan::create($validated);
 
         return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil ditambahkan.');
+    }
+
+    public function show($id)
+    {
+        $activemenu = 'perusahaan';
+        $perusahaan = Perusahaan::with('bidangPerusahaan')->findOrFail($id);
+        return view('admin.perusahaan.show', [
+            'activemenu' => $activemenu,
+            'perusahaan' => $perusahaan,
+        ]);
     }
 
     public function edit($id)
