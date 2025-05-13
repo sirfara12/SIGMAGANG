@@ -7,8 +7,15 @@
     <div class="overflow-x-auto relative rounded-lg border border-gray-200 bg-white">
         {{-- Foto Profil --}}
         <div class="flex justify-center py-6">
-            <img src="{{ asset('storage/foto/' . $user->foto) }}" alt="Foto {{ $user->name }}"
-                class="w-32 h-32 rounded-full object-cover border border-gray-300">
+            @if ($user->photo)
+                <img src="{{ asset('images/logo/' . $userItem->photo) }}" alt="Foto {{ $userItem->name }}"
+                    class="w-32 h-32 rounded-full object-cover shrink-0">
+            @else
+                <img src="{{ asset('images/Profile.jpg') }}" alt="Foto Default"
+                    class="w-32 h-32 rounded-full border border-gray-200 object-cover shrink-0">
+            @endif
+            {{-- <img src="{{ asset('storage/foto/' . $user->foto) }}" alt="Foto {{ $user->name }}"
+                class="w-32 h-32 rounded-full object-cover border border-gray-300"> --}}
         </div>
 
         {{-- Tabel Informasi --}}

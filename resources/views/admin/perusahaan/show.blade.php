@@ -70,7 +70,7 @@
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Kembali ke Daftar Pengguna
+                Kembali ke Daftar Perusahaan
             </a>
         </div>
     </div>

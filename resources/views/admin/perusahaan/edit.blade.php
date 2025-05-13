@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="text-xl font-bold mb-4">Edit Perusahaan</h2>
-
-    <form method="POST" action="{{ route('admin.perusahaan.update', $perusahaan->id) }}" enctype="multipart/form-data" class="space-y-4">
+    <form method="POST" action="{{ route('admin.perusahaan.update', $perusahaan->id) }}" enctype="multipart/form-data"
+        class="space-y-4">
         @csrf
         @method('PUT')
         <div class="space-y-12">
-            <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Pengguna</h2>
+            <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Edit Perusahaan</h2>
             <div class="border-b border-gray-900/10 pb-12 p-6 bg-white border border-gray-200 rounded-lg">
                 <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     {{-- Nama --}}
@@ -21,13 +20,16 @@
 
                     {{-- Bidang Perusahaan --}}
                     <div class="sm:col-span-3">
-                        <label for="bidang_perusahaan_id" class="block text-sm/6 font-medium text-gray-900">Bidang Perusahaan</label>
+                        <label for="bidang_perusahaan_id" class="block text-sm/6 font-medium text-gray-900">Bidang
+                            Perusahaan</label>
                         <div class="mt-2 grid grid-cols-1">
                             <select name="bidang_perusahaan_id" id="bidang_perusahaan_id" required
                                 class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 <option value="">Pilih Bidang perusahaan</option>
                                 @foreach ($bidangs as $bidang)
-                                    <option value="{{ $bidang->id }}" {{ $perusahaan->bidang_perusahaan_id == $bidang->id ? 'selected' : '' }}>{{ $bidang->nama_bidang }}</option>
+                                    <option value="{{ $bidang->id }}"
+                                        {{ $perusahaan->bidang_perusahaan_id == $bidang->id ? 'selected' : '' }}>
+                                        {{ $bidang->nama_bidang }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -85,7 +87,7 @@
                             file</label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                             id="foto" name="foto" type="file" accept="image/*">
+                            id="foto" name="foto" type="file" accept="image/*">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="foto">SVG, PNG, JPG or GIF
                             (MAX. 800x400px).</p>
                     </div>

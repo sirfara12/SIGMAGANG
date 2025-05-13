@@ -83,12 +83,12 @@
                         <td class="px-6 py-4">{{ $user->firstItem() + $key }}</td>
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2">
-                                @if ($userItem->photo)
-                                    <img src="{{ asset('images/logo/' . $userItem->photo) }}"
+                                @if ($userItem->foto)
+                                    <img src="{{ asset('images/logo/' . $userItem->foto) }}"
                                         alt="Foto {{ $userItem->name }}"
                                         class="w-10 h-10 rounded-full object-cover shrink-0">
                                 @else
-                                    <img src="{{ asset('images/Sertifikat.png') }}" alt="Foto Default"
+                                    <img src="{{ asset('images/Profile.jpg') }}" alt="Foto Default"
                                         class="w-10 h-10 rounded-full border border-gray-200 object-cover shrink-0">
                                 @endif
                                 <div class="min-w-0">
