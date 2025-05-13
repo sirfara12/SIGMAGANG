@@ -80,7 +80,6 @@ class PenggunaController extends Controller
             'role.in' => 'Posisi yang dipilih tidak valid.',
         ]);
 
-        // Coba simpan user, jika gagal tampilkan error flash
         try {
             User::create([
                 'name' => $validated['name'],
@@ -92,7 +91,6 @@ class PenggunaController extends Controller
             return redirect()->route('admin.pengguna.index')
                 ->with('success', 'Pengguna berhasil ditambahkan.');
         } catch (\Exception $e) {
-            // Tetap di halaman form + tampilkan flash error
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Gagal menyimpan pengguna.');
@@ -109,7 +107,6 @@ class PenggunaController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // Biarkan Laravel handle validation error seperti biasa
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
