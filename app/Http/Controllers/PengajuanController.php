@@ -57,12 +57,19 @@ class PengajuanController extends Controller
         $request->validate([
             'status' => 'required',
             'dosen_id' => 'required',
+        ],[
+            'status.required' => 'Status wajib diisi.',
+            'dosen_id.required' => 'Dosen wajib diisi.',
         ]);
+        try{
         $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->update([
             'status' => $request->status,
             'dosen_id' => $request->dosen_id,
         ]);
         return redirect()->route('admin.pengajuan.index')->with('success', 'Status berhasil diubah');
+    }catch(\Exception $e){
+        return redirect()->back()->withInput()->with('error', 'Gagal mengubah status.');
+    }
     }
 }

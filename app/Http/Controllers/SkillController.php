@@ -53,9 +53,15 @@ class SkillController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
         ]);
+        try{
         Skill::create($request->all());
         return redirect()->route('skill.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+    }catch(\Exception $e){
+        return redirect()->back()->withInput()->with('error', 'Gagal menambahkan skill.');
+    }
     }
 
     /**
@@ -85,10 +91,16 @@ class SkillController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
         ]);
+        try{
         $skill = Skill::findOrFail($id);
         $skill->update($request->all());
         return redirect()->route('skill.index')->with('success', 'Skill berhasil diupdate');
+    }catch(\Exception $e){
+        return redirect()->back()->withInput()->with('error', 'Gagal mengupdate skill.');
+    }
     }
 
     /**
