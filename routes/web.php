@@ -101,9 +101,9 @@ Route::middleware(['auth','verified'])->group(function () {
         });
         // // MANAJEMEN MAGANG
         Route::prefix('periode')->group(function () {
-            Route::get('/', [PeriodeController::class, 'index'])->name('periode.index');
-            Route::get('/create', [PeriodeController::class, 'create'])->name('periode.create');
-            // Route::post('/', [PeriodeController::class, 'store'])->name('periode.store');
+            Route::get('/', [PeriodeController::class, 'index'])->name('admin.periode.index');
+            Route::get('/create', [PeriodeController::class, 'create'])->name('admin.periode.create');
+            Route::post('/', [PeriodeController::class, 'store'])->name('admin.periode.store');
             // Route::get('/{id}/edit', [PeriodeController::class, 'edit'])->name('periode.edit');
             // Route::put('/{id}', [PeriodeController::class, 'update'])->name('periode.update');
             // Route::delete('/{id}', [PeriodeController::class, 'destroy'])->name('periode.destroy');

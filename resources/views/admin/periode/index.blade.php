@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('periode.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.periode.index') }}">
             <div class="flex w-full">
                 <!-- Hidden input to store selected category -->
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
