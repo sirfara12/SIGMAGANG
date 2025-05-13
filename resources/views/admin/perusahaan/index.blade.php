@@ -77,7 +77,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2">
                                 @if ($perusahaanItem->foto)
-                                    <img src="{{ asset('images/logo/' . $perusahaanItem->foto) }}"
+                                    <img src="{{ asset('storage/' . $perusahaanItem->foto) }}"
                                         alt="Logo {{ $perusahaanItem->nama }}" class="w-10 h-10 rounded-full object-cover">
                                 @else
                                     <img src="{{ asset('images/Sertifikat.png') }}" alt="Logo Default"

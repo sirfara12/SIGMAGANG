@@ -46,7 +46,6 @@ class PerusahaanController extends Controller
             'search' => $search,
             'category' => $category
         ]);
-
         // Kembalikan hasil ke view
         return view('admin.perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category', 'bidangPerusahaans'));
     }
