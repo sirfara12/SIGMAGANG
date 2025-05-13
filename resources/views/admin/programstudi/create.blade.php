@@ -12,7 +12,10 @@
         <label for="nama" class="block text-sm font-medium text-gray-900">Program Studi</label>
         <input type="text" id="nama" name="nama" required
             class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
+        @error('nama')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+        </div>
 
     <div class="mt-6 flex items-center justify-start gap-x-6">
         <button type="submit"
