@@ -9,7 +9,7 @@
         <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.perusahaan.index') }}">
             <div class="flex w-full">
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
-        
+
                 <!-- Dropdown -->
                 <button id="dropdown-button" type="button"
                     class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200">
@@ -19,7 +19,7 @@
                             d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-        
+
                 <div id="dropdown"
                     class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                     <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
@@ -32,7 +32,7 @@
                         @endforeach
                     </ul>
                 </div>
-        
+
                 <!-- Search -->
                 <div class="relative w-full">
                     <input type="search" name="search"
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </form>
-        
+
 
         <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -114,8 +114,25 @@
                                 </a>
 
                                 <!-- Hapus -->
-                                <form action="{{ route('admin.perusahaan.destroy', $perusahaanItem->id) }}" method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')"
+                                <form action="{{ 'admin.perusahaan.destroy', ($perusahaanItem->id) }}" method="POST"
+                                    class="inline" id="delete-form-{{ $perusahaanItem->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button"
+                                        class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer btn-delete"
+                                        data-id="{{ $perusahaanItem->id }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        <span class="hidden md:inline">Hapus</span>
+                                    </button>
+                                </form>
+
+                                {{-- <!-- Hapus -->
+                                <form action="{{ route('admin.perusahaan.destroy', $perusahaanItem->id) }}"
+                                    method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                                     class="flex items-center">
                                     @csrf
                                     @method('DELETE')
@@ -128,7 +145,7 @@
                                         </svg>
                                         Hapus
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
                         </td>
                     </tr>
@@ -145,6 +162,30 @@
             {{ $perusahaan->links('pagination::tailwind') }}
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const perusahaanId = this.getAttribute('data-id'); // Ambil ID dari data-id tombol
+    
+                // Menampilkan konfirmasi SweetAlert
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika ya, submit form untuk menghapus data
+                        document.getElementById('delete-form-' + perusahaanId).submit();
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         const dropdownButton = document.getElementById('dropdown-button');
