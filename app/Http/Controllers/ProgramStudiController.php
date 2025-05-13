@@ -46,9 +46,15 @@ class ProgramStudiController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
         ]);
+        try{
         Prodi::create($request->all());
-        return redirect()->route('programstudi.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        return redirect()->route('programstudi.index')->with('success', 'Program Studi berhasil ditambahkan');
+    }catch(\Exception $e){
+        return redirect()->back()->withInput()->with('error', 'Gagal menambahkan program studi.');
+    }
     }
     public function edit($id)
     {
@@ -60,10 +66,16 @@ class ProgramStudiController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
         ]);
+        try{
         $prodi = Prodi::findOrFail($id);
         $prodi->update($request->all());
         return redirect()->route('programstudi.index')->with('success', 'Program Studi berhasil diupdate');
+    }catch(\Exception $e){
+        return redirect()->back()->withInput()->with('error', 'Gagal mengupdate program studi.');
+    }
     }
     public function destroy($id)
     {
