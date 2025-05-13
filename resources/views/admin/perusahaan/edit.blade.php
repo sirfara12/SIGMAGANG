@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('admin.perusahaan.update', $perusahaan->id) }}" enctype="multipart/form-data">
+    <h2 class="text-xl font-bold mb-4">Edit Perusahaan</h2>
+
+    <form method="POST" action="{{ route('admin.perusahaan.update', $perusahaan->id) }}" enctype="multipart/form-data" class="space-y-4">
         @csrf
         @method('PUT')
         <div class="space-y-12">

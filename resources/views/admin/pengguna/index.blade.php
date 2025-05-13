@@ -14,7 +14,7 @@
                 <!-- Dropdown button -->
                 <button id="dropdown-button" type="button"
                     class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-                    {{ $category === 'all' ? 'Semua Posisi' : ucfirst($category) }}
+                    {{ $category === 'all' ? 'Semua Posisi' : ucfirst(str_replace('_', ' ', $category)) }}
                     <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,30 +31,30 @@
                                 Posisi</button></li>
                         <li><button type="button" data-value="admin"
                                 class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" ">Admin</button>
-                        </li>
-                        <li><button type="button" data-value="dosen"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dosen</button>
-                        </li>
-                        <li><button type="button" data-value="mahasiswa"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mahasiswa</button>
-                        </li>
-                    </ul>
-                </div>
+                            </li>
+                            <li><button type="button" data-value="dosen_pembimbing"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dosen Pembimbing</button>
+                            </li>
+                            <li><button type="button" data-value="mahasiswa"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mahasiswa</button>
+                            </li>
+                        </ul>
+                    </div>
 
-                <!-- Search input -->
-                <div class="relative w-full">
-                    <input type="search" id="search-dropdown" name="search"
-                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                        placeholder="Cari pengguna berdasarkan nama atau email..." value="{{ $search ?? '' }}" />
-                    <button type="submit"
-                        class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                        <span class="sr-only">Search</span>
-                    </button>
+                    <!-- Search input -->
+                    <div class="relative w-full">
+                        <input type="search" id="search-dropdown" name="search"
+                            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                            placeholder="Cari pengguna berdasarkan nama atau email..." value="{{ $search ?? '' }}" />
+                        <button type="submit"
+                            class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d=" m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>
+                            <span class="sr-only">Search</span>
+                            </button>
                 </div>
             </div>
         </form>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4">{{ $userItem->role }}</td>
+                        <td class="px-6 py-4">{{ ucwords(str_replace('_', ' ', $userItem->role)) }}</td>
                         <td class="px-6 py-4">{{ $userItem->email }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
@@ -116,7 +116,7 @@
                             <a href="{{ route('admin.pengguna.edit', $userItem->id) }}"
                                 class="inline-flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">      
+                                    viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M11 5H6a2 2 0 00-2 2v11.5A1.5 1.5 0 005.5 20H17a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
                                 </svg>
@@ -124,11 +124,13 @@
                             </a>
 
                             <!-- Hapus -->
-                            <form action="{{ route('admin.pengguna.destroy', $userItem->id) }}" method="POST" class="inline">
+                            <form action="{{ route('admin.pengguna.destroy', $userItem->id) }}" method="POST"
+                                class="inline" id="delete-form-{{ $userItem->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
-                                    class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer">
+                                <button type="button"
+                                    class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer btn-delete"
+                                    data-id="{{ $userItem->id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -154,6 +156,31 @@
             {{ $user->links('pagination::tailwind') }}
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.getAttribute('data-id'); // Ambil ID dari data-id tombol
+    
+                // Menampilkan konfirmasi SweetAlert
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika ya, submit form untuk menghapus data
+                        document.getElementById('delete-form-' + userId).submit();
+                    }
+                });
+            });
+        });
+    </script>
+    
 
     <!-- JavaScript -->
     <script>
