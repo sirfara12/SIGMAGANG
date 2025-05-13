@@ -47,6 +47,7 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::get('/', [PenggunaController::class, 'index'])->name('admin.pengguna.index');
             Route::get('/create', [PenggunaController::class, 'create'])->name('admin.pengguna.create');
             Route::post('/store', [PenggunaController::class, 'store'])->name('admin.pengguna.store');
+            Route::get('/{id}', [PenggunaController::class, 'show'])->name('admin.pengguna.show');
             Route::get('/edit/{id}', [PenggunaController::class, 'edit'])->name('admin.pengguna.edit');
             Route::put('/update/{id}', [PenggunaController::class, 'update'])->name('admin.pengguna.update');
             Route::delete('/delete/{id}', [PenggunaController::class, 'destroy'])->name('admin.pengguna.destroy');
