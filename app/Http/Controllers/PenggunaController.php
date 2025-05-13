@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Hash;
@@ -13,18 +14,17 @@ class PenggunaController extends Controller
     use PasswordValidationRules;
     public function index(Request $request)
     {
-        $user_all = User::all();
         $activemenu = 'pengguna';
 
         $search = $request->input('search');
-        $category = $request->input('category', 'all'); 
+        $category = $request->input('category', 'all');
 
         $query = User::query();
 
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                    ->orWhere('email', 'like', "%{$search}%");
             });
         }
 
@@ -32,21 +32,23 @@ class PenggunaController extends Controller
             $query->where('role', $category);
         }
 
-        $user = $query->paginate(10);
-
-        $user->appends(['search' => $search, 'category' => $category]);
+        $user = $query->paginate(10)->appends([
+            'search' => $search,
+            'category' => $category
+        ]);
 
         return view('admin.pengguna.index', [
             'activemenu' => $activemenu,
-            'user_all' => $user_all,
             'user' => $user,
-            'category' => $category, 
-            'search' => $search,     
+            'category' => $category,
+            'search' => $search,
         ]);
     }
-    public function create(){
+
+    public function create()
+    {
         $activemenu = 'pengguna';
-        return view('admin.pengguna.create',['activemenu' => $activemenu]);
+        return view('admin.pengguna.create', ['activemenu' => $activemenu]);
     }
 
     public function edit($id)
@@ -114,7 +116,7 @@ class PenggunaController extends Controller
 
             $user = User::findOrFail($id);
             $user->update($updateData);
-            
+
             return redirect()->route('admin.pengguna.index')->with('success', 'Pengguna berhasil diupdate.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors([
@@ -122,7 +124,8 @@ class PenggunaController extends Controller
             ]);
         }
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('admin.pengguna.index')->with('success', 'Pengguna berhasil dihapus');

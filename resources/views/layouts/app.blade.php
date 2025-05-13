@@ -27,6 +27,9 @@
 
     <!-- Flowbite JS -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 
     {{-- <!-- Vite Assets (Simulated) -->
@@ -50,7 +53,7 @@
     </div>
 
     @stack('scripts')
-
+    <x-alert />
 </body>
 {{-- <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
