@@ -51,4 +51,8 @@ class Lowongan extends Model
     {
         return $this->belongsToMany(Skill::class);
     }
+    public function jenisMagang(): BelongsTo
+    {
+        return $this->belongsTo(JenisMagang::class);
+    }
 }

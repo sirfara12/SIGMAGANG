@@ -13,6 +13,9 @@ class JenisMagang extends Model
     protected $fillable = ['jenis_magang'];
 
     public function mahasiswa() {
-        return $this->belongsToMany(Mahasiswa::class);
+        return $this->hasmany(Mahasiswa::class);
+    }
+    public function lowongan() {
+        return $this->hasmany(Lowongan::class);
     }
 }
