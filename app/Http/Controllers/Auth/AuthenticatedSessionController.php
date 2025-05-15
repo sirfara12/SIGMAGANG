@@ -39,7 +39,8 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
         session()->flash('auth_token', $token);
-        return redirect()->intended('/dashboard')->with('token',$token);
+        return redirect()->intended('/dashboard')->with('token',$token)
+        ->with('success','Login Berhasil');
     
     }
 

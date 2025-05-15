@@ -35,4 +35,9 @@ class Mahasiswa extends Model
     public function documents() {
         return $this->morphMany(Dokumen::class, 'documentable');
     }
+    public function jenisMagang()
+{
+    return $this->belongsTo(JenisMagang::class);
+}
+
 }
