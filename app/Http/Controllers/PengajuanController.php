@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
+use App\Models\DosenPembimbing;
 
 class PengajuanController extends Controller
 {
@@ -45,31 +46,56 @@ class PengajuanController extends Controller
             'search' => $search,
         ]);
     }
-    public function detail($id)
+    public function edit($id)
     {
+        $activemenu = 'pengajuan';
+        $dosens = DosenPembimbing::all();
         $pengajuan = Pengajuan::with(['mahasiswa.user', 'mahasiswa.prodi', 'lowongan'])->findOrFail($id);
-        return view('admin.pengajuan.detail', [
+        return view('admin.pengajuan.edit', [
             'pengajuan' => $pengajuan,
+            'activemenu' => $activemenu,
+            'dosens' => $dosens,
         ]);
     }
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required',
             'dosen_id' => 'required',
         ],[
-            'status.required' => 'Status wajib diisi.',
             'dosen_id.required' => 'Dosen wajib diisi.',
         ]);
         try{
         $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->update([
-            'status' => $request->status,
             'dosen_id' => $request->dosen_id,
         ]);
-        return redirect()->route('admin.pengajuan.index')->with('success', 'Status berhasil diubah');
+        return redirect()->route('pengajuan.index')->with('success', 'Status berhasil diubah');
     }catch(\Exception $e){
         return redirect()->back()->withInput()->with('error', 'Gagal mengubah status.');
     }
     }
+
+public function update(Request $request, $id)
+{
+    $pengajuan = Pengajuan::findOrFail($id);
+    $request->validate([
+        'action' => 'required|in:accept,decline',
+    ]);
+    if ($request->input('action') === 'accept') {
+        $request->validate([
+            'dosen_id' => 'required|exists:dosen_pembimbing,id',
+        ], [
+            'dosen_id.required' => 'Dosen wajib diisi.',
+            'dosen_id.exists' => 'Dosen tidak ditemukan.',
+        ]);
+        $pengajuan->dosen_id = $request->dosen_id;
+        $pengajuan->status = 'accepted';
+    } elseif ($request->input('action') === 'decline') {
+        $pengajuan->status = 'rejected';
+    }
+
+    $pengajuan->save();
+
+    return redirect()->route('pengajuan.index')->with('success', 'Pengajuan berhasil diproses.');
+}
 }

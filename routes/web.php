@@ -126,6 +126,8 @@ Route::middleware(['auth','verified'])->group(function () {
 
         Route::prefix('pengajuan')->group(function () {
             Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
+            Route::get('/{id}/edit', [PengajuanController::class, 'edit'])->name('pengajuan.edit');
+            Route::put('/{id}', [PengajuanController::class, 'update'])->name('pengajuan.update');
         });
 
         Route::prefix('statistik')->group(function () {

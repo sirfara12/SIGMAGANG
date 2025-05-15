@@ -29,6 +29,10 @@ class Pengajuan extends Model
     {
         return $this->belongsTo(Mahasiswa::class);
     }
+    public function dosen(): BelongsTo
+    {
+        return $this->belongsTo(DosenPembimbing::class);
+    }
 
     public function lowongan(): BelongsTo
     {

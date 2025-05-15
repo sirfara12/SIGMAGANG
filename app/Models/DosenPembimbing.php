@@ -29,4 +29,11 @@ class DosenPembimbing extends Model
     public function documents() {
         return $this->morphMany(Dokumen::class, 'documentable');
     }
+    public function prodi(): BelongsTo
+    {
+        return $this->belongsTo(Prodi::class);
+    }
+    public function pengajuan() {
+        return $this->hasMany(Pengajuan::class);
+    }
 }
