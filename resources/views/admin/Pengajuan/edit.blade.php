@@ -105,22 +105,24 @@
                 class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded px-4 py-2">
                 Kembali
             </a>
-            <div class="flex gap-2">
-                <button 
-                    name="action" value="accept"
-                    type="submit" 
-                    class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2"
-                    {{ $pengajuan->status == 'accepted' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
-                    Accept
-                </button>
-                <button 
-                    name="action" value="decline"
-                    type="submit" 
-                    class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2"
-                    {{ $pengajuan->status == 'rejected' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
-                    Decline
-                </button>
-            </div>
+          <div class="flex gap-2">
+    <button 
+        name="action" value="accept"
+        type="submit"
+        onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
+        class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2"
+        {{ $pengajuan->status == 'accepted' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
+        Accept
+    </button>
+    <button 
+        name="action" value="decline"
+        type="submit"
+        onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
+        class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2"
+        {{ $pengajuan->status == 'rejected' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
+        Decline
+    </button>
+</div>
         </div>
     </form>
 </div>
