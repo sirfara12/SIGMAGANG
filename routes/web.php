@@ -75,7 +75,7 @@ Route::middleware(['auth','verified'])->group(function () {
         
     
             
-        Route::prefix('lowongan')->name('lowongan.')->group(function () {
+        Route::prefix('lowongan')->name('admin.lowongan.')->group(function () {
             Route::get('/', [LowonganController::class, 'index'])->name('index');
             Route::get('/create', [LowonganController::class, 'create'])->name('create');
             Route::post('/', [LowonganController::class, 'store'])->name('store');

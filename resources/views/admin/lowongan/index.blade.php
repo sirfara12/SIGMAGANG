@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('lowongan.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.lowongan.index') }}">
             <div class="flex w-full relative">
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
 
@@ -32,16 +32,22 @@
                 <div id="dropdown"
                     class="z-10 hidden absolute top-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                     <ul class="py-2 text-sm text-gray-700">
-                        <li><button type="button" data-value="all" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Semua Perusahaan</button></li>
+                        <li><button type="button" data-value="all"
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Semua Perusahaan</button>
+                        </li>
                         @foreach ($perusahaans as $item)
-                            <li><button type="button" data-value="{{ $item->id }}" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">{{ $item->nama }}</button></li>
+                            <li><button type="button" data-value="{{ $item->id }}"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">{{ $item->nama }}</button>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
 
                 <!-- Search -->
                 <div class="relative w-full">
-                    <input type="search" name="search" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-e-lg border border-gray-300" placeholder="Cari berdasarkan nama atau lokasi..." value="{{ $search ?? '' }}" />
+                    <input type="search" name="search"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-e-lg border border-gray-300"
+                        placeholder="Cari berdasarkan nama atau lokasi..." value="{{ $search ?? '' }}" />
                     <button type="submit"
                         class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -83,11 +89,41 @@
                         <td class="px-6 py-4">{{ $item->batas_pendaftaran }}</td>
                         <td class="px-6 py-4">
                             <div class="flex gap-2 flex-wrap">
-                                <a href="#" class="bg-blue-500 text-white px-3 py-1 rounded text-sm">Detail</a>
-                                <a href="{{ route('lowongan.edit', $item->id) }}" class="bg-orange-500 text-white px-3 py-1 rounded text-sm">Edit</a>
-                                <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus?')">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded text-sm">Hapus</button>
+                                <!-- Detail -->
+                                <button
+                                    class="inline-flex items-center bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+
+                                    <span class="hidden md:inline">Detail</span>
+                                </button>
+                                <!-- Edit -->
+                                <a href="{{ route('admin.lowongan.edit', $item->id) }}"
+                                    class="inline-flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 5H6a2 2 0 00-2 2v11.5A1.5 1.5 0 005.5 20H17a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                    </svg>
+                                    <span class="hidden md:inline">Edit</span>
+                                </a>
+                                <form action="{{ route('admin.lowongan.destroy', $item->id) }}" method="POST"
+                                    class="inline" id="delete-form-{{ $item->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button"
+                                        class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer btn-delete"
+                                        data-id="{{ $item->id }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        <span class="hidden md:inline">Hapus</span>
+                                    </button>
                                 </form>
                             </div>
                         </td>
@@ -104,6 +140,30 @@
     </div>
 
     <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const lowonganId = this.getAttribute('data-id'); // Ambil ID dari data-id tombol
+
+                // Menampilkan konfirmasi SweetAlert
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika ya, submit form untuk menghapus data
+                        document.getElementById('delete-form-' + lowonganId).submit();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
         const dropdownButton = document.getElementById('dropdown-button');
         const dropdownMenu = document.getElementById('dropdown');
         const categoryButtons = document.querySelectorAll('.category-btn');
@@ -116,7 +176,8 @@
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
                 selectedCategoryInput.value = button.getAttribute('data-value');
-                dropdownButton.innerHTML = `${button.textContent.trim()}<svg class="w-2.5 h-2.5 ms-2.5" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>`;
+                dropdownButton.innerHTML =
+                    `${button.textContent.trim()}<svg class="w-2.5 h-2.5 ms-2.5" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>`;
                 dropdownMenu.classList.add('hidden');
                 button.closest('form').submit();
             });

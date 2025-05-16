@@ -44,7 +44,7 @@
                     </div>
                     <div class="mt-2 flex items-center justify-start gap-x-6 sm:col-span-full">
                         <button type="button"
-                            class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</button>
+                            class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2" onclick="location.href='{{ route('admin.periode.index') }}'">Batal</button>
                         <button type="submit"
                             class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
                     </div>
