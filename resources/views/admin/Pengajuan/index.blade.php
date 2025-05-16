@@ -88,7 +88,8 @@
                         <td class="px-6 py-4">{{ $item->dosen->user->name ?? 'Belum dipilih' }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
-                            <button onclick="window.location.href='{{ route('pengajuan.edit', $item->id) }}'"
+                            @if ($item->status == 'pending')
+                               <button onclick="window.location.href='{{ route('pengajuan.edit', $item->id) }}'"
                                 class="inline-flex items-center bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -97,6 +98,19 @@
                                 </svg>
                                 <span class="hidden md:inline">Cek Data</span>
                             </button>
+                            @endif
+                             @if ($item->status == 'accepted' || $item->status == 'rejected')
+                            <button
+                                class="inline-flex items-center bg-gray-400 text-white px-3 py-1 rounded text-sm opacity-60 cursor-not-allowed"
+                                disabled>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="hidden md:inline">Cek Data</span>
+                            </button>
+                            @endif
                         </td>
                     </tr>
                 @empty
