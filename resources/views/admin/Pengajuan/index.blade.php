@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('pengajuan.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.pengajuan.index') }}">
             <div class="flex w-full relative">
                 <!-- Hidden input untuk menyimpan kategori -->
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
