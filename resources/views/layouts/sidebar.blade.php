@@ -35,7 +35,7 @@
                       </svg>
                       
                     <span class="flex-1 ms-3  text-left {{ $activemenu == 'perusahaan' ? 'text-white' : 'text-gray-400' }}" rtl:text-right whitespace-nowrap">Perusahaan</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <svg class="w-3 h-3"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
               </button>
@@ -83,6 +83,26 @@
             </li>
 
             <li>
+                <a href="{{ url('/jenismagang') }}"
+                    class="flex items-center p-2 rounded-lg group {{ $activemenu == 'jenismagang' ? 'text-white bg-blue-600' : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
+                    <svg class="w-5 h-5 {{ $activemenu == 'jenismagang' ? 'text-white' : 'text-gray-400 dark:text-white' }}" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7H5a2 2 0 0 0-2 2v4m5-6h8M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m0 0h3a2 2 0 0 1 2 2v4m0 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6m18 0s-4 2-9 2-9-2-9-2m9-2h.01" />
+                    </svg>
+                    <span class="ml-3 {{ $activemenu == 'jenismagang' ? 'text-white' : 'text-gray-400' }}">Jenis Magang</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/skill') }}"
+                    class="flex items-center p-2 rounded-lg group {{ $activemenu == 'skill' ? 'text-white bg-blue-600' : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
+                    <svg class="w-5 h-5 {{ $activemenu == 'skill' ? 'text-white' : 'text-gray-400 dark:text-white' }}" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7H5a2 2 0 0 0-2 2v4m5-6h8M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m0 0h3a2 2 0 0 1 2 2v4m0 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6m18 0s-4 2-9 2-9-2-9-2m9-2h.01" />
+                    </svg>
+                    <span class="ml-3 {{ $activemenu == 'skill' ? 'text-white' : 'text-gray-400' }}">Skill</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('/lowongan') }}"
                     class="flex items-center p-2 rounded-lg group {{ $activemenu == 'lowongan' ? 'text-white bg-blue-600' : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 {{ $activemenu == 'lowongan' ? 'text-white' : 'text-gray-400 dark:text-white' }}" fill="none" viewBox="0 0 24 24">
@@ -92,7 +112,6 @@
                     <span class="ml-3 {{ $activemenu == 'lowongan' ? 'text-white' : 'text-gray-400' }}">Lowongan</span>
                 </a>
             </li>
-
             {{-- <li>
                 <a href="{{ url('/bidang_perusahaan') }}"
                     class="flex items-center p-2 rounded-lg group {{ $activemenu == 'bidang_perusahaan' ? 'text-white bg-blue-600' : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700' }}">

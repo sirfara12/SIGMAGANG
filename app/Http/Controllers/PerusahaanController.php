@@ -16,36 +16,48 @@ class PerusahaanController extends Controller
     {
         $activemenu = 'perusahaan';
 
+        // Ambil input pencarian dan kategori
         $search = $request->input('search');
         $category = $request->input('category', 'all');
 
-        $query = Perusahaan::query();
+        // Ambil semua data bidang perusahaan
+        $bidangPerusahaans = BidangPerusahaan::all();
 
+        // Query untuk mengambil data perusahaan
+        $query = Perusahaan::with('bidangPerusahaan'); // Relasi ke BidangPerusahaan
+
+        // Jika ada search input
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                    ->orWhere('email', 'like', "%{$search}%");
             });
         }
 
+        // Jika kategori tidak 'all', filter berdasarkan nama bidang perusahaan
         if ($category !== 'all') {
-            $query->where('bidang_perusahaan_id', $category);
+            $query->whereHas('bidangPerusahaan', function ($q) use ($category) {
+                $q->where('id', $category);  // Filter berdasarkan ID bidang perusahaan
+            });
         }
 
+        // Ambil hasil query dengan pagination
         $perusahaan = $query->paginate(10)->appends([
             'search' => $search,
             'category' => $category
         ]);
-
-        return view('perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category'));
+        // Kembalikan hasil ke view
+        return view('admin.perusahaan.index', compact('activemenu', 'perusahaan', 'search', 'category', 'bidangPerusahaans'));
     }
+
+
 
     public function create()
     {
         $activemenu = 'perusahaan';
         $bidangs = BidangPerusahaan::all();
 
-        return view('perusahaan.create', compact('activemenu', 'bidangs'));
+        return view('admin.perusahaan.create', compact('activemenu', 'bidangs'));
     }
 
     public function store(Request $request)
@@ -67,7 +79,17 @@ class PerusahaanController extends Controller
 
         Perusahaan::create($validated);
 
-        return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil ditambahkan.');
+        return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil ditambahkan.');
+    }
+
+    public function show($id)
+    {
+        $activemenu = 'perusahaan';
+        $perusahaan = Perusahaan::with('bidangPerusahaan')->findOrFail($id);
+        return view('admin.perusahaan.show', [
+            'activemenu' => $activemenu,
+            'perusahaan' => $perusahaan,
+        ]);
     }
 
     public function edit($id)
@@ -76,7 +98,7 @@ class PerusahaanController extends Controller
         $activemenu = 'perusahaan';
         $bidangs = BidangPerusahaan::all();
 
-        return view('perusahaan.edit', compact('perusahaan', 'activemenu', 'bidangs'));
+        return view('admin.perusahaan.edit', compact('perusahaan', 'activemenu', 'bidangs'));
     }
 
     public function update(Request $request, $id)
@@ -103,7 +125,7 @@ class PerusahaanController extends Controller
 
         $perusahaan->update($validated);
 
-        return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil diperbarui.');
+        return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -114,10 +136,9 @@ class PerusahaanController extends Controller
         }
         $perusahaan->delete();
 
-        return redirect()->route('perusahaan.index')->with('success', 'Data perusahaan berhasil dihapus.');
+        return redirect()->route('admin.perusahaan.index')->with('success', 'Data perusahaan berhasil dihapus.');
     }
     /**
      * Show the form for creating a new resource.
      */
-
 }

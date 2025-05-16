@@ -12,31 +12,37 @@
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
 
                 <!-- Dropdown button -->
-                <button id="dropdown-button" type="button"
-                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-                    {{ $category === 'all' ? 'Semua Prodi' : ucfirst($category) }}
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
+             <!-- Dropdown button -->
+             <button id="dropdown-button" type="button"
+             class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
+             {{ $category === 'all' ? 'Semua Program Studi' : ($prodis->firstWhere('id', $category)?->nama ?? 'Pilih Prodi') }}
+             <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 10 6">
+                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="m1 1 4 4 4-4" />
+             </svg>
+         </button>
 
-                <!-- Dropdown menu -->
-                <div id="dropdown"
-                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                        <li><button type="button" data-value="all"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Semua
-                                Prodi</button></li>
-                        <li><button type="button" data-value="D-IV Teknik Informatika"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" ">D-IV Teknik Informatika</button>
-                        </li>
-                        <li><button type="button" data-value="D-IV Sistem Informasi Bisnis"
-                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">D-IV Sistem Informasi Bisnis</button>
-                        </li>
-                    </ul>
-                </div>
+         <!-- Dropdown menu -->
+         <div id="dropdown"
+             class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                 <li>
+                     <button type="button" data-value="all"
+                         class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                         Semua Program Studi
+                     </button>
+                 </li>
+                 @foreach ($prodis as $item)
+                     <li>
+                         <button type="button" data-value="{{ $item->id }}"
+                             class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                             {{ $item->nama }}
+                         </button>
+                     </li>
+                 @endforeach
+             </ul>
+         </div>
 
                 <!-- Search input -->
                 <div class="relative w-full">
@@ -89,8 +95,8 @@
                                 <span class="hidden md:inline">Detail</span>
                             </button>
 
-                            <!-- Edit -->
-                            <button
+                             <!-- Edit -->
+                             <a href="{{ route('programstudi.edit', $item->id) }}"
                                 class="inline-flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -98,18 +104,22 @@
                                         d="M11 5H6a2 2 0 00-2 2v11.5A1.5 1.5 0 005.5 20H17a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
                                 </svg>
                                 <span class="hidden md:inline">Edit</span>
-                            </button>
+                            </a>
 
                             <!-- Hapus -->
-                            <button
-                                class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                <span class="hidden md:inline">Hapus</span>
-                            </button>
+                            <form action="{{ route('programstudi.destroy', $item->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    <span class="hidden md:inline">Hapus</span>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty
@@ -130,17 +140,15 @@
 
     <!-- JavaScript -->
     <script>
-        const dropdownButton = document.getElementById('dropdown-button');
+     const dropdownButton = document.getElementById('dropdown-button');
         const dropdownMenu = document.getElementById('dropdown');
         const categoryButtons = document.querySelectorAll('.category-btn');
         const selectedCategoryInput = document.getElementById('selected-category');
 
-        // Toggle dropdown
         dropdownButton.addEventListener('click', () => {
             dropdownMenu.classList.toggle('hidden');
         });
 
-        // Handle category selection and submit form
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const selectedValue = button.getAttribute('data-value');
@@ -149,19 +157,14 @@
                 selectedCategoryInput.value = selectedValue;
                 dropdownButton.innerHTML = `${displayText}
                     <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>`;
+                        viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" /></svg>`;
 
                 dropdownMenu.classList.add('hidden');
-
-                // Automatically submit the form when a category is selected
                 button.closest('form').submit();
             });
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 dropdownMenu.classList.add('hidden');

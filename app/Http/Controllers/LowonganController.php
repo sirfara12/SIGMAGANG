@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
 use App\Models\Perusahaan;
+use App\Models\Periode;
+use App\Models\Prodi;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,15 +38,17 @@ class LowonganController extends Controller
         ]);
 
         $perusahaans = Perusahaan::all();
-
-        return view('lowongan.index', compact('activemenu', 'lowongan', 'search', 'category', 'perusahaans'));
+        return view('admin.lowongan.index', compact('activemenu', 'lowongan', 'search', 'category', 'perusahaans'));
     }
 
     public function create()
     {
         $activemenu = 'lowongan';
         $perusahaans = Perusahaan::all();
-        return view('lowongan.create', compact('activemenu', 'perusahaans'));
+        $periodes = Periode::all();
+        $prodis = Prodi::all();
+        $skills = Skill::all();
+        return view('admin.lowongan.create', compact('activemenu', 'perusahaans', 'periodes', 'prodis', 'skills'));
     }
 
     public function store(Request $request)
@@ -58,16 +63,35 @@ class LowonganController extends Controller
             'perusahaan_id' => 'required|exists:perusahaan,id',
             'periode_id' => 'nullable|integer',
             'prodi_id' => 'nullable|integer',
-            'foto' => 'nullable|image|max:2048',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
+            'batas_pendaftaran.required' => 'Batas pendaftaran wajib diisi.',
+            'lokasi.required' => 'Lokasi wajib diisi.',
+            'jumlah_magang.required' => 'Jumlah magang wajib diisi.',
+            'perusahaan_id.required' => 'Perusahaan wajib diisi.',
         ]);
+        try{
 
-        if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('lowongan_foto', 'public');
+            $lowongan = Lowongan::create([
+                'nama' => $validated['nama'],
+                'deskripsi' => $validated['deskripsi'],
+                'persyaratan' => $validated['persyaratan'],
+                'batas_pendaftaran' => $validated['batas_pendaftaran'],
+                'lokasi' => $validated['lokasi'],
+                'jumlah_magang' => $validated['jumlah_magang'],
+                'perusahaan_id' => $validated['perusahaan_id'],
+                'periode_id' => $validated['periode_id'],
+                'prodi_id' => $validated['prodi_id'],
+            ]);
+            
+            if ($request->has('skills')) {
+                $lowongan->skills()->sync($request->skills);
+            }
+    
+            return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan lowongan.');
         }
-
-        Lowongan::create($validated);
-
-        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -75,7 +99,10 @@ class LowonganController extends Controller
         $activemenu = 'lowongan';
         $lowongan = Lowongan::findOrFail($id);
         $perusahaans = Perusahaan::all();
-        return view('lowongan.edit', compact('activemenu', 'lowongan', 'perusahaans'));
+        $periodes = Periode::all();
+        $prodis = Prodi::all();
+        $skills = Skill::all();
+        return view('admin.lowongan.edit', compact('activemenu', 'lowongan', 'perusahaans', 'periodes', 'prodis', 'skills'));
     }
 
     public function update(Request $request, $id)
@@ -92,27 +119,41 @@ class LowonganController extends Controller
             'perusahaan_id' => 'required|exists:perusahaan,id',
             'periode_id' => 'nullable|integer',
             'prodi_id' => 'nullable|integer',
-            'foto' => 'nullable|image|max:2048',
+        ],[
+            'nama.required' => 'Nama wajib diisi.',
+            'batas_pendaftaran.required' => 'Batas pendaftaran wajib diisi.',
+            'lokasi.required' => 'Lokasi wajib diisi.',
+            'jumlah_magang.required' => 'Jumlah magang wajib diisi.',
+            'perusahaan_id.required' => 'Perusahaan wajib diisi.',
         ]);
 
-        if ($request->hasFile('foto')) {
-            if ($lowongan->foto) {
-                Storage::disk('public')->delete($lowongan->foto);
-            }
-            $validated['foto'] = $request->file('foto')->store('lowongan_foto', 'public');
+        try{
+            $lowongan->update([
+            'nama' => $validated['nama'],
+            'deskripsi' => $validated['deskripsi'],
+            'persyaratan' => $validated['persyaratan'],
+            'batas_pendaftaran' => $validated['batas_pendaftaran'],
+            'lokasi' => $validated['lokasi'],
+            'jumlah_magang' => $validated['jumlah_magang'],
+            'perusahaan_id' => $validated['perusahaan_id'],
+            'periode_id' => $validated['periode_id'],
+            'prodi_id' => $validated['prodi_id'],
+        ]);
+
+        // Sync skills if they exist in the request
+        if ($request->has('skills')) {
+            $lowongan->skills()->sync($request->skills);
         }
 
-        $lowongan->update($validated);
-
         return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil diperbarui.');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate lowongan.');
+        }
     }
 
     public function destroy($id)
     {
         $lowongan = Lowongan::findOrFail($id);
-        if ($lowongan->foto) {
-            Storage::disk('public')->delete($lowongan->foto);
-        }
         $lowongan->delete();
 
         return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil dihapus.');

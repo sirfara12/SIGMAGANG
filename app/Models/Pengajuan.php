@@ -17,7 +17,7 @@ class Pengajuan extends Model
         'lowongan_id',
         'status',
         'skor_spk',
-        'catatan'
+        'dosen_id'
     ];
 
     protected $casts = [
@@ -28,6 +28,10 @@ class Pengajuan extends Model
     public function mahasiswa(): BelongsTo
     {
         return $this->belongsTo(Mahasiswa::class);
+    }
+    public function dosen(): BelongsTo
+    {
+        return $this->belongsTo(DosenPembimbing::class);
     }
 
     public function lowongan(): BelongsTo

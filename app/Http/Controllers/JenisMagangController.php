@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisMagang;
 use Illuminate\Http\Request;
 
 class JenisMagangController extends Controller
@@ -9,11 +10,31 @@ class JenisMagangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $activemenu = 'jenis_magang';
-        $jenis_magang = JenisMagang::all();
-        return view('jenis_magang.index',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
+        $activemenu = 'jenismagang';
+
+        $search = $request->input('search');
+        $category = $request->input('category', 'all');
+
+        $query = JenisMagang::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('jenis_magang', 'like', "%{$search}%");
+            });
+        }
+
+        if ($category !== 'all') {
+            $query->where('id', $category);
+        }
+
+        $jenismagang = $query->paginate(10)->appends([
+            'search' => $search,
+            'category' => $category
+        ]);
+        $jenismagangs = JenisMagang::all();
+        return view('admin.jenismagang.index', compact('activemenu', 'jenismagang', 'search', 'category','jenismagangs'));
     }
 
     /**
@@ -21,20 +42,28 @@ class JenisMagangController extends Controller
      */
     public function create()
     {
-        $activemenu = 'jenis_magang';
-        return view('jenis_magang.create',['activemenu' => $activemenu]);
+        $activemenu = 'jenismagang';
+        return view('admin.jenismagang.create',['activemenu' => $activemenu]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resourc    e in storage.
      */
     public function store(Request $request)
     {
         $request->validate([
             'jenis_magang' => 'required',
+        ],[
+            'jenis_magang.required' => 'Jenis magang wajib diisi.',
         ]);
-        JenisMagang::create($request->all());
-        return redirect()->route('jenis_magang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        try{
+            JenisMagang::create([
+                'jenis_magang' => $request->jenis_magang,
+            ]);
+            return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil ditambahkan');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan jenis magang.');
+        }
     }
 
     /**
@@ -44,7 +73,7 @@ class JenisMagangController extends Controller
     {
         $activemenu = 'jenis_magang';
         $jenis_magang = JenisMagang::findOrFail($id);
-        return view('jenis_magang.show',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
+        return view('admin.jenis_magang.show',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
     }
 
     /**
@@ -52,9 +81,9 @@ class JenisMagangController extends Controller
      */
     public function edit($id)
     {
-        $activemenu = 'jenis_magang';
-        $jenis_magang = JenisMagang::findOrFail($id);
-        return view('jenis_magang.edit',['activemenu' => $activemenu,'jenis_magang' => $jenis_magang]);
+        $activemenu = 'jenismagang';
+        $jenismagang = JenisMagang::findOrFail($id);
+        return view('admin.jenismagang.edit',['activemenu' => $activemenu,'jenismagang' => $jenismagang]);
     }
 
     /**
@@ -64,10 +93,18 @@ class JenisMagangController extends Controller
     {
         $request->validate([
             'jenis_magang' => 'required',
+        ],[
+            'jenis_magang.required' => 'Jenis magang wajib diisi.',
         ]);
-        $jenis_magang = JenisMagang::findOrFail($id);
-        $jenis_magang->update($request->all());
-        return redirect()->route('jenis_magang.index')->with('success', 'Jenis Magang berhasil diupdate');
+        try{
+            $jenis_magang = JenisMagang::findOrFail($id);
+            $jenis_magang->update([
+                'jenis_magang' => $request->jenis_magang,
+            ]);
+            return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil diupdate');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate jenis magang.');
+        }
     }
 
     /**
@@ -77,6 +114,6 @@ class JenisMagangController extends Controller
     {
         $jenis_magang = JenisMagang::findOrFail($id);
         $jenis_magang->delete();
-        return redirect()->route('jenis_magang.index')->with('success', 'Jenis Magang berhasil dihapus');
+        return redirect()->route('jenismagang.index')->with('success', 'Jenis Magang berhasil dihapus');
     }
 }

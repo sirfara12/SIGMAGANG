@@ -14,8 +14,8 @@ class BidangPerusahaanController extends Controller
     public function index()
     {
         $activemenu = 'perusahaan';
-        $bidang_perusahaan = BidangPerusahaan::all();
-        return view('bidang_perusahaan.index', [
+        $bidang_perusahaan = BidangPerusahaan::paginate(10);
+        return view('admin.bidang_perusahaan.index', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan
         ]);
@@ -26,9 +26,9 @@ class BidangPerusahaanController extends Controller
      */
     public function create()
     {
-        $activemenu = 'bidang_perusahaan';
+        $activemenu = 'perusahaan';
         $bidang = BidangPerusahaan::all();
-        return view('bidang_perusahaan.create', [
+        return view('admin.bidang_perusahaan.create', [
             'activemenu' => $activemenu,
             'bidang'=> $bidang,
         ]);
@@ -40,12 +40,18 @@ class BidangPerusahaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_bidang' => 'required',
+            'nama_bidang' => ['required', 'string', 'max:255'],
+        ], [
+            'nama_bidang.required' => 'Nama bidang wajib diisi.',
         ]);
-        BidangPerusahaan::create([
-            'nama_bidang'  => $request->nama_bidang,
-        ]);
-        return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil ditambahkan');
+        try{
+            BidangPerusahaan::create([
+                'nama_bidang'  => $request->nama_bidang,
+            ]);
+            return redirect()->route('admin.bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil ditambahkan');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan bidang perusahaan.');
+        }
     }
 
     /**
@@ -55,7 +61,7 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'bidang_perusahaan';
         $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        return view('bidang_perusahaan.show', [
+        return view('admin.bidang_perusahaan.show', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan,
         ]);
@@ -68,7 +74,7 @@ class BidangPerusahaanController extends Controller
     {
         $activemenu = 'bidang_perusahaan';
         $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        return view('bidang_perusahaan.edit', [
+        return view('admin.bidang_perusahaan.edit', [
             'activemenu' => $activemenu,
             'bidang_perusahaan' => $bidang_perusahaan,
         ]);
@@ -80,22 +86,32 @@ class BidangPerusahaanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_bidang' => 'required',
+            'nama_bidang' => ['required', 'string', 'max:255'],
+        ], [
+            'nama_bidang.required' => 'Nama bidang wajib diisi.',
         ]);
-        $perusahaan = BidangPerusahaan::findOrFail($id);
-        $perusahaan->update([
-            'nama_bidang'  => $request->nama_bidang,
-        ]);
-        return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
+        try{
+            $perusahaan = BidangPerusahaan::findOrFail($id);
+            $perusahaan->update([
+                'nama_bidang'  => $request->nama_bidang,
+            ]);
+            return redirect()->route('admin.bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil diupdate');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate bidang perusahaan.');
+        }
     }
 
-    /**
+    /** 
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
-        $bidang_perusahaan->delete();
-        return redirect()->route('bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil dihapus');
+        try{
+            $bidang_perusahaan = BidangPerusahaan::findOrFail($id);
+            $bidang_perusahaan->delete();
+            return redirect()->route('admin.bidang_perusahaan.index')->with('success', 'Bidang Perusahaan berhasil dihapus');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Gagal menghapus bidang perusahaan.');
+        }
     }
 }

@@ -6,14 +6,14 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('perusahaan.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.perusahaan.index') }}">
             <div class="flex w-full">
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
 
                 <!-- Dropdown -->
                 <button id="dropdown-button" type="button"
                     class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200">
-                    {{ $category === 'all' ? 'Semua Bidang' : ucfirst($category) }}
+                    {{ $category === 'all' ? 'Semua Bidang' : $bidangPerusahaans->where('id', $category)->first()->nama_bidang ?? 'Semua Bidang' }}
                     <svg class="w-2.5 h-2.5 ms-2.5" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
@@ -23,17 +23,21 @@
                 <div id="dropdown"
                     class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                     <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
-                        <li><button type="button" data-value="all" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Semua Bidang</button></li>
-                        <li><button type="button" data-value="1" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Teknologi Informasi</button></li>
-                        <li><button type="button" data-value="2" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Software Development</button></li>
-                        <li><button type="button" data-value="3" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Cyber Security</button></li>
-                        <li><button type="button" data-value="4" class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Data Science</button></li>
+                        <li><button type="button" data-value="all"
+                                class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">Semua Bidang</button></li>
+                        @foreach ($bidangPerusahaans as $bidang)
+                            <li><button type="button" data-value="{{ $bidang->id }}"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100">{{ $bidang->nama_bidang }}</button>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <!-- Search -->
                 <div class="relative w-full">
-                    <input type="search" name="search" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border border-gray-300" placeholder="Cari perusahaan berdasarkan nama atau email..." value="{{ $search ?? '' }}" />
+                    <input type="search" name="search"
+                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border border-gray-300"
+                        placeholder="Cari perusahaan berdasarkan nama atau email..." value="{{ $search ?? '' }}" />
                     <button type="submit"
                         class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -46,6 +50,7 @@
                 </div>
             </div>
         </form>
+
 
         <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -72,9 +77,11 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2">
                                 @if ($perusahaanItem->foto)
-                                    <img src="{{ asset('images/logo/' . $perusahaanItem->foto) }}" alt="Logo {{ $perusahaanItem->nama }}" class="w-10 h-10 rounded-full object-cover">
+                                    <img src="{{ asset('storage/' . $perusahaanItem->foto) }}"
+                                        alt="Logo {{ $perusahaanItem->nama }}" class="w-10 h-10 rounded-full object-cover">
                                 @else
-                                    <img src="{{ asset('images/Sertifikat.png') }}" alt="Logo Default" class="w-10 h-10 rounded-full border border-gray-200 object-cover">
+                                    <img src="{{ asset('images/Sertifikat.png') }}" alt="Logo Default"
+                                        class="w-10 h-10 rounded-full border border-gray-200 object-cover">
                                 @endif
                                 <div class="font-medium truncate">{{ $perusahaanItem->nama }}</div>
                             </div>
@@ -85,7 +92,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2 flex-wrap md:flex-nowrap">
                                 <!-- Detail -->
-                                <a href="#"
+                                <a href="{{ route('admin.perusahaan.show', $perusahaanItem->id) }}"
                                     class="flex items-center bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm whitespace-nowrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -94,9 +101,9 @@
                                     </svg>
                                     Detail
                                 </a>
-                        
+
                                 <!-- Edit -->
-                                <a href="{{ route('perusahaan.edit', $perusahaanItem->id) }}"
+                                <a href="{{ route('admin.perusahaan.edit', $perusahaanItem->id) }}"
                                     class="flex items-center bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700 text-sm whitespace-nowrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -105,10 +112,27 @@
                                     </svg>
                                     Edit
                                 </a>
-                        
+
                                 <!-- Hapus -->
-                                <form action="{{ route('perusahaan.destroy', $perusahaanItem->id) }}" method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')"
+                                <form action="{{ route('admin.perusahaan.destroy', $perusahaanItem->id) }}" method="POST"
+                                    class="inline" id="delete-form-{{ $perusahaanItem->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button"
+                                        class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer btn-delete"
+                                        data-id="{{ $perusahaanItem->id }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        <span class="hidden md:inline">Hapus</span>
+                                    </button>
+                                </form>
+
+                                {{-- <!-- Hapus -->
+                                <form action="{{ route('admin.perusahaan.destroy', $perusahaanItem->id) }}"
+                                    method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                                     class="flex items-center">
                                     @csrf
                                     @method('DELETE')
@@ -121,13 +145,14 @@
                                         </svg>
                                         Hapus
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
-                        </td>                                  
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada perusahaan ditemukan.</td>
+                        <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada perusahaan ditemukan.
+                        </td>
                     </tr>
                 @endforelse
             </tbody>
@@ -137,6 +162,30 @@
             {{ $perusahaan->links('pagination::tailwind') }}
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const perusahaanId = this.getAttribute('data-id'); // Ambil ID dari data-id tombol
+
+                // Menampilkan konfirmasi SweetAlert
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika ya, submit form untuk menghapus data
+                        document.getElementById('delete-form-' + perusahaanId).submit();
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         const dropdownButton = document.getElementById('dropdown-button');

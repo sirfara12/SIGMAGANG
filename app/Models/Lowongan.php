@@ -25,7 +25,6 @@ class Lowongan extends Model
         'perusahaan_id',
         'periode_id',
         'prodi_id',
-        'foto',
     ];
 
     public function perusahaan(): BelongsTo
@@ -51,5 +50,9 @@ class Lowongan extends Model
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class);
+    }
+    public function jenisMagang(): BelongsTo
+    {
+        return $this->belongsTo(JenisMagang::class);
     }
 }

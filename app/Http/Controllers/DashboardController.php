@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user_count = User::count();
+        $user_count = User::where('role', 'mahasiswa')->count();
         $lowongan_count = Lowongan::count();
         $pengajuan_count = Pengajuan::count();
         $perusahaan_count = Perusahaan::count();

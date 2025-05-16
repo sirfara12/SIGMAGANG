@@ -28,9 +28,14 @@
     <!-- Flowbite JS -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
-    <!-- Vite Assets (Simulated) -->
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    {{-- <!-- Vite Assets (Simulated) -->
     <link href="/dist/app.css" rel="stylesheet" />
-    <script src="/dist/app.js"></script>
+    <script src="/dist/app.js"></script> --}}
 </head>
 
 <body>
@@ -49,7 +54,7 @@
     </div>
 
     @stack('scripts')
-
+    <x-alert />
 </body>
 {{-- <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

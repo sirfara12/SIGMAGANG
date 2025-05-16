@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Mahasiswa extends Model
 {
     use HasFactory;
+    protected $table = 'mahasiswa';
 
     protected $fillable = [
         'nim',
@@ -34,4 +35,9 @@ class Mahasiswa extends Model
     public function documents() {
         return $this->morphMany(Dokumen::class, 'documentable');
     }
+    public function jenisMagang()
+{
+    return $this->belongsTo(JenisMagang::class);
+}
+
 }
