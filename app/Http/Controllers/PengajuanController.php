@@ -96,6 +96,6 @@ public function update(Request $request, $id)
 
     $pengajuan->save();
 
-    return redirect()->route('pengajuan.index')->with('success', 'Pengajuan berhasil diproses.');
+    return redirect()->route('admin.pengajuan.index')->with('success', 'Pengajuan berhasil diproses.');
 }
 }

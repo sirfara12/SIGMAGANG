@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="text-2xl font-bold mb-6">Detail Pengajuan Magang</h1>
-    <form action="{{ route('pengajuan.update', $pengajuan->id) }}" method="POST">
+    <form action="{{ route('admin.pengajuan.update', $pengajuan->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
@@ -44,14 +44,25 @@
                 <!-- Dosen Pembimbing -->
                 <div class="bg-white p-6 rounded-lg border border-gray-200">
                     <h2 class="text-xl font-semibold text-gray-900 mb-4">Dosen Pembimbing</h2>
-                    <select class="w-full p-2 border border-gray-300 rounded mb-4 text-gray-700">
-                        <option value="">Pilih Dosen Pembimbing</option>
+                    <select name="dosen_id" id="dosen_id" class="w-full p-2 border border-gray-300 rounded mb-4 text-gray-700">
+                        <option value="">-- Pilih Dosen --</option>
                         @foreach ($dosens as $dosen)
                             <option value="{{ $dosen->id }}" {{ $pengajuan->dosen_id == $dosen->id ? 'selected' : '' }}>
                                 {{ $dosen->user->name }}
                             </option>
                         @endforeach
                     </select>
+                    @error('dosen_id')
+                        <p class="text-red-500 text-sm mb-2">{{ $message }}</p>
+                    @enderror
+                    {{-- <select name="dosen_id" class="w-full p-2 border border-gray-300 rounded mb-4 text-gray-700">
+                        <option value="">Pilih Dosen Pembimbing</option>
+                        @foreach ($dosens as $dosen)
+                            <option value="{{ $dosen->id }}" {{ $pengajuan->dosen_id == $dosen->id ? 'selected' : '' }}>
+                                {{ $dosen->user->name }}
+                            </option>
+                        @endforeach
+                    </select> --}}
                 </div>
             </div>
 
@@ -133,12 +144,12 @@
 
         {{-- Tombol --}}
         <div class="fixed bottom-0 right-0 w-full bg-white border-t border-gray-200 px-6 py-4 flex justify-between gap-2">
-            <a href="{{ route('pengajuan.index') }}"
+            <a href="{{ route('admin.pengajuan.index') }}"
                 class="ml-[250px] inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded px-4 py-2">
                 Kembali
             </a>
-<<<<<<< HEAD
-            <div class="flex gap-2">
+
+            {{-- <div class="flex gap-2">
                 <button name="action" value="accept" type="submit"
                     class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2"
                     {{ $pengajuan->status == 'accepted' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
@@ -149,27 +160,23 @@
                     {{ $pengajuan->status == 'rejected' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
                     Decline
                 </button>
+            </div> --}}
+
+            <div class="flex gap-2">
+                <button name="action" value="accepted" type="submit"
+                    onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
+                    class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2"
+                    {{ $pengajuan->status == 'accepted' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
+                    Accept
+                </button>
+                <button name="action" value="decline" type="submit"
+                    onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
+                    class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2"
+                    {{ $pengajuan->status == 'rejected' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
+                    Decline
+                </button>
             </div>
-=======
-          <div class="flex gap-2">
-    <button 
-        name="action" value="accept"
-        type="submit"
-        onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
-        class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2"
-        {{ $pengajuan->status == 'accepted' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
-        Accept
-    </button>
-    <button 
-        name="action" value="decline"
-        type="submit"
-        onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
-        class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2"
-        {{ $pengajuan->status == 'rejected' ? 'disabled opacity-50 cursor-not-allowed' : '' }}>
-        Decline
-    </button>
-</div>
->>>>>>> cb7bf762880f0880824a39eba8112bbbe964c721
+
         </div>
     </form>
 @endsection

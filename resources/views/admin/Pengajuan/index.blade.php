@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex justify-between items-center mb-4">
-        <form class="flex w-full max-w-lg" method="GET" action="{{ route('pengajuan.index') }}">
+        <form class="flex w-full max-w-lg" method="GET" action="{{ route('admin.pengajuan.index') }}">
             <div class="flex w-full relative">
                 <!-- Hidden input untuk menyimpan kategori -->
                 <input type="hidden" name="category" id="selected-category" value="{{ $category }}">
@@ -89,7 +89,7 @@
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
                             @if ($item->status == 'pending')
-                               <button onclick="window.location.href='{{ route('pengajuan.edit', $item->id) }}'"
+                               <button onclick="window.location.href='{{ route('admin.pengajuan.edit', $item->id) }}'"
                                 class="inline-flex items-center bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
