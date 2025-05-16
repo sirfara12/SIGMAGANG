@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('lowongan.update', $lowongan->id) }}">
+    <form method="POST" action="{{ route('admin.lowongan.update', $lowongan->id) }}">
         @csrf
         @method('PUT')
         <div class="space-y-12">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                    <div class="col-span-full">
+                    <div class="col-span-3">
                         <label for="lokasi" class="block text-sm/6 font-medium text-gray-900">Lokasi</label>
                         <select name="lokasi" id="lokasi"
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -106,6 +106,16 @@
                             <option value="luar malang"
                                 {{ old('lokasi', $lowongan->lokasi) == 'luar malang' ? 'selected' : '' }}>Luar Malang
                             </option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-3">
+                        <label for="tipe_magang" class="block text-sm/6 font-medium text-gray-900">Tipe Magang</label>
+                        <select name="tipe_magang" id="tipe_magang"
+                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                            <option value="">Tipe Magang</option>
+                            <option value="onsite" {{ old('tipe_magang', $lowongan->tipe_magang) == 'onsite' ? 'selected' : '' }}>Onsite</option>
+                            <option value="remote" {{ old('tipe_magang', $lowongan->tipe_magang) == 'remote' ? 'selected' : '' }}>Remote</option>
                         </select>
                     </div>
 
@@ -128,7 +138,7 @@
 
                     <div class="mt-6 flex items-center justify-start gap-x-6">
                         <button type="button"
-                            class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</button>
+                            class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2" onclick="location.href='{{ route('admin.lowongan.index') }}'">Batal</button>
                         <button type="submit"
                             class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
                     </div>
