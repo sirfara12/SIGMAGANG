@@ -39,9 +39,14 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
         session()->flash('auth_token', $token);
-        return redirect()->intended('/dashboard')->with('token',$token)
-        ->with('success','Login Berhasil');
-    
+        if ($user->role == 'admin') {
+    return redirect()->intended(route('dashboard'))->with('token', $token)->with('success', 'Login Berhasil');
+} elseif ($user->role == 'mahasiswa') {
+    return redirect()->intended(route('dashboard.mahasiswa'))->with('token', $token)->with('success', 'Login Berhasil');
+} elseif ($user->role == 'dosen_pembimbing') {
+    return redirect()->intended(route('dashboard.dosen'))->with('token', $token)->with('success', 'Login Berhasil');
+}
+        return redirect()->intended(RouteServiceProvider::HOME)->with('token', $token)->with('success', 'Login Berhasil');
     }
 
     /**
