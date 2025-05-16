@@ -30,7 +30,24 @@ class DashboardController extends Controller
         );
          return view('dashboard',$data);
     }
-
+    public function dosen()
+    {
+        $activemenu = 'dashboard';
+        $data = array(
+            
+            'activemenu' => $activemenu
+        );
+         return view('dosen-dashboard',$data);
+    }
+    public function mahasiswa()
+    {
+        $activemenu = 'dashboard';
+        $data = array(
+            
+            'activemenu' => $activemenu
+        );
+         return view('mahasiswa-dashboard',$data);
+    }
     /**
      * Show the form for creating a new resource.
      */
