@@ -69,7 +69,7 @@ class PengajuanController extends Controller
         $pengajuan->update([
             'dosen_id' => $request->dosen_id,
         ]);
-        return redirect()->route('pengajuan.index')->with('success', 'Status berhasil diubah');
+        return redirect()->route('admin.pengajuan.index')->with('success', 'Status berhasil diubah');
     }catch(\Exception $e){
         return redirect()->back()->withInput()->with('error', 'Gagal mengubah status.');
     }

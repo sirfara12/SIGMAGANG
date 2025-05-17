@@ -46,24 +46,12 @@
                     <h2 class="text-xl font-semibold text-gray-900 mb-4">Dosen Pembimbing</h2>
                     <select class="w-full p-2 border border-gray-300 rounded mb-4 text-gray-700" name="dosen_id">
                         <option value="">Pilih Dosen Pembimbing</option>
-
                         @foreach ($dosens as $dosen)
                             <option value="{{ $dosen->id }}" {{ $pengajuan->dosen_id == $dosen->id ? 'selected' : '' }}>
                                 {{ $dosen->user->name }}
                             </option>
                         @endforeach
                     </select>
-                    @error('dosen_id')
-                        <p class="text-red-500 text-sm mb-2">{{ $message }}</p>
-                    @enderror
-                    {{-- <select name="dosen_id" class="w-full p-2 border border-gray-300 rounded mb-4 text-gray-700">
-                        <option value="">Pilih Dosen Pembimbing</option>
-                        @foreach ($dosens as $dosen)
-                            <option value="{{ $dosen->id }}" {{ $pengajuan->dosen_id == $dosen->id ? 'selected' : '' }}>
-                                {{ $dosen->user->name }}
-                            </option>
-                        @endforeach
-                    </select> --}}
                 </div>
             </div>
 
@@ -149,46 +137,37 @@
                 class="ml-[250px] inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded px-4 py-2">
                 Kembali
             </a>
-            @if ($pengajuan->status == 'accepted' || $pengajuan->status == 'rejected') 
-            <div class="flex gap-2">
-      <button 
-          name="action" value="accept"
-          type="submit"
-          onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
-          class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2" disabled
-          {{ $pengajuan->status == 'accepted' ? 'opacity-50 cursor-not-allowed' : '' }}>
-          Accept
-      </button>
-      <button 
-          name="action" value="decline"
-          type="submit"
-          onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
-          class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2" disabled
-          {{ $pengajuan->status == 'rejected' ? 'opacity-50 cursor-not-allowed' : '' }}>
-          Decline
-      </button>
-  </div>
+            @if ($pengajuan->status == 'accepted' || $pengajuan->status == 'rejected')
+                <div class="flex gap-2">
+                    <button name="action" value="accept" type="submit"
+                        onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
+                        class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2" disabled
+                        {{ $pengajuan->status == 'accepted' ? 'opacity-50 cursor-not-allowed' : '' }}>
+                        Accept
+                    </button>
+                    <button name="action" value="decline" type="submit"
+                        onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
+                        class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2" disabled
+                        {{ $pengajuan->status == 'rejected' ? 'opacity-50 cursor-not-allowed' : '' }}>
+                        Decline
+                    </button>
+                </div>
             @else
-             <div class="flex gap-2">
-      <button 
-          name="action" value="accept"
-          type="submit"
-          onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
-          class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2" 
-          {{ $pengajuan->status == 'accepted' ? ' opacity-50 cursor-not-allowed' : '' }}>
-          Accept
-      </button>
-      <button 
-          name="action" value="decline"
-          type="submit"
-          onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
-          class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2" 
-          {{ $pengajuan->status == 'rejected' ? ' opacity-50 cursor-not-allowed' : '' }}>
-          Decline
-      </button>
-  </div>
+                <div class="flex gap-2">
+                    <button name="action" value="accept" type="submit"
+                        onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan ini?')"
+                        class="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2"
+                        {{ $pengajuan->status == 'accepted' ? ' opacity-50 cursor-not-allowed' : '' }}>
+                        Accept
+                    </button>
+                    <button name="action" value="decline" type="submit"
+                        onclick="return confirm('Apakah Anda yakin ingin menolak pengajuan ini?')"
+                        class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded px-4 py-2"
+                        {{ $pengajuan->status == 'rejected' ? ' opacity-50 cursor-not-allowed' : '' }}>
+                        Decline
+                    </button>
+                </div>
             @endif
-
         </div>
     </form>
 @endsection

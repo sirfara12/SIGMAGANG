@@ -88,7 +88,7 @@
                         <td class="px-6 py-4">{{ $item->dosen->user->name ?? 'Belum dipilih' }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <!-- Detail -->
-                               <button onclick="window.location.href='{{ route('pengajuan.edit', $item->id) }}'"
+                               <button onclick="window.location.href='{{ route('admin.pengajuan.edit', $item->id) }}'"
                                 class="inline-flex items-center bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700 text-sm cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
