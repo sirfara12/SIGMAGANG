@@ -13,35 +13,35 @@
 
                 <!-- Dropdown button -->
                 <button id="dropdown-button" type="button"
-                class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
-                {{ $category === 'all' ? 'Semua Jenis Magang' : ($jenismagangs->firstWhere('id', $category)?->jenis_magang ?? 'Pilih Jenis') }}
-                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 1 4 4 4-4" />
-                </svg>
-            </button>
+                    class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600">
+                    {{ $category === 'all' ? 'Semua Jenis Magang' : $jenismagangs->firstWhere('id', $category)?->jenis_magang ?? 'Pilih Jenis' }}
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
 
-            <!-- Dropdown menu -->
-            <div id="dropdown"
-                class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                    <li>
-                        <button type="button" data-value="all"
-                            class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            Semua Jenis Magang
-                        </button>
-                    </li>
-                    @foreach ($jenismagangs as $item)
+                <!-- Dropdown menu -->
+                <div id="dropdown"
+                    class="z-10 hidden absolute mt-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
                         <li>
-                            <button type="button" data-value="{{ $item->id }}"
+                            <button type="button" data-value="all"
                                 class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                {{ $item->jenis_magang }}
+                                Semua Jenis Magang
                             </button>
                         </li>
-                    @endforeach
-                </ul>
-            </div>
+                        @foreach ($jenismagangs as $item)
+                            <li>
+                                <button type="button" data-value="{{ $item->id }}"
+                                    class="category-btn w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    {{ $item->jenis_magang }}
+                                </button>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
 
                 <!-- Search input -->
                 <div class="relative w-full">
@@ -104,20 +104,21 @@
                                 </svg>
                                 <span class="hidden md:inline">Edit</span>
                             </a>
-
                             <!-- Hapus -->
-                            <form action="{{ route('jenismagang.destroy', $item->id) }}" method="POST" class="inline">
+                            <form action="{{ route('jenismagang.destroy', $item->id) }}" method="POST" class="inline"
+                                id="delete-form-{{ $item->id }}">
                                 @csrf
                                 @method('DELETE')
-                            <button
-                                class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                <span class="hidden md:inline">Hapus</span>
-                            </button>
+                                <button type="button"
+                                    class="inline-flex items-center bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 text-sm cursor-pointer btn-delete"
+                                    data-id="{{ $item->id }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    <span class="hidden md:inline">Hapus</span>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -137,9 +138,33 @@
         </div>
     </div>
 
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const jenisMagang = this.getAttribute('data-id'); // Ambil ID dari data-id tombol
+
+                // Menampilkan konfirmasi SweetAlert
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data yang dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika ya, submit form untuk menghapus data
+                        document.getElementById('delete-form-' + jenisMagang).submit();
+                    }
+                });
+            });
+        });
+    </script>
+
     <!-- JavaScript -->
     <script>
-         const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('dropdown-button');
         const dropdownMenu = document.getElementById('dropdown');
         const categoryButtons = document.querySelectorAll('.category-btn');
         const selectedCategoryInput = document.getElementById('selected-category');

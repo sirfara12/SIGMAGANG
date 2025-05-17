@@ -14,6 +14,12 @@ use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\JenisMagangController;
 
+//mahasiswa
+use App\Http\Controllers\LowonganMahasiswaController;
+use App\Http\Controllers\ProfilMahasiswaController;
+use App\Http\Controllers\MonitoringMahasiswaController;
+use App\Http\Controllers\PengajuanMahasiswaController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -29,13 +35,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
-Route::middleware(['auth','verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+// Route::middleware(['auth','verified'])->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// });
     // HANYA ADMIN
-    Route::middleware('role:admin')->group(function () {
-
-        // PROFILE
+    Route::middleware('auth','role:admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        // PROFILE(dari breeze)
         Route::prefix('profile')->group(function () {
             Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
@@ -72,10 +78,8 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::delete('/{id}', [BidangPerusahaanController::class, 'destroy'])->name('destroy');
         });
         
-        
-    
-            
-        Route::prefix('lowongan')->name('lowongan.')->group(function () {
+
+        Route::prefix('lowongan')->name('admin.lowongan.')->group(function () {
             Route::get('/', [LowonganController::class, 'index'])->name('index');
             Route::get('/create', [LowonganController::class, 'create'])->name('create');
             Route::post('/', [LowonganController::class, 'store'])->name('store');
@@ -120,20 +124,59 @@ Route::middleware(['auth','verified'])->group(function () {
             Route::delete('/{id}', [ProgramStudiController::class, 'destroy'])->name('destroy');
         });
 
-        // Route::prefix('lowongan')->group(function () {
-        //     Route::get('/', [LowonganController::class, 'index'])->name('lowongan.index');
-        // });
-
         Route::prefix('pengajuan')->group(function () {
-            Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
-            Route::get('/{id}/edit', [PengajuanController::class, 'edit'])->name('pengajuan.edit');
-            Route::put('/{id}', [PengajuanController::class, 'update'])->name('pengajuan.update');
+            Route::get('/', [PengajuanController::class, 'index'])->name('admin.pengajuan.index');
+            Route::get('/{id}/edit', [PengajuanController::class, 'edit'])->name('admin.pengajuan.edit');
+            Route::put('/{id}', [PengajuanController::class, 'update'])->name('admin.pengajuan.update');
         });
 
         Route::prefix('statistik')->group(function () {
             Route::get('/', [StatistikController::class, 'index'])->name('statistik.index');
         });
 
+    });
+
+    // HANYA DOSEN
+    Route::middleware('auth','role:dosen_pembimbing')->group(function () {
+        Route::get('/dashboard/dosen', [DashboardController::class, 'dosen'])->name('dashboard.dosen');
+        // PROFILE(dari breeze)
+        Route::prefix('profile')->group(function () {
+            
+            Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        });
+
+        
+
+
+    });
+     // HANYA MAHASISWA
+    Route::middleware('auth','role:mahasiswa')->group(function () {
+        Route::get('/dashboard/mahasiswa', [DashboardController::class, 'mahasiswa'])->name('dashboard.mahasiswa');
+        // PROFILE(dari breeze)
+        Route::prefix('profil')->name('mahasiswa.profil.')->group(function () {
+            Route::get('/', [ProfileController::class, 'index'])->name('index');
+            Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        });
+
+        Route::prefix('profil')->name('mahasiswa.profil.')->group(function () {
+            Route::get('/mahasiswa', [profilMahasiswaController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('lowongan')->name('mahasiswa.lowongan.')->group(function () {
+            Route::get('/mahasiswa', [LowonganMahasiswaController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('pengajuan')->name('mahasiswa.pengajuan.')->group(function () {
+            Route::get('/mahasiswa', [PengajuanMahasiswaController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('monitoring')->name('mahasiswa.monitoring.')->group(function () {
+            Route::get('/mahasiswa', [MonitoringMahasiswaController::class, 'index'])->name('index');
+        });
     });
 
 require __DIR__.'/auth.php';

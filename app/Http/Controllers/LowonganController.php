@@ -59,6 +59,7 @@ class LowonganController extends Controller
             'persyaratan' => 'nullable|string',
             'batas_pendaftaran' => 'required|date',
             'lokasi' => 'required|string',
+            'tipe_magang' => 'required',
             'jumlah_magang' => 'required|integer',
             'perusahaan_id' => 'required|exists:perusahaan,id',
             'periode_id' => 'nullable|integer',
@@ -78,6 +79,7 @@ class LowonganController extends Controller
                 'persyaratan' => $validated['persyaratan'],
                 'batas_pendaftaran' => $validated['batas_pendaftaran'],
                 'lokasi' => $validated['lokasi'],
+                'tipe_magang' => $validated['tipe_magang'],
                 'jumlah_magang' => $validated['jumlah_magang'],
                 'perusahaan_id' => $validated['perusahaan_id'],
                 'periode_id' => $validated['periode_id'],
@@ -88,7 +90,7 @@ class LowonganController extends Controller
                 $lowongan->skills()->sync($request->skills);
             }
     
-            return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
+            return redirect()->route('admin.lowongan.index')->with('success', 'Data lowongan berhasil ditambahkan.');
         }catch(\Exception $e){
             return redirect()->back()->withInput()->with('error', 'Gagal menambahkan lowongan.');
         }
@@ -115,16 +117,20 @@ class LowonganController extends Controller
             'persyaratan' => 'nullable|string',
             'batas_pendaftaran' => 'required|date',
             'lokasi' => 'required|string',
+            'tipe_magang' => 'required',
             'jumlah_magang' => 'required|integer',
             'perusahaan_id' => 'required|exists:perusahaan,id',
             'periode_id' => 'nullable|integer',
             'prodi_id' => 'nullable|integer',
+            'tipe_magang' => 'nullable|string',
         ],[
             'nama.required' => 'Nama wajib diisi.',
             'batas_pendaftaran.required' => 'Batas pendaftaran wajib diisi.',
             'lokasi.required' => 'Lokasi wajib diisi.',
+            'tipe_magang.required' => 'Tipe magang wajib diisi.',
             'jumlah_magang.required' => 'Jumlah magang wajib diisi.',
             'perusahaan_id.required' => 'Perusahaan wajib diisi.',
+            'tipe_magang.required' => 'Tipe magang wajib diisi.',
         ]);
 
         try{
@@ -134,10 +140,12 @@ class LowonganController extends Controller
             'persyaratan' => $validated['persyaratan'],
             'batas_pendaftaran' => $validated['batas_pendaftaran'],
             'lokasi' => $validated['lokasi'],
+            'tipe_magang' => $validated['tipe_magang'],
             'jumlah_magang' => $validated['jumlah_magang'],
             'perusahaan_id' => $validated['perusahaan_id'],
             'periode_id' => $validated['periode_id'],
             'prodi_id' => $validated['prodi_id'],
+            'tipe_magang' => $validated['tipe_magang'],
         ]);
 
         // Sync skills if they exist in the request
@@ -145,7 +153,7 @@ class LowonganController extends Controller
             $lowongan->skills()->sync($request->skills);
         }
 
-        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil diperbarui.');
+        return redirect()->route('admin.lowongan.index')->with('success', 'Data lowongan berhasil diperbarui.');
         }catch(\Exception $e){
             return redirect()->back()->withInput()->with('error', 'Gagal mengupdate lowongan.');
         }
@@ -156,7 +164,7 @@ class LowonganController extends Controller
         $lowongan = Lowongan::findOrFail($id);
         $lowongan->delete();
 
-        return redirect()->route('lowongan.index')->with('success', 'Data lowongan berhasil dihapus.');
+        return redirect()->route('admin.lowongan.index')->with('success', 'Data lowongan berhasil dihapus.');
     }
     
 }

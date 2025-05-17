@@ -21,6 +21,7 @@ class Lowongan extends Model
         'persyaratan',
         'batas_pendaftaran',
         'lokasi',
+        'tipe_magang',
         'jumlah_magang',
         'perusahaan_id',
         'periode_id',

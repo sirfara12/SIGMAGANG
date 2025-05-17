@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="text-xl font-bold mb-4">Edit Bidang Perusahaan</h2>
-
     <form method="POST" action="{{ route('admin.bidang_perusahaan.update', $bidang_perusahaan->id) }}">
         @csrf
         @method('PUT')
         <div class="space-y-12">
-            <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Tambah Bidang Perusahaan</h2>
+            <h2 class="text-[28px] font-semibold text-gray-900 mb-4">Edit Bidang Perusahaan</h2>
             <div class="border-b border-gray-900/10 pb-12 p-6 bg-white border border-gray-200 rounded-lg">
                 <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="col-span-full">
@@ -24,7 +22,7 @@
                 </div>
                 <div class="mt-6 flex items-center justify-start gap-x-6">
                     <button type="button"
-                        class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2">Batal</button>
+                        class="text-sm/6 font-semibold text-gray-900 hover:text-gray-900 hover:border border-gray-900 rounded-md px-3 py-2" onclick="location.href='{{ route('admin.bidang_perusahaan.index') }}'">Batal</button>
                     <button type="submit"
                         class="bg-indigo-600 rounded-md px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Simpan</button>
                 </div>
