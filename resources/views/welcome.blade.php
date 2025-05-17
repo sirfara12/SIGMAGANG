@@ -20,12 +20,12 @@
                 <div class="flex items-center gap-2">
                     <button type="button"
                         class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onclick="location.href='{{ url('login') }}'">
+                        onclick="location.href='{{ route('login') }}'">
                         Masuk
                     </button>
                     <button type="button"
                         class="text-blue-500 bg-white border border-blue-500 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onclick="location.href='{{ url('register') }}'">
+                        onclick="location.href='{{ route('register') }}'">
                         Buat Akun
                     </button>
                 </div>

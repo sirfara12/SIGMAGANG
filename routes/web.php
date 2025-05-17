@@ -14,6 +14,12 @@ use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\JenisMagangController;
 
+//mahasiswa
+use App\Http\Controllers\LowonganMahasiswaController;
+use App\Http\Controllers\ProfilMahasiswaController;
+use App\Http\Controllers\MonitoringMahasiswaController;
+use App\Http\Controllers\PengajuanMahasiswaController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -135,19 +141,41 @@ Route::get('/', [WelcomeController::class, 'index']);
         Route::get('/dashboard/dosen', [DashboardController::class, 'dosen'])->name('dashboard.dosen');
         // PROFILE(dari breeze)
         Route::prefix('profile')->group(function () {
+            
             Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
+
+        
+
+
     });
      // HANYA MAHASISWA
     Route::middleware('auth','role:mahasiswa')->group(function () {
-        Route::get('/dashboard/mahasiswa', [DashboardController::class, 'dosen'])->name('dashboard.mahasiswa');
+        Route::get('/dashboard/mahasiswa', [DashboardController::class, 'mahasiswa'])->name('dashboard.mahasiswa');
         // PROFILE(dari breeze)
-        Route::prefix('profile')->group(function () {
+        Route::prefix('profil')->name('mahasiswa.profil.')->group(function () {
+            Route::get('/', [ProfileController::class, 'index'])->name('index');
             Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        });
+
+        Route::prefix('profil')->name('mahasiswa.profil.')->group(function () {
+            Route::get('/mahasiswa', [profilMahasiswaController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('lowongan')->name('mahasiswa.lowongan.')->group(function () {
+            Route::get('/mahasiswa', [LowonganMahasiswaController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('pengajuan')->name('mahasiswa.pengajuan.')->group(function () {
+            Route::get('/mahasiswa', [PengajuanMahasiswaController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('monitoring')->name('mahasiswa.monitoring.')->group(function () {
+            Route::get('/mahasiswa', [MonitoringMahasiswaController::class, 'index'])->name('index');
         });
     });
 
