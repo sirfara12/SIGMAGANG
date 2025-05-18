@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+
 // Route::middleware(['auth','verified'])->group(function () {
 //     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // });
@@ -171,8 +172,10 @@ Route::get('/', [WelcomeController::class, 'index']);
         });
 
         Route::prefix('pengajuan')->name('mahasiswa.pengajuan.')->group(function () {
-            Route::get('/mahasiswa', [PengajuanMahasiswaController::class, 'index'])->name('index');
-        });
+        Route::get('/mahasiswa', [PengajuanMahasiswaController::class, 'index'])->name('index');
+        Route::get('/mahasiswa/{id}', [PengajuanMahasiswaController::class, 'show'])->name('show');
+    });
+
 
         Route::prefix('monitoring')->name('mahasiswa.monitoring.')->group(function () {
             Route::get('/mahasiswa', [MonitoringMahasiswaController::class, 'index'])->name('index');
